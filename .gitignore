@@ -1,0 +1,29 @@
+# Node modules
+node_modules/
+
+# Frontend dependencies
+frontend/node_modules/
+
+# Backend dependencies
+backend/node_modules/
+
+# Environment variables
+frontend/.env
+backend/.env
+
+# Logs
+frontend/logs/
+backend/logs/
+*.log
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Build output
+frontend/dist/
+
+# IDE-specific files
+.vscode/
+.idea/
+*.iml
