@@ -1,0 +1,89 @@
+:root {
+  --background-color: #dedede;
+  --text-color: #000000;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.top-navbar {
+  padding: 1rem 2.5rem 1rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+
+.toggle-sidebar-menu {
+  display: none;
+}
+
+.logo {
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 550;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #701313;
+}
+
+.top-navbar-list {
+  list-style-type: none;
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+}
+
+.top-navbar-list-item .top-navbar-item-link {
+  text-decoration: none;
+  font-size: 1.1rem;
+  color: var(--text-color);
+}
+
+.top-navbar-list-item .top-navbar-item-link:hover {
+  color: #701313;
+}
+
+.authentication-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.authentication-div .login-button {
+  position: relative;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 550;
+  padding: 0.4rem 0.8rem 0.4rem 0.8rem;
+  border-radius: 0.5rem;
+  color: var(--text-color);
+  outline: 2px solid var(--text-color);
+}
+
+.authentication-div .login-button::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: -100%;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transition: 1s;
+}
+
+.authentication-div .login-button:hover::before {
+  z-index: 1;
+  left: 100%;
+}

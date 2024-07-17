@@ -12,6 +12,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "concurrently": "^8.2.2"
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-brands-svg-icons": "^6.5.2",
+    "@fortawesome/free-regular-svg-icons": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
+    "concurrently": "^8.2.2",
+    "react-router-dom": "^6.24.1"
   }
 }

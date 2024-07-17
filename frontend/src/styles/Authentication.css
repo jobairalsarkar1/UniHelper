@@ -1,0 +1,133 @@
+:root {
+  --background-color: #ffffff;
+  --text-color: #000000;
+}
+
+.authentication-container {
+  background-color: rgb(194, 202, 202);
+  height: calc(100vh - 4.2rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container {
+  width: 500px;
+  height: 300px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: 2px solid var(--text-color);
+  /* box-shadow: 0 0 5px 2px rgb(0, 0, 0); */
+}
+
+.login-featuring-image {
+  height: 100%;
+  width: 40%;
+  background-color: gray;
+}
+
+.login-form {
+  height: 100%;
+  width: 60%;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  display: flex;
+  gap: 0.7rem;
+  flex-direction: column;
+  background-color: rgb(255, 255, 255);
+}
+
+.login-form .login-form-title {
+  padding: 0.5rem 0 1rem 0;
+  font-size: 2rem;
+  font-weight: 550;
+  text-align: center;
+}
+
+.login-form .form-password-field,
+.form-email-field {
+  padding: 0.8rem 1rem 0.8rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  outline: none;
+  /* margin-bottom: 1rem; */
+  outline: 1px solid #828181;
+  font-size: 0.9rem;
+}
+
+.form-login-button {
+  padding: 0.8rem 1rem 0.8rem 1rem;
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 550;
+  border: none;
+  cursor: pointer;
+  outline: 2px solid var(--text-color);
+  background-color: var(--background-color);
+  transition: 1s;
+}
+
+.form-login-button:hover {
+  background-color: var(--text-color);
+  color: var(--background-color);
+}
+
+.forget-password-reminder {
+  text-align: center;
+}
+
+
+/* Register Form */
+.register-link {
+  text-decoration: none;
+}
+
+.register-container {
+  position: relative;
+  width: 500px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: 2px solid var(--text-color);
+}
+
+.register-featuring-image {
+  height: 100%;
+  width: 45%;
+  background-color: gray;
+}
+
+/* .register-featuring-image .feature-image {
+  height: 100%;
+} */
+
+.register-form {
+  height: 100%;
+  width: 60%;
+  padding: 0.5rem 1rem 1.5rem 1rem;
+  display: flex;
+  gap: 0.7rem;
+  flex-direction: column;
+  background-color: rgb(255, 255, 255);
+}
+
+.register-form .register-form-title {
+  padding: 0.5rem 0 0.5rem 0;
+  font-size: 2rem;
+  font-weight: 550;
+  text-align: center;
+}
+
+.register-form .form-password-field,
+.form-email-field {
+  padding: 0.8rem 1rem 0.8rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  outline: none;
+  /* margin-bottom: 1rem; */
+  outline: 1px solid #828181;
+  font-size: 0.9rem;
+}
