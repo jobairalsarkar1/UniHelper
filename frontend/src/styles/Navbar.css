@@ -10,16 +10,40 @@
 }
 
 .top-navbar {
-  padding: 1rem 2.5rem 1rem 2.5rem;
+  position: relative;
+  padding: 0.7rem 2.5rem 0.7rem 2.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: var(--text-color);
   background-color: var(--background-color);
+  box-shadow: 0 0 3px 2px rgb(199, 199, 199);
+}
+
+.logo-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .toggle-sidebar-menu {
   display: none;
+}
+
+.toggle-sidebar-menu-active {
+  display: block;
+  width: 24px;
+  height: 24px;
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+  margin-left: -1rem;
+  cursor: pointer;
+}
+
+.toggle-sidebar-menu-active:hover {
+  border-radius: 5rem;
+  /* outline: 1px solid rgb(0, 0, 0); */
+  background-color: rgb(221, 221, 221);
 }
 
 .logo {
@@ -41,7 +65,8 @@
 
 .top-navbar-list-item .top-navbar-item-link {
   text-decoration: none;
-  font-size: 1.1rem;
+  font-size: 1rem;
+  font-weight: 550;
   color: var(--text-color);
 }
 

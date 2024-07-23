@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Contact from "./pages/Contact";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import SideNav from "./components/SideNav";
 
 // import React from "react";
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/sidenav" element={<SideNav />} />
         </Routes>
       </BrowserRouter>
     </>
