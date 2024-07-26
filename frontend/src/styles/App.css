@@ -1,0 +1,10 @@
+.main-body-container {
+  display: flex;
+  /* gap: 0.5rem; */
+}
+
+.content-body-container {
+  padding: 0.5rem 1rem 0.5rem 1.5rem;
+  /* display: flex;
+  justify-content: center; */
+}

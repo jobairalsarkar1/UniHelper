@@ -5,14 +5,26 @@ body {
 }
 
 .side-navbar {
-  position: absolute;
-  z-index: -1;
+  display: block;
   width: 250px;
-  /* left: -250px; */
   height: calc(100vh - 4rem);
   background-color: transparent;
   box-shadow: 0 0 3px 2px rgb(199, 199, 199);
-  /* transition: all 3s; */
+}
+
+.side-navbar-not-active {
+  display: none;
+}
+
+/*This Part of Styleis leaving the SideNavBar in Position Absolute. Might need later. */
+/* .side-navbar {
+  position: absolute;
+  z-index: -1;
+  width: 250px;
+  left: 0;
+  height: calc(100vh - 4rem);
+  background-color: transparent;
+  box-shadow: 2px 0 3px 2px rgb(199, 199, 199);
 }
 
 .side-navbar-not-active {
@@ -23,7 +35,7 @@ body {
   height: calc(100vh - 4rem);
   background-color: transparent;
   box-shadow: 0 0 3px 2px rgb(199, 199, 199);
-}
+} */
 
 .side-navbar-list {
   padding: 1rem 0 0 0rem;
@@ -34,25 +46,37 @@ body {
 }
 
 .side-navbar-list-item {
+  width: 100%;
   list-style-type: none;
-  display: flex;
+  /* display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  padding: 0.4rem 1rem 0.4rem 2.1rem;
+  justify-content: space-between; */
+  /* padding: 0.4rem 1rem 0.4rem 2.1rem; */
   text-decoration: none;
   font-size: 1.1rem;
   font-weight: 550;
   color: var(--text-color);
   background-color: transparent;
   border-bottom: 1px solid rgb(199, 199, 199);
-  cursor: pointer;
+  /* cursor: pointer; */
+  /* transition: all 1s; */
 }
 
-.side-navbar-list-item:hover {
+.side-navbar-list-item span {
+  padding: 0.4rem 1rem 0.4rem 2.1rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidenav-item-hover:hover {
   background-color: rgb(199, 199, 199);
 }
 
 .side-navbar-item-link {
+  padding: 0.4rem 1rem 0.4rem 2.1rem;
   width: 100%;
   display: flex;
   align-items: center;
@@ -61,4 +85,35 @@ body {
   font-size: inherit;
   font-weight: inherit;
   color: inherit;
+}
+
+.side-navbar-inner-list {
+  display: none;
+  padding: 0.4rem 1rem 0.4rem 2.1rem;
+  /* transition: all 1s; */
+}
+
+.side-navbar-inner-list-active {
+  display: block;
+  /* transition: all 1s; */
+}
+
+.side-navbar-inner-list-item {
+  list-style-type: none;
+  padding: 0.2rem 1rem 0.2rem 2.1rem;
+}
+
+.side-navbar-inner-item-link {
+  padding: 0 0 0 1.5rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+
+.side-navbar-inner-list-item:hover {
+  background-color: rgb(199, 199, 199);
 }

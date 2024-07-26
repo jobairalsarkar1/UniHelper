@@ -89,6 +89,7 @@
   border-radius: 0.5rem;
   color: var(--text-color);
   outline: 2px solid var(--text-color);
+  transition: all 0.5s;
 }
 
 .authentication-div .login-button::before {
@@ -105,10 +106,16 @@
     rgba(255, 255, 255, 0.4),
     transparent
   );
-  transition: 1s;
+  transition: all 1s;
 }
 
 .authentication-div .login-button:hover::before {
   z-index: 1;
   left: 100%;
+}
+
+.authentication-div .login-button:hover {
+  color: var(--background-color);
+  background-color: var(--text-color);
+  box-shadow: 0 4px 5px 2px rgb(118, 118, 118);
 }

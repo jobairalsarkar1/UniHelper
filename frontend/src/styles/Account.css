@@ -1,0 +1,47 @@
+.course-sequence-container {
+  padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.course-sequence-container h1 {
+  text-align: center;
+  padding-bottom: 0.3rem;
+}
+
+.course-sequence-list {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  padding-top: 0.5rem;
+}
+
+.course-sequence-list-item {
+  padding: 0.5rem 1rem;
+  font-weight: 550;
+  color: var(--background-color);
+  background-color: #ad0e0e;
+}
+
+.done {
+  background-color: #149637;
+}
+
+/* This one handles ScrollBard. */
+::-webkit-scrollbar {
+  display: block;
+  width: 0.5em;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+  width: 0.5em;
+  height: 5%;
+  border-radius: 2em;
+  background-color: #ad0e0e;
+}

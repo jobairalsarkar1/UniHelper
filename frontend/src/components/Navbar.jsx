@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import "../styles/Navbar.css";
 
-const Navbar = () => {
+const Navbar = ({ toggleSidebar }) => {
   return (
     <>
       <div>
@@ -13,6 +13,7 @@ const Navbar = () => {
             <FontAwesomeIcon
               icon={faBars}
               className="toggle-sidebar-menu-active"
+              onClick={toggleSidebar}
             />
             <Link to="/" className="logo">
               UniHelper
