@@ -17,9 +17,7 @@ const SideNav = (props) => {
   return (
     <>
       <div
-        className={
-          props.sidebarOpen == false ? "side-navbar-not-active" : "side-navbar"
-        }
+        className={props.sidebarOpen ? "side-navbar" : "side-navbar-not-active"}
       >
         <ul className="side-navbar-list">
           <li
@@ -45,7 +43,7 @@ const SideNav = (props) => {
             </span>
             <ul
               className={
-                expand.account == true
+                expand.account
                   ? "side-navbar-inner-list-active"
                   : "side-navbar-inner-list"
               }
@@ -96,7 +94,7 @@ const SideNav = (props) => {
             </span>
             <ul
               className={
-                expand.advising == true
+                expand.advising
                   ? "side-navbar-inner-list-active"
                   : "side-navbar-inner-list"
               }
@@ -134,7 +132,7 @@ const SideNav = (props) => {
             </Link>
           </li>
           <li className="side-navbar-list-item sidenav-item-hover">
-            <Link to="/consultation" className="side-navbar-item-link">
+            <Link to="/consultations" className="side-navbar-item-link">
               Consultation
               <FontAwesomeIcon icon={faArrowRight} />
             </Link>
@@ -168,7 +166,7 @@ const SideNav = (props) => {
             </span>
             <ul
               className={
-                expand.facilities == true
+                expand.facilities
                   ? "side-navbar-inner-list-active"
                   : "side-navbar-inner-list"
               }

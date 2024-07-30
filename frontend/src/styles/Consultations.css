@@ -1,0 +1,69 @@
+.consultations-container {
+  width: 100%;
+  padding: 0.5rem 2.5rem 0.5rem 2.1rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+  background-color: var(--background-color);
+}
+
+.consultation-request-form {
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+  border-radius: 5px;
+  outline: 2px solid rgb(94, 94, 94);
+}
+
+.consultation-request-form span {
+  font-size: 1.5rem;
+  font-weight: 550;
+}
+
+.consultation-reason-input {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 2px solid rgb(160, 160, 160);
+}
+
+.consultation-others-container {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.select-faculty {
+  width: 40%;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 2px solid rgb(160, 160, 160);
+}
+
+.consultation-time {
+  width: 35%;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 2px solid rgb(160, 160, 160);
+}
+
+.consultation-request-btn {
+  width: 25%;
+  padding: 0.5rem;
+  font-weight: 550;
+  border-radius: 10px;
+  background-color: var(--background-color);
+  cursor: pointer;
+  border: 2px solid var(--text-color);
+}
+
+.consultation-request-btn:hover {
+  color: var(--background-color);
+  background-color: #000000;
+  box-shadow: 0 2px 4px 2px rgb(118, 118, 118);
+}
+
+.approved-requests,
+.pending-requests {
+  font-size: 1.5rem;
+  font-weight: 550;
+}

@@ -4,38 +4,35 @@ body {
   box-sizing: border-box;
 }
 
-.side-navbar {
-  display: block;
+/* .side-navbar {
   width: 250px;
   height: calc(100vh - 4rem);
   background-color: transparent;
+  box-shadow: 0 0 3px 2px rgb(199, 199, 199);
+  transform: translateX(0);
+  transition: transform 0.5s ease-in-out;
+  overflow: hidden;
+}
+
+.side-navbar-not-active {
+  transform: translateX(-100%);
+  transition: transform 0.5s ease-in-out;
+} */
+
+/*This Part of Styleis leaving the SideNavBar in Position Absolute. Might need later. */
+.side-navbar {
+  position: absolute;
+  display: block;
+  z-index: 1;
+  width: 250px;
+  height: calc(100vh - 4rem);
+  background-color: var(--background-color);
   box-shadow: 0 0 3px 2px rgb(199, 199, 199);
 }
 
 .side-navbar-not-active {
   display: none;
 }
-
-/*This Part of Styleis leaving the SideNavBar in Position Absolute. Might need later. */
-/* .side-navbar {
-  position: absolute;
-  z-index: -1;
-  width: 250px;
-  left: 0;
-  height: calc(100vh - 4rem);
-  background-color: transparent;
-  box-shadow: 2px 0 3px 2px rgb(199, 199, 199);
-}
-
-.side-navbar-not-active {
-  position: absolute;
-  z-index: -1;
-  width: 250px;
-  left: -250px;
-  height: calc(100vh - 4rem);
-  background-color: transparent;
-  box-shadow: 0 0 3px 2px rgb(199, 199, 199);
-} */
 
 .side-navbar-list {
   padding: 1rem 0 0 0rem;

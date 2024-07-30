@@ -8,7 +8,7 @@ const Home = () => {
         <h1>Welcome to Home Page.</h1>
         <ul className="sample">
           <li className="sample-element">
-            <Link to="/user-profile" className="sample-element-link">
+            <Link to="/profile" className="sample-element-link">
               Profile
             </Link>
           </li>

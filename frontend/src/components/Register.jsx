@@ -1,20 +1,44 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/Authentication.css";
 
 const Register = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    ID: "",
     password: "",
-    confirmPassword: "",
+    // confirmPassword: "",
   });
 
-  const { name, email, password, confirmPassword } = formData;
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
+  const navigate = useNavigate();
+
+  const { name, email, ID, password } = formData;
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    try {
+      const res = await axios.post("/api/users/register", {
+        name,
+        email,
+        ID,
+        password,
+      });
+      if (res.data) {
+        setSuccess(true);
+        setTimeout(() => navigate("/login"), 2000);
+      }
+    } catch (err) {
+      setError(err.response?.data?.message || "Something Went wrong.");
+    }
   };
 
   return (
@@ -24,11 +48,11 @@ const Register = () => {
           <img src="logo.png" alt="Logo" className="feature-image" />
         </div>
 
-        <form className="register-form">
+        <form onSubmit={onSubmit} className="register-form">
           <span className="register-form-title">Sign Up</span>
           <input
             type="text"
-            className="form-email-field"
+            className="form-name-field"
             name="name"
             value={name}
             onChange={onChange}
@@ -45,6 +69,15 @@ const Register = () => {
             required
           />
           <input
+            type="number"
+            className="form-ID-field"
+            name="ID"
+            value={ID}
+            onChange={onChange}
+            placeholder="Enter ID"
+            required
+          />
+          <input
             type="password"
             className="form-password-field"
             name="password"
@@ -53,7 +86,7 @@ const Register = () => {
             placeholder="Enter Password"
             required
           />
-          <input
+          {/* <input
             type="password"
             className="form-password-field"
             name="confirmPassword"
@@ -61,8 +94,11 @@ const Register = () => {
             onChange={onChange}
             placeholder="Confirm Password"
             required
-          />
-          {/* {error && <p style={{ color: "red" }}>{error}</p>} */}
+          /> */}
+          {error && <p style={{ color: "red" }}>{error}</p>}
+          {success && (
+            <p style={{ color: "green" }}>Registration was Successfull.</p>
+          )}
           <button type="submit" className="form-login-button">
             Sign Up
           </button>

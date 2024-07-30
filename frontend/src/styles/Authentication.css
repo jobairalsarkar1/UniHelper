@@ -33,7 +33,7 @@
   width: 60%;
   padding: 0.5rem 1rem 0.5rem 1rem;
   display: flex;
-  gap: 0.7rem;
+  gap: 0.5rem;
   flex-direction: column;
   background-color: rgb(255, 255, 255);
 }
@@ -45,21 +45,30 @@
   text-align: center;
 }
 
-.login-form .form-password-field,
-.form-email-field {
+.form-ID-field,
+.form-password-field,
+.form-email-field,
+.form-name-field {
   padding: 0.8rem 1rem 0.8rem 1rem;
   border-radius: 0.5rem;
   border: none;
   outline: none;
   /* margin-bottom: 1rem; */
-  outline: 1px solid #828181;
+  border: 1px solid #828181;
   font-size: 0.9rem;
+}
+
+.form-ID-field:hover,
+.form-email-field:hover,
+.form-password-field:hover,
+.form-name-field:hover {
+  outline: 2px solid #828181;
 }
 
 .form-login-button {
   position: relative;
   padding: 0.8rem 1rem 0.8rem 1rem;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   border-radius: 0.5rem;
   font-size: 1.2rem;
   font-weight: 550;
@@ -135,7 +144,7 @@
   width: 60%;
   padding: 0.5rem 1rem 1.5rem 1rem;
   display: flex;
-  gap: 0.7rem;
+  gap: 0.5rem;
   flex-direction: column;
   background-color: rgb(255, 255, 255);
 }
@@ -147,13 +156,48 @@
   text-align: center;
 }
 
-.register-form .form-password-field,
+/* .form-password-field,
 .form-email-field {
   padding: 0.8rem 1rem 0.8rem 1rem;
   border-radius: 0.5rem;
   border: none;
   outline: none;
-  /* margin-bottom: 1rem; */
   outline: 1px solid #828181;
   font-size: 0.9rem;
+} */
+
+@media (max-width: 550px) {
+  .login-container {
+    width: 350px;
+  }
+
+  .login-featuring-image {
+    width: 0%;
+  }
+
+  .login-form {
+    width: 100%;
+  }
+
+  .register-container {
+    width: 350px;
+  }
+
+  .register-featuring-image {
+    width: 0%;
+  }
+
+  .register-form {
+    width: 100%;
+  }
+}
+
+@media (max-width: 420px) {
+  .login-container {
+    width: 300px;
+  }
+
+  .register-container {
+    width: 300px;
+  }
 }

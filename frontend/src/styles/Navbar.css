@@ -18,6 +18,7 @@
   color: var(--text-color);
   background-color: var(--background-color);
   box-shadow: 0 0 3px 2px rgb(199, 199, 199);
+  z-index: 2;
 }
 
 .logo-menu {
@@ -118,4 +119,80 @@
   color: var(--background-color);
   background-color: var(--text-color);
   box-shadow: 0 4px 5px 2px rgb(118, 118, 118);
+}
+
+.authentication-div .logout-button {
+  position: relative;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 550;
+  padding: 0.3rem 0.7rem 0.3rem 0.7rem;
+  border-radius: 0.5rem;
+  color: var(--text-color);
+  outline: 2px solid var(--text-color);
+  transition: all 0.5s;
+}
+
+.authentication-div .logout-button:hover {
+  color: var(--background-color);
+  background-color: #b91010;
+  box-shadow: 0 4px 5px 2px rgb(118, 118, 118);
+}
+
+@media (max-width: 500px) {
+  .top-navbar {
+    padding: 0.7rem 2.2rem 0.7rem 2.2rem;
+  }
+
+  .toggle-sidebar-menu-active {
+    width: 20px;
+    height: 20px;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  .authentication-div .login-button {
+    position: relative;
+    font-size: 1.2rem;
+    padding: 0.3rem 0.6rem 0.3rem 0.6rem;
+  }
+
+  .top-navbar-list {
+    gap: 0.5rem;
+  }
+
+  .top-navbar-list-item .top-navbar-item-link {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 390px) {
+  .top-navbar {
+    padding: 0.7rem 2rem 0.7rem 2rem;
+  }
+
+  .toggle-sidebar-menu-active {
+    width: 20px;
+    height: 20px;
+  }
+
+  .logo {
+    font-size: 1rem;
+  }
+
+  .authentication-div .login-button {
+    position: relative;
+    font-size: 1rem;
+    padding: 0.3rem 0.5rem 0.3rem 0.5rem;
+  }
+
+  .top-navbar-list {
+    gap: 0.4rem;
+  }
+
+  .top-navbar-list-item .top-navbar-item-link {
+    font-size: 0.7rem;
+  }
 }
