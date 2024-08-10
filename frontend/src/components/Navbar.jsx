@@ -12,6 +12,7 @@ const Navbar = ({ toggleSidebar }) => {
   const handleLogout = () => {
     logout();
     navigate("/login");
+    toggleSidebar();
   };
 
   return (

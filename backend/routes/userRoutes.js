@@ -21,7 +21,7 @@ const auth = require("../middleware/authenticate");
 // Define routes
 router.post("/register", UserController.registerUser);
 router.post("/login", UserController.loginUser);
-router.get("/profile", UserController.getProfile);
+router.get("/profile", auth, UserController.getProfile);
 // router.get("/:id", UserController.getUser);
 // router.put("/:id", UserController.updateUser);
 

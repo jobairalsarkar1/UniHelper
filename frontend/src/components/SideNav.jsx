@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "../styles/SideNav.css";
 import { Link } from "react-router-dom";
 import {
@@ -7,17 +7,22 @@ import {
   faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { AuthContext } from "../contexts/AuthContext";
 
-const SideNav = (props) => {
+const SideNav = ({ sidebarOpen }) => {
   const [expand, setExpand] = useState({
     account: false,
     advising: false,
     facilities: false,
   });
+  const { isLoggedIn } = useContext(AuthContext);
+
   return (
     <>
       <div
-        className={props.sidebarOpen ? "side-navbar" : "side-navbar-not-active"}
+        className={
+          isLoggedIn && sidebarOpen ? "side-navbar" : "side-navbar-not-active"
+        }
       >
         <ul className="side-navbar-list">
           <li
