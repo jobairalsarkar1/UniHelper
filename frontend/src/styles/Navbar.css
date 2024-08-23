@@ -7,6 +7,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Inter", sans-serif;
 }
 
 .top-navbar {
@@ -17,7 +18,7 @@
   align-items: center;
   color: var(--text-color);
   background-color: var(--background-color);
-  box-shadow: 0 0 3px 2px rgb(199, 199, 199);
+  box-shadow: 0 3px 2px -2px rgb(199, 199, 199);
   z-index: 2;
 }
 
@@ -124,9 +125,9 @@
 .authentication-div .logout-button {
   position: relative;
   text-decoration: none;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 550;
-  padding: 0.3rem 0.7rem 0.3rem 0.7rem;
+  padding: 0.4rem 0.7rem 0.4rem 0.7rem;
   border-radius: 0.5rem;
   color: var(--text-color);
   outline: 2px solid var(--text-color);
@@ -136,7 +137,85 @@
 .authentication-div .logout-button:hover {
   color: var(--background-color);
   background-color: #b91010;
-  box-shadow: 0 4px 5px 2px rgb(118, 118, 118);
+  box-shadow: 0 2px 5px 2px rgb(118, 118, 118);
+  border: none;
+  outline: none;
+}
+
+.loggedin-user-info {
+  position: relative;
+  padding: 0.2rem 0.5rem 0.2rem 0.2rem;
+  display: flex;
+  /* gap: 0.5rem; */
+  align-items: center;
+  border-radius: 1rem;
+  border: 1px solid #999a9b;
+  cursor: pointer;
+}
+
+.loggedin-user-info:hover {
+  background-color: #ebebeb;
+}
+
+.loggedin-user-profile-picture {
+  width: 30px;
+  aspect-ratio: 1/1;
+  border-radius: 1rem;
+}
+
+.user-profile-picture-alter {
+  width: 30px;
+  aspect-ratio: 1/1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 660;
+  border-radius: 1rem;
+  color: #ffffff;
+  background-color: #000000;
+}
+
+.loggedin-user-name {
+  margin-left: 0.3rem;
+  font-size: 0.7rem;
+  font-weight: 550;
+}
+
+.loggedin-user-button {
+  width: 20px;
+  aspect-ratio: 1/1;
+}
+
+.loggedin-user-hidden-menu-not-active {
+  display: none;
+}
+
+.loggedin-user-hidden-menu {
+  position: absolute;
+  top: 2.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border: 1px solid #9d9c9c;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 1px 1px #d5d5d5;
+  transition: display 1s;
+}
+
+.loggedin-item-link {
+  padding: 0.3rem 0.5rem 0.3rem 0.8rem;
+  font-size: 0.8rem;
+  font-weight: 550;
+  text-decoration: none;
+  color: #000000;
+  /* background-color: red; */
+}
+
+.loggedin-item-link:hover {
+  border-radius: 0.5rem;
+  background-color: #dedede;
 }
 
 @media (max-width: 500px) {

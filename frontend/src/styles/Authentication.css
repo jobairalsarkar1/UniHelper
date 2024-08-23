@@ -13,8 +13,8 @@
 
 .login-container {
   width: 500px;
-  height: 300px;
-  position: relative;
+  height: auto;
+  /* position: relative; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -31,7 +31,7 @@
 .login-form {
   height: 100%;
   width: 60%;
-  padding: 0.5rem 1rem 0.5rem 1rem;
+  padding: 0.5rem 1rem 0.8rem 1rem;
   display: flex;
   gap: 0.5rem;
   flex-direction: column;
@@ -39,8 +39,8 @@
 }
 
 .login-form .login-form-title {
-  padding: 0.5rem 0 1rem 0;
-  font-size: 2rem;
+  padding: 0.5rem 0 0.5rem 0;
+  font-size: 1.5rem;
   font-weight: 550;
   text-align: center;
 }
@@ -55,32 +55,27 @@
   /* outline: none; */
   /* margin-bottom: 1rem; */
   /* border: 1px solid #828181; */
-  border: 2px solid rgb(160, 160, 160);
+  border: 1px solid #666e75;
   font-size: 0.9rem;
 }
 
-/* .form-ID-field:hover,
-.form-email-field:hover,
-.form-password-field:hover,
-.form-name-field:hover {
-  outline: 2px solid #828181;
-} */
-
 .form-login-button {
   position: relative;
-  padding: 0.8rem 1rem 0.8rem 1rem;
-  margin-top: 0.5rem;
+  padding: 0.7rem 1rem 0.7rem 1rem;
+  margin-top: 0.3rem;
   border-radius: 0.5rem;
   font-size: 1.2rem;
   font-weight: 550;
   border: none;
   cursor: pointer;
-  outline: 2px solid var(--text-color);
-  background-color: var(--background-color);
-  transition: 1s;
+  /* outline: 2px solid var(--text-color); */
+  /* background-color: var(--background-color); */
+  color: var(--background-color);
+  background-color: var(--text-color);
+  transition: background 1s;
 }
 
-.form-login-button::before {
+/* .form-login-button::before {
   content: "";
   position: absolute;
   z-index: -2;
@@ -105,15 +100,18 @@
 .form-login-button:hover {
   background-color: var(--text-color);
   color: var(--background-color);
-}
+} */
 
 .forget-password-reminder {
   text-align: center;
+  font-size: 0.8rem;
 }
 
 /* Register Form */
 .register-link {
   text-decoration: none;
+  font-weight: 550;
+  color: #6262ff;
 }
 
 .register-link:hover {
@@ -121,9 +119,9 @@
 }
 
 .register-container {
-  position: relative;
+  /* position: relative; */
   width: 500px;
-  height: 400px;
+  /* height: 395px; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -143,7 +141,7 @@
 .register-form {
   height: 100%;
   width: 60%;
-  padding: 0.5rem 1rem 1.5rem 1rem;
+  padding: 0.5rem 1rem 0.8rem 1rem;
   display: flex;
   gap: 0.5rem;
   flex-direction: column;
@@ -152,7 +150,7 @@
 
 .register-form .register-form-title {
   padding: 0.5rem 0 0.5rem 0;
-  font-size: 2rem;
+  font-size: 1.5em;
   font-weight: 550;
   text-align: center;
 }

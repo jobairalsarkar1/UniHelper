@@ -2,14 +2,16 @@
 .main-body-container {
   display: flex;
   width: 100%;
+  font-family: "Inter", sans-serif;
 }
 
 .content-body-container {
   width: 100%;
-  background-color: #dcdcdc;
+  background-color: #ffffff;
   /* display: flex; */
   /* justify-content: center; */
   height: calc(100vh - 4rem);
+  overflow-y: scroll;
 }
 
 /* .content-body-container {

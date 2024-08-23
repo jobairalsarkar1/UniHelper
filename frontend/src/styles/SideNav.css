@@ -21,13 +21,14 @@ body {
 
 /*This Part of Styleis leaving the SideNavBar in Position Absolute. Might need later. */
 .side-navbar {
-  position: absolute;
+  position: fixed;
   display: block;
   z-index: 1;
   width: 250px;
   height: calc(100vh - 4rem);
   background-color: var(--background-color);
-  box-shadow: 0 0 3px 2px rgb(199, 199, 199);
+  box-shadow: 4px 0 2px -2px rgb(199, 199, 199);
+  transition: display 1s;
 }
 
 .side-navbar-not-active {
@@ -51,7 +52,7 @@ body {
   justify-content: space-between; */
   /* padding: 0.4rem 1rem 0.4rem 2.1rem; */
   text-decoration: none;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 550;
   color: var(--text-color);
   background-color: transparent;
@@ -87,7 +88,7 @@ body {
 .side-navbar-inner-list {
   display: none;
   padding: 0.4rem 1rem 0.4rem 2.1rem;
-  /* transition: all 1s; */
+  transition: display 1s;
 }
 
 .side-navbar-inner-list-active {

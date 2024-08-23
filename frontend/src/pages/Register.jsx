@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import axios from "axios";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import "../styles/Authentication.css";
 
 const Register = () => {
@@ -38,6 +38,7 @@ const Register = () => {
       }
     } catch (err) {
       setError(err.response?.data?.message || "Something Went wrong.");
+      setTimeout(() => setError(""), 3000);
     }
   };
 
@@ -95,9 +96,29 @@ const Register = () => {
             placeholder="Confirm Password"
             required
           /> */}
-          {error && <p style={{ color: "red" }}>{error}</p>}
+          {error && (
+            <p
+              style={{
+                color: "red",
+                fontSize: "0.8rem ",
+                marginBottom: "0px",
+                paddingBottom: "0px",
+              }}
+            >
+              {error}
+            </p>
+          )}
           {success && (
-            <p style={{ color: "green" }}>Registration was Successfull.</p>
+            <p
+              style={{
+                color: "green",
+                fontSize: "0.8rem",
+                marginBottom: "0px",
+                paddingBottom: "0px",
+              }}
+            >
+              Registration was Successfull.
+            </p>
           )}
           <button type="submit" className="form-login-button">
             Sign Up

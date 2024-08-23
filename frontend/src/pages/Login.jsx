@@ -1,6 +1,7 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
+import { FormInput } from "../components";
 import "../styles/Authentication.css";
 
 const Login = () => {
@@ -22,6 +23,7 @@ const Login = () => {
       navigate("/profile");
     } catch (err) {
       setError(err.message);
+      setTimeout(() => setError(""), 2000);
     }
   };
 
@@ -34,7 +36,7 @@ const Login = () => {
 
         <form onSubmit={onSubmit} className="login-form">
           <span className="login-form-title">Sign In</span>
-          <input
+          <FormInput
             type="text"
             name="email"
             className="form-email-field"
@@ -43,7 +45,7 @@ const Login = () => {
             placeholder="Enter Email"
             required
           />
-          <input
+          <FormInput
             type="password"
             name="password"
             className="form-password-field"
@@ -52,7 +54,37 @@ const Login = () => {
             placeholder="Enter Password"
             required
           />
-          {error && <p style={{ color: "red" }}>{error}</p>}
+
+          {/* <input
+            type="text"
+            name="email"
+            className="form-email-field"
+            value={email}
+            onChange={onChange}
+            placeholder="Enter Email"
+            required
+          /> */}
+          {/* <input
+            type="password"
+            name="password"
+            className="form-password-field"
+            value={password}
+            onChange={onChange}
+            placeholder="Enter Password"
+            required
+          /> */}
+          {error && (
+            <p
+              style={{
+                color: "red",
+                fontSize: "0.8rem",
+                marginBottom: "0px",
+                paddingBottom: "0px",
+              }}
+            >
+              {error}
+            </p>
+          )}
           <button type="submit" className="form-login-button">
             Login
           </button>

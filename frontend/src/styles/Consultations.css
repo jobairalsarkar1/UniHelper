@@ -1,10 +1,15 @@
 .consultations-container {
   width: 100%;
-  padding: 0.5rem 2.5rem 0.5rem 2.1rem;
+  padding: 0.5rem 2.2rem 0.5rem 2.2rem;
   display: flex;
   gap: 0.5rem;
   flex-direction: column;
+  align-items: center;
   background-color: var(--background-color);
+}
+
+.consultations-inner-container {
+  max-width: 100%;
 }
 
 .consultation-request-form {
@@ -17,8 +22,9 @@
 }
 
 .consultation-request-form span {
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: 550;
+  color: rgb(0, 0, 0);
 }
 
 .consultation-reason-input {
@@ -62,8 +68,28 @@
   box-shadow: 0 2px 4px 2px rgb(118, 118, 118);
 }
 
+.approved-consultation-request {
+  margin-top: 1rem;
+}
+
+.pending-counsultation-request {
+  margin-top: 1rem;
+}
+
 .approved-requests,
 .pending-requests {
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: 550;
+}
+
+@media (min-width: 900px) {
+  .consultations-inner-container {
+    min-width: 60%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .consultations-inner-container {
+    min-width: 50%;
+  }
 }

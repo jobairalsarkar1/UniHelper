@@ -17,6 +17,11 @@ const Home = () => {
               Advising
             </Link>
           </li>
+          <li className="sample-element">
+            <Link to="/update-user-info" className="sample-element-link">
+              UpdateUserInfo
+            </Link>
+          </li>
         </ul>
       </div>
     </>

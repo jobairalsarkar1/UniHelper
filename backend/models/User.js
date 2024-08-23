@@ -1,19 +1,3 @@
-// const mongoose = require("mongoose");
-
-// const UserSchema = new mongoose.Schema({
-//   name: { type: String, required: true },
-//   email: { type: String, required: true, unique: true },
-//   password: { type: String, required: true },
-//   ID: { type: String, default: null },
-//   status: {
-//     type: String,
-//     default: null,
-//     enum: ["student", "teacher", "admin"],
-//   },
-// });
-
-// module.exports = mongoose.model("User", UserSchema);
-
 const mongoose = require("mongoose");
 
 const RoutineSchema = new mongoose.Schema({
@@ -40,6 +24,7 @@ const UserSchema = new mongoose.Schema({
     default: null,
   },
   routine: [RoutineSchema],
+  profileImage: { type: String, default: null },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
 });
