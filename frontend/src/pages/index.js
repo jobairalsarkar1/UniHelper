@@ -8,6 +8,10 @@ import Register from "./Register";
 import Login from "./Login";
 import AdminDepartment from "./AdminDepartment";
 import CourseDetails from "./CourseDetails";
+import AdvisingPannel from "./AdvisingPannel";
+import Classroom from "./Classroom";
+import EditCourse from "./EditCourse";
+import SeatStatus from "./SeatStatus";
 
 export {
   Home,
@@ -20,4 +24,8 @@ export {
   NewUsers,
   ExistingUsers,
   CourseDetails,
+  AdvisingPannel,
+  Classroom,
+  EditCourse,
+  SeatStatus,
 };

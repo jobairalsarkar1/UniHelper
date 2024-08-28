@@ -36,6 +36,7 @@
   grid-template-columns: 15% 20% 35% 12% 18%;
   border-top: 1px solid #666e75;
 }
+
 .user-info-list-inner {
   margin-top: 0;
   margin-bottom: 0;
@@ -136,8 +137,9 @@
   flex-direction: column; */
 }
 
+/* This is a special modification. */
 .form-items input,
-select {
+.form-select-option {
   width: 100%;
   font-size: 1rem;
   padding: 0.8rem 0.5rem 0.8rem 0.5rem;
@@ -146,7 +148,7 @@ select {
 }
 
 .form-items input:focus,
-select:focus {
+.form-select-option:focus {
   border: 1px solid #4949ff;
   outline: none;
 }

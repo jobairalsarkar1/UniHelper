@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { SearchThings } from "../components";
 import axios from "axios";
 import "../styles/Courses.css";
@@ -34,7 +34,7 @@ const CourseDetails = () => {
         setCourses(sortedCourses);
       })
       .catch((error) => alert(error.message));
-  });
+  }, []);
 
   return (
     <div className="courses-details-container">

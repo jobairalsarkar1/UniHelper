@@ -22,3 +22,20 @@
 .content-body-container.full-width {
   margin-left: 0;
 } */
+
+/* This one handles ScrollBard. */
+::-webkit-scrollbar {
+  display: block;
+  width: 0.5em;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+  width: 0.5em;
+  height: 5%;
+  border-radius: 2em;
+  background-color: #d8d8d8;
+}

@@ -13,12 +13,13 @@
 }
 
 .consultation-request-form {
-  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  padding: 0.8rem;
   display: flex;
   gap: 0.5rem;
   flex-direction: column;
   border-radius: 5px;
-  outline: 2px solid rgb(94, 94, 94);
+  border: 2px solid #dedede;
+  box-shadow: -1px 1px 1px #a6a6a6, 1px 1px 1px #a6a6a6, 0 1px 1px #a6a6a6;
 }
 
 .consultation-request-form span {
@@ -30,7 +31,12 @@
 .consultation-reason-input {
   padding: 0.5rem;
   border-radius: 5px;
-  border: 2px solid rgb(160, 160, 160);
+  border: 2px solid #9c9c9c;
+}
+
+.consultation-reason-input:focus {
+  border: 2px solid #6464e6;
+  outline: none;
 }
 
 .consultation-others-container {
@@ -42,14 +48,24 @@
   width: 40%;
   padding: 0.5rem;
   border-radius: 5px;
-  border: 2px solid rgb(160, 160, 160);
+  border: 2px solid #9c9c9c;
+}
+
+.select-faculty:focus {
+  border: 2px solid #6464e6;
+  outline: none;
 }
 
 .consultation-time {
   width: 35%;
   padding: 0.5rem;
   border-radius: 5px;
-  border: 2px solid rgb(160, 160, 160);
+  border: 2px solid #9c9c9c;
+}
+
+.consultation-time:focus {
+  border: 2px solid #6464e6;
+  outline: none;
 }
 
 .consultation-request-btn {

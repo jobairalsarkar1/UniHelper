@@ -132,6 +132,7 @@ const UpdateUserInfo = () => {
             <select
               name="status"
               id="status"
+              className="form-select-option"
               value={formData.status}
               onChange={handleChange}
             >
@@ -146,6 +147,7 @@ const UpdateUserInfo = () => {
             <select
               name="departmentId"
               id="departmentId"
+              className="form-select-option"
               value={formData.departmentId}
               onChange={handleChange}
             >

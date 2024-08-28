@@ -25,8 +25,8 @@ import {
   CourseSequence,
   GradeSheet,
   Consultations,
-  Courses,
   NotFound,
+  AdvisedCourses,
 } from "./components";
 import {
   Home,
@@ -39,6 +39,10 @@ import {
   NewUsers,
   ExistingUsers,
   CourseDetails,
+  AdvisingPannel,
+  Classroom,
+  EditCourse,
+  SeatStatus,
 } from "./pages";
 import "./styles/App.css";
 
@@ -52,7 +56,10 @@ const App = () => {
     <>
       <AuthProvider>
         <BrowserRouter>
-          <Navbar toggleSidebar={toggleSidebar} />
+          <Navbar
+            toggleSidebar={toggleSidebar}
+            setSidebarOpen={setSidebarOpen}
+          />
           <div className="main-body-container">
             <SideNav sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
             <div className="content-body-container">
@@ -82,6 +89,10 @@ const App = () => {
                   element={<PrivateRoute component={<AdminCourses />} />}
                 />
                 <Route
+                  path="/edit-course/:courseId"
+                  element={<PrivateRoute component={<EditCourse />} />}
+                />
+                <Route
                   path="/admin-departments"
                   element={<PrivateRoute component={<AdminDepartment />} />}
                 />
@@ -94,12 +105,24 @@ const App = () => {
                   element={<PrivateRoute component={<GradeSheet />} />}
                 />
                 <Route
+                  path="/advising-pannel"
+                  element={<PrivateRoute component={<AdvisingPannel />} />}
+                />
+                <Route
+                  path="/seat-status"
+                  element={<PrivateRoute component={<SeatStatus />} />}
+                />
+                <Route
                   path="/courses-details"
                   element={<PrivateRoute component={<CourseDetails />} />}
                 />
                 <Route
+                  path="/advised-courses"
+                  element={<PrivateRoute component={<AdvisedCourses />} />}
+                />
+                <Route
                   path="/classroom"
-                  element={<PrivateRoute component={<Courses />} />}
+                  element={<PrivateRoute component={<Classroom />} />}
                 />
                 <Route
                   path="/consultations"

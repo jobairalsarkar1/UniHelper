@@ -16,7 +16,7 @@ const SideNav = ({ sidebarOpen, toggleSidebar }) => {
     advising: false,
     facilities: false,
   });
-  const { isLoggedIn, userOne, userStatus } = useContext(AuthContext);
+  const { isLoggedIn, userOne } = useContext(AuthContext);
 
   return (
     <>
@@ -96,6 +96,16 @@ const SideNav = ({ sidebarOpen, toggleSidebar }) => {
                   onClick={() => toggleSidebar()}
                 >
                   Departments
+                  <FontAwesomeIcon icon={faArrowRight} />
+                </Link>
+              </li>
+              <li className="side-navbar-list-item sidenav-item-hover">
+                <Link
+                  to="/admin-advising"
+                  className="side-navbar-item-link"
+                  onClick={() => toggleSidebar()}
+                >
+                  Advising
                   <FontAwesomeIcon icon={faArrowRight} />
                 </Link>
               </li>
@@ -196,7 +206,7 @@ const SideNav = ({ sidebarOpen, toggleSidebar }) => {
                 >
                   <li className="side-navbar-inner-list-item">
                     <Link
-                      to="/pannel"
+                      to="/advising-pannel"
                       className="side-navbar-inner-item-link"
                       onClick={() => toggleSidebar()}
                     >

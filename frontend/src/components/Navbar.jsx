@@ -1,38 +1,56 @@
-import { useContext, useEffect, useState } from "react";
-import { faBars, faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
+import { useContext, useEffect, useRef, useState } from "react";
+import {
+  faBars,
+  faDashboard,
+  // faEllipsisVertical,
+  faSignOut,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
-import ProfilePicture from "../assets/EditedC2.jpg";
+// import ProfilePicture from "../assets/EditedC2.jpg";
 import "../styles/Navbar.css";
 
-const Navbar = ({ toggleSidebar }) => {
+const Navbar = ({ toggleSidebar, setSidebarOpen }) => {
   const { isLoggedIn, logout, userOne } = useContext(AuthContext);
   const navigate = useNavigate();
   const [clicked, setClicked] = useState(false);
-  const [profileLoaded, setProfileLoaded] = useState(false);
-
-  // useEffect(() => {
-  //   if (userOne.profileImage) {
-  //     setProfileLoaded(true);
-  //   }
-  // }, [userOne.profileImage]);
+  const dropDownRef = useRef(null);
 
   const handleLogout = () => {
     logout();
     navigate("/login");
-    toggleSidebar();
+    // toggleSidebar();
+    setSidebarOpen(false);
   };
 
   const handleClick = () => {
     setClicked(!clicked);
-    console.log(clicked);
+    // console.log(clicked);
   };
 
-  const nameSplit = () => {
-    const name = userOne.name.split(" ");
-    return `${name[0]} ${name[1]}`;
+  // const nameSplit = () => {
+  //   const name = userOne.name.split(" ");
+  //   return `${name[0]} ${name[1]}`;
+  // };
+
+  const handleOutsideClick = (e) => {
+    if (dropDownRef.current && !dropDownRef.current.contains(e.target)) {
+      setClicked(false);
+    }
   };
+
+  useEffect(() => {
+    if (clicked) {
+      document.addEventListener("click", handleOutsideClick);
+    } else {
+      document.removeEventListener("click", handleOutsideClick);
+    }
+
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
+  }, [clicked]);
 
   return (
     <>
@@ -65,7 +83,11 @@ const Navbar = ({ toggleSidebar }) => {
           </ul>
           <div className="authentication-div">
             {isLoggedIn ? (
-              <div className="loggedin-user-info" onClick={handleClick}>
+              <div
+                className="loggedin-user-info"
+                onClick={handleClick}
+                ref={dropDownRef}
+              >
                 {userOne.profileImage ? (
                   <>
                     <img
@@ -82,11 +104,10 @@ const Navbar = ({ toggleSidebar }) => {
                   </>
                 )}
 
-                <span className="loggedin-user-name">{nameSplit()}</span>
-                <FontAwesomeIcon
+                {/* <FontAwesomeIcon
                   icon={faEllipsisVertical}
                   className="loggedin-user-button"
-                />
+                /> */}
                 <div
                   className={
                     clicked
@@ -94,7 +115,30 @@ const Navbar = ({ toggleSidebar }) => {
                       : "loggedin-user-hidden-menu-not-active"
                   }
                 >
+                  <div className="loggedin-user-info-inner">
+                    {userOne.profileImage ? (
+                      <>
+                        <img
+                          src={userOne.profileImage}
+                          alt="Profile"
+                          className="loggedin-user-profile-picture"
+                        />
+                      </>
+                    ) : (
+                      <>
+                        <div className="user-profile-picture-alter">
+                          {userOne.name[0]}
+                        </div>
+                      </>
+                    )}
+                    <div className="loggedin-user-status-name">
+                      <span className="loggedin-user-name">{userOne.name}</span>
+                      <p className="user-status">Status: {userOne.status}</p>
+                    </div>
+                  </div>
+                  <hr />
                   <Link to="/dashboard" className="loggedin-item-link">
+                    <FontAwesomeIcon icon={faDashboard} />
                     Dashboard
                   </Link>
                   {/* <hr /> */}
@@ -103,7 +147,8 @@ const Navbar = ({ toggleSidebar }) => {
                     className="loggedin-item-link"
                     onClick={handleLogout}
                   >
-                    Logout
+                    <FontAwesomeIcon icon={faSignOut} />
+                    Sign Out
                   </Link>
                 </div>
               </div>

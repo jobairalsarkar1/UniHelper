@@ -42,3 +42,219 @@
 .list-header {
   font-weight: 700;
 }
+
+/* Course Sequence */
+.course-sequence-container {
+  padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.course-sequence-container h1 {
+  text-align: center;
+  padding-bottom: 0.3rem;
+}
+
+.course-sequence-list {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  padding-top: 0.5rem;
+}
+
+.course-sequence-list-item {
+  padding: 0.5rem 1rem;
+  font-weight: 550;
+  color: var(--background-color);
+  background-color: #ad0e0e;
+}
+
+.done {
+  background-color: #149637;
+}
+
+/* EditCourse.jsx styles */
+.edit-course-container {
+  padding: 0.5rem 2.1rem 0.5rem 2.1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.edit-course-inner-container {
+  width: 100%;
+}
+
+.edit-course-create-section-form {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+  /* background-color: #dedede; */
+  border-radius: 0.5rem;
+  /* border: 1px solid #a1a1a1; */
+  box-shadow: -1.5px 1.5px 1px #bdbdbd, 1.5px 1.5px 1px #bdbdbd,
+    0 1.5px 1px #bdbdbd, 0 -1.5px 1px #bdbdbd;
+}
+
+.edit-course-form-title {
+  font-size: 1.2rem;
+  font-weight: 550;
+}
+
+.edit-course-sectionNumber-day {
+  /* width: 100%; */
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.edit-course-startTime-endTime {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.edit-course-classRoom-request {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.edit-course-items {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-course-items > label {
+  font-size: 0.85rem;
+  font-weight: 550;
+  color: #555454;
+}
+
+.edit-course-items input,
+.edit-course-day-select {
+  padding: 0.5rem 0 0.5rem 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid #827f7f;
+}
+
+.edit-course-items input:focus,
+.edit-course-day-select:focus {
+  border: 2px solid #6464ef;
+  outline: none;
+}
+
+.edit-course-create-section-btn {
+  margin-top: 0.2rem;
+  padding: 0.6rem;
+  font-size: 0.9rem;
+  font-weight: 550;
+  border-radius: 0.5rem;
+  color: #ffffff;
+  background-color: #6464ef;
+  /* border: 1px solid #939393; */
+  border: none;
+  cursor: pointer;
+}
+
+.edit-course-sections {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.5rem;
+  box-shadow: -1.5px 1.5px 1px #bdbdbd, 1.5px 1.5px 1px #bdbdbd,
+    0 1.5px 1px #bdbdbd, 0 -1.5px 1px #bdbdbd;
+}
+
+.edit-course-sections span {
+  /* margin-bottom: 0.5rem; */
+  font-size: 1.1rem;
+  font-weight: 550;
+}
+
+.edit-course-sections-list {
+  margin-top: 0.3rem;
+  list-style-type: none;
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+}
+
+.edit-course-sections-list-item {
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0.5rem;
+  border: 1px solid #b4adad;
+}
+
+.edit-course-sections-list-item p {
+  color: #666e75;
+}
+
+.edit-course-sections-list-item p span {
+  font-weight: 550;
+}
+
+.edit-course-section-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.edit-course-edit-btn,
+.edit-course-delete-btn {
+  padding: 0.3rem 0.5rem 0.4rem 0.5rem;
+  font-weight: 550;
+  border-radius: 0.4rem;
+  border: 1px solid #dedede;
+  cursor: pointer;
+}
+
+.edit-course-edit-btn {
+  font-size: 0.8rem;
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #6464ef;
+}
+
+.edit-course-delete-btn {
+  color: #ffffff;
+  background-color: #ad0e0e;
+}
+
+.no-section-available {
+  margin-top: 1rem;
+  text-align: center;
+  font-weight: 550;
+  color: #6464ef;
+}
+
+@media (min-width: 1024px) {
+  .edit-course-inner-container {
+    width: 60%;
+  }
+
+  .edit-course-create-section-btn {
+    width: 50%;
+    justify-self: center;
+  }
+}
+
+@media (max-width: 420px) {
+  .edit-course-sectionNumber-day {
+    grid-template-columns: 45% 50%;
+  }
+}
+
+@media (max-width: 350px) {
+  .edit-course-sectionNumber-day {
+    /* justify-items: center; */
+    grid-template-columns: 45% 45%;
+    align-items: center;
+  }
+}

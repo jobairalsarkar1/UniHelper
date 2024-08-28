@@ -1,0 +1,125 @@
+.classroom-container {
+  padding: 1rem 2.1rem 0.5rem 2.1rem;
+  /* background-color: #d4d4d4; */
+}
+
+.classroom-inner-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.classroom-individual-class {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.6rem;
+  border: 2px solid #d2d1d1;
+}
+
+.classroom-individual-class:hover {
+  text-decoration: none;
+  color: inherit;
+  box-shadow: -1.5px 1.5px 1.5px #dedede, 1.5px 1.5px 1.5px #dedede,
+    0 1.5px 1.5px #dedede;
+}
+
+.classroom-top-section {
+  padding: 0.8rem 1rem 0.8rem 1rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0.5rem 0.5rem 0 0;
+  background: conic-gradient(from 30deg, #6adef9, #fffe75);
+}
+
+.classroom-owner-picture {
+  width: 70px;
+  aspect-ratio: 1/1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2.5rem;
+  background-color: black;
+}
+
+.classroom-owner-picture-alter {
+  font-size: 1.5rem;
+  font-weight: 700;
+  width: 70px;
+  aspect-ratio: 1/1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  border-radius: 2.5rem;
+  background-color: black;
+}
+
+.classroom-vertical-menu {
+  position: absolute;
+  padding: 0.3rem;
+  width: 25px;
+  height: 25px;
+  top: 1rem;
+  right: 1rem;
+  border-radius: 1rem;
+  z-index: 10;
+}
+
+.classroom-vertical-menu:hover {
+  background-color: rgba(186, 186, 186, 0.5);
+}
+
+.classroom-inner-option-not-active {
+  display: none;
+}
+
+.classroom-inner-option {
+  position: absolute;
+  top: 3.2rem;
+  right: 2rem;
+  width: 100px;
+  padding: 0.5rem;
+  border-radius: 0.2rem;
+  background-color: #ffffff;
+  box-shadow: 1px 1px 1px #dedede, 0 1px 1px #dedede;
+}
+
+.classroom-inner-option-link {
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 550;
+  color: #000000;
+}
+
+.classroom-bottom-section {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  color: #000000;
+}
+
+.classroom-couseCode {
+  text-decoration: underline;
+  font-size: 1.2rem;
+  font-weight: 550;
+}
+
+.classroom-courseName {
+  font-size: 1.1rem;
+  font-weight: 550;
+}
+
+@media (max-width: 940px) {
+  .classroom-inner-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .classroom-inner-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

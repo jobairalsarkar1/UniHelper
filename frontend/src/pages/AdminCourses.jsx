@@ -184,7 +184,7 @@ const AdminCourses = () => {
                           <p>
                             Course Code:{" "}
                             <Link
-                              to={`/admin-course/${course._id}`}
+                              to={`/edit-course/${course._id}`}
                               className="course-code-inner"
                             >
                               {course.courseCode}
@@ -224,7 +224,7 @@ const AdminCourses = () => {
                           <p>
                             Course Code:{" "}
                             <Link
-                              to={`/admin-course/${course._id}`}
+                              to={`/edit-course/${course._id}`}
                               className="course-code-inner"
                             >
                               {course.courseCode}

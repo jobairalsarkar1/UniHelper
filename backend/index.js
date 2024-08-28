@@ -7,7 +7,7 @@ const dotenv = require("dotenv");
 const userRoutes = require("./routes/userRoutes");
 const departmentRoutes = require("./routes/departmentRoutes");
 const courseRoutes = require("./routes/courseRoutes");
-const sectionRoutes = require("./routes/sectionRoutes");
+// const sectionRoutes = require("./routes/sectionRoutes");
 const classroomRoutes = require("./routes/classroomRoutes");
 const consultationRoutes = require("./routes/consultationRoutes");
 const advisingPanelRoutes = require("./routes/advisingPanelRoutes");
@@ -43,7 +43,7 @@ mongoose
 app.use("/api/users", userRoutes);
 app.use("/api/departments", departmentRoutes);
 app.use("/api/courses", courseRoutes);
-app.use("/api/sections", sectionRoutes);
+// app.use("/api/sections", sectionRoutes);
 app.use("/api/classrooms", classroomRoutes);
 app.use("/api/consultations", consultationRoutes);
 app.use("/api/advising-panels", advisingPanelRoutes);
