@@ -11,6 +11,7 @@ import NotFound from "./NotFound";
 import SearchThings from "./SearchThings";
 import Schedule from "./Schedule";
 import AdvisedCourses from "./AdvisedCourses";
+import Loader from "./Loader";
 
 export {
   PrivateRoute,
@@ -26,4 +27,5 @@ export {
   SearchThings,
   Schedule,
   AdvisedCourses,
+  Loader,
 };

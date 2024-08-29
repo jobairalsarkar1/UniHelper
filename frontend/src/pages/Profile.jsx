@@ -1,5 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
+import { Loader } from "../components";
+import "../styles/Account.css";
 
 const Profile = () => {
   const { userOne } = useContext(AuthContext);
@@ -17,26 +19,29 @@ const Profile = () => {
 
   return (
     <div className="profile-container">
-      <h1>Profile</h1>
-      <div className="profile-details">
-        <p>
-          <strong>Name:</strong> {userOne.name}
-        </p>
-        <p>
-          <strong>Email:</strong> {userOne.email}
-        </p>
-        <p>
-          <strong>ID:</strong> {userOne.ID}
-        </p>
-        <p>
-          <strong>ID:</strong> {userOne.status}
-        </p>
-        {/* Add more fields as needed */}
-        {profileImage ? (
-          <img src={profileImage} alt="Profile" />
-        ) : (
-          <div>Loading image...</div>
-        )}
+      <div className="profile-inner-container">
+        <h1>Profile</h1>
+        <Loader />
+        <div className="profile-details">
+          <p>
+            <strong>Name:</strong> {userOne.name}
+          </p>
+          <p>
+            <strong>Email:</strong> {userOne.email}
+          </p>
+          <p>
+            <strong>ID:</strong> {userOne.ID}
+          </p>
+          <p>
+            <strong>ID:</strong> {userOne.status}
+          </p>
+          {/* Add more fields as needed */}
+          {profileImage ? (
+            <img src={profileImage} alt="Profile" />
+          ) : (
+            <div>Loading image...</div>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -5,7 +5,6 @@ export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // const [userStatus, setUserStatus] = useState(null);
   const [userOne, setUserOne] = useState(null);
 
   useEffect(() => {
@@ -17,7 +16,6 @@ const AuthProvider = ({ children }) => {
             headers: { "x-auth-token": token },
           });
           setIsLoggedIn(true);
-          // setUserStatus(res.data.status);
           setUserOne(res.data);
         } catch (err) {
           localStorage.removeItem("token");
@@ -35,7 +33,6 @@ const AuthProvider = ({ children }) => {
       localStorage.setItem("token", res.data.token);
       setIsLoggedIn(true);
       setUserOne(res.data.user);
-      // setUserStatus(res.data.user.status);
     } catch (err) {
       throw new Error(err.response.data.message);
     }
@@ -44,7 +41,6 @@ const AuthProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem("token");
     setIsLoggedIn(false);
-    // setUserStatus(null);
     setUserOne(null);
   };
 

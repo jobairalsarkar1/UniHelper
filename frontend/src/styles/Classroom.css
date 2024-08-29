@@ -1,9 +1,64 @@
 .classroom-container {
   padding: 1rem 2.1rem 0.5rem 2.1rem;
   /* background-color: #d4d4d4; */
+  background-color: var(--background-color);
 }
 
-.classroom-inner-container {
+.classroom-create-class-container {
+  width: 100%;
+  background-color: var(--element-background-color);
+  box-shadow: -1.5px 1.5px 1.5px #dedede, 1.5px 1.5px 1.5px #dedede,
+    0 1.5px 1.5px #dedede, 0 -1.5px 1.5px #dedede;
+}
+
+.classroom-create-form {
+  width: 100%;
+  padding: 0.8rem;
+}
+
+.classroom-create-title-name {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.classroom-create-title-name input {
+  padding: 0.4rem 0.6rem 0.4rem 0.6rem;
+  font-weight: 550;
+  border-radius: 0.5rem;
+  border: 1px solid #8a8989;
+}
+
+.classroom-create-semester-request {
+  display: grid;
+  grid-template-columns: 65% 32%;
+  gap: 3%;
+}
+
+.classroom-create-semester-request input {
+  padding: 0.4rem 0.6rem 0.4rem 0.6rem;
+  font-weight: 550;
+  border-radius: 0.5rem;
+  border: 1px solid #8a8989;
+}
+
+.classroom-create-btn {
+  border-radius: 0.4rem;
+  border: 1px solid #8a8989;
+  font-weight: 550;
+  color: var(--element-background-color);
+  background-color: var(--text-color);
+  cursor: pointer;
+}
+
+.classroom-create-title-name input:focus,
+.classroom-create-semester-request input:focus {
+  outline: 1px solid #6464ef;
+}
+
+.classroom-classes-container {
+  margin-top: 1.5rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
@@ -83,7 +138,7 @@
   width: 100px;
   padding: 0.5rem;
   border-radius: 0.2rem;
-  background-color: #ffffff;
+  background-color: var(--element-background-color);
   box-shadow: 1px 1px 1px #dedede, 0 1px 1px #dedede;
 }
 
@@ -99,6 +154,9 @@
   display: flex;
   flex-direction: column;
   color: #000000;
+  background-color: var(--element-background-color);
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
 }
 
 .classroom-couseCode {
@@ -113,13 +171,13 @@
 }
 
 @media (max-width: 940px) {
-  .classroom-inner-container {
+  .classroom-classes-container {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 560px) {
-  .classroom-inner-container {
+  .classroom-classes-container {
     grid-template-columns: repeat(1, 1fr);
   }
 }

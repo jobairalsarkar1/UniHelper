@@ -1,15 +1,3 @@
-:root {
-  --background-color: #dedede;
-  --text-color: #000000;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Inter", sans-serif;
-}
-
 .top-navbar {
   position: relative;
   padding: 0.7rem 2.5rem 0.7rem 2.5rem;
@@ -17,7 +5,7 @@
   justify-content: space-between;
   align-items: center;
   color: var(--text-color);
-  background-color: var(--background-color);
+  background-color: var(--element-background-color);
   box-shadow: 0 3px 2px -2px rgb(199, 199, 199);
   z-index: 2;
 }
@@ -117,7 +105,7 @@
 }
 
 .authentication-div .login-button:hover {
-  color: var(--background-color);
+  color: var(--element-background-color);
   background-color: var(--text-color);
   box-shadow: 0 4px 5px 2px rgb(118, 118, 118);
 }

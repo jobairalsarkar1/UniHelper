@@ -2,7 +2,9 @@ const mongoose = require("mongoose");
 
 const ClassroomSchema = new mongoose.Schema(
   {
+    title: { type: String, required: true },
     name: { type: String, required: true },
+    semester: { type: String, default: null },
     creator: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",

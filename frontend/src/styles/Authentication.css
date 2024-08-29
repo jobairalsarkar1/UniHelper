@@ -1,10 +1,6 @@
-:root {
-  --background-color: #ffffff;
-  --text-color: #000000;
-}
-
 .authentication-container {
-  background-color: rgb(194, 202, 202);
+  padding: 0.5rem 2.1rem 0.5rem 2.1rem;
+  background-color: var(--background-color);
   height: calc(100vh - 4.2rem);
   display: flex;
   justify-content: center;
@@ -18,8 +14,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  outline: 2px solid var(--text-color);
-  /* box-shadow: 0 0 5px 2px rgb(0, 0, 0); */
+  box-shadow: -3.5px 3.5px 1.5px #dedede, 3.5px 3.5px 1.5px #dedede,
+    0 3.5px 1.5px #dedede, 0 -3.5px 1.5px #dedede;
+  background-color: var(--background-color);
+  border-radius: 0.5rem;
 }
 
 .login-featuring-image {
@@ -35,7 +33,9 @@
   display: flex;
   gap: 0.5rem;
   flex-direction: column;
-  background-color: rgb(255, 255, 255);
+  background-color: var(--element-background-color);
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
 }
 
 .login-form .login-form-title {
@@ -125,7 +125,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  outline: 2px solid var(--text-color);
+  /* outline: 2px solid var(--text-color); */
+  border-radius: 0.5rem;
+  box-shadow: -3.5px 3.5px 1.5px #dedede, 3.5px 3.5px 1.5px #dedede,
+    0 3.5px 1.5px #dedede, 0 -3.5px 1.5px #dedede;
 }
 
 .register-featuring-image {
@@ -145,7 +148,10 @@
   display: flex;
   gap: 0.5rem;
   flex-direction: column;
-  background-color: rgb(255, 255, 255);
+  /* background-color: rgb(255, 255, 255); */
+  background-color: var(--element-background-color);
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
 }
 
 .register-form .register-form-title {

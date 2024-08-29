@@ -340,7 +340,21 @@ const SideNav = ({ sidebarOpen, toggleSidebar }) => {
             </>
           )}
 
-          {userOne?.status === "teacher" && <></>}
+          {userOne?.status === "teacher" && (
+            <>
+              {" "}
+              <li className="side-navbar-list-item sidenav-item-hover">
+                <Link
+                  to="/classroom"
+                  className="side-navbar-item-link"
+                  onClick={() => toggleSidebar()}
+                >
+                  Classroom
+                  <FontAwesomeIcon icon={faArrowRight} />
+                </Link>
+              </li>
+            </>
+          )}
         </ul>
       </div>
     </>

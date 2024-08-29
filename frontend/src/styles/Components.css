@@ -76,3 +76,23 @@
   font-size: 0.8rem;
   font-weight: 550;
 }
+
+.loader {
+  width: 60px;
+  height: 60px;
+  border: 6px solid;
+  border-color: rgb(168, 169, 170) rgba(168, 168, 170, 0.8)
+    rgba(168, 168, 170, 0.7) rgba(168, 168, 170, 0.6); /* Brighter front with faded tail */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  position: relative; /* Infinite rotation */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

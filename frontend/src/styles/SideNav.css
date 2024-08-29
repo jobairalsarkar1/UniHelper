@@ -26,7 +26,7 @@ body {
   z-index: 1;
   width: 250px;
   height: calc(100vh - 4rem);
-  background-color: var(--background-color);
+  background-color: var(--element-background-color);
   box-shadow: 4px 0 2px -2px rgb(199, 199, 199);
   transition: display 1s;
 }
@@ -70,7 +70,7 @@ body {
 }
 
 .sidenav-item-hover:hover {
-  background-color: rgb(199, 199, 199);
+  background-color: rgb(223, 223, 223);
 }
 
 .side-navbar-item-link {
@@ -113,5 +113,5 @@ body {
 }
 
 .side-navbar-inner-list-item:hover {
-  background-color: rgb(199, 199, 199);
+  background-color: rgb(223, 223, 223);
 }
