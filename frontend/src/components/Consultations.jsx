@@ -12,7 +12,7 @@ const Consultations = () => {
         setFaculties(response.data.filter((user) => user.status === "teacher"));
       })
       .catch((error) => alert(error));
-  });
+  }, []);
 
   return (
     <>
