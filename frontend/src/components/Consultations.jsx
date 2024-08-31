@@ -5,8 +5,9 @@ import "../styles/Consultations.css";
 const Consultations = () => {
   const [faculties, setFaculties] = useState([]);
   useEffect(() => {
+    const token = localStorage.getItem("token");
     axios
-      .get("/api/users/all-users")
+      .get("/api/users/all-users", { headers: { "x-auth-token": token } })
       .then((response) => {
         setFaculties(response.data.filter((user) => user.status === "teacher"));
       })

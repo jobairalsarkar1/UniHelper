@@ -4,7 +4,7 @@ import { Loader } from "../components";
 import "../styles/Account.css";
 
 const Profile = () => {
-  const { userOne } = useContext(AuthContext);
+  const { userOne, tokens, isLoggedIn } = useContext(AuthContext);
   const [profileImage, setProfileImage] = useState(null);
 
   useEffect(() => {
@@ -21,6 +21,8 @@ const Profile = () => {
     <div className="profile-container">
       <div className="profile-inner-container">
         <h1>Profile</h1>
+        <h1>{tokens}</h1>
+        <h1>{isLoggedIn ? "yes" : "no"}</h1>
         <Loader />
         <div className="profile-details">
           <p>

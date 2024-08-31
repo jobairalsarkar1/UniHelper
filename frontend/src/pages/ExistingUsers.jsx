@@ -8,8 +8,9 @@ const ExistingUsers = () => {
   const [teacher, setTeacher] = useState(null);
   const [student, setStudent] = useState(null);
   useEffect(() => {
+    const token = localStorage.getItem("token");
     axios
-      .get("/api/users/all-users")
+      .get("/api/users/all-users", { headers: { "x-auth-token": token } })
       .then((response) => {
         setTeacher(response.data.filter((user) => user.status === "teacher"));
         setStudent(response.data.filter((user) => user.status === "student"));

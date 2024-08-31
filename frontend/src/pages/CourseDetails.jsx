@@ -12,6 +12,7 @@ const CourseDetails = () => {
   const [searchTimeout, setSearchTimeout] = useState(null);
 
   const handleSearchResults = (e) => {
+    // e.preventDefault();
     clearTimeout(searchTimeout);
     setSearchText(e.target.value);
     setSearchTimeout(
@@ -25,8 +26,9 @@ const CourseDetails = () => {
   };
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
     axios
-      .get("/api/courses/get-courses")
+      .get("/api/courses/get-courses", { headers: { "x-auth-token": token } })
       .then((response) => {
         const sortedCourses = response.data.sort((a, b) =>
           a.courseCode.localeCompare(b.courseCode)

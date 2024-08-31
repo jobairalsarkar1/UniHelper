@@ -6,8 +6,9 @@ const CourseSequence = () => {
   const [courses, setCourses] = useState(null);
   useEffect(() => {
     const fetchCourses = async () => {
+      const token = localStorage.getItem("token");
       await axios
-        .get("/api/courses/get-courses")
+        .get("/api/courses/get-courses", { headers: { "x-auth-token": token } })
         .then((response) => {
           const sortedCourses = response.data.sort((a, b) =>
             a.courseCode.localeCompare(b.courseCode)

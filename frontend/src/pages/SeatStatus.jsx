@@ -10,7 +10,8 @@ const SeatStatus = () => {
   const [searchTimeout, setSearchTimeout] = useState(null);
 
   const handleSearchChange = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
+    clearTimeout(searchTimeout);
     setSearchText(e.target.value);
     setSearchTimeout(
       setTimeout(() => {
@@ -27,7 +28,10 @@ const SeatStatus = () => {
   useEffect(() => {
     const fetchSections = async () => {
       try {
-        const response = await axios.get("/api/courses/get-sections");
+        const token = localStorage.getItem("token");
+        const response = await axios.get("/api/courses/get-sections", {
+          headers: { "x-auth-token": token },
+        });
         if (response.data) {
           const sortedSections = response.data.sort((a, b) => {
             if (a.course.courseCode < b.course.courseCode) return -1;
