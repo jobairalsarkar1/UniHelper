@@ -27,8 +27,11 @@ const NewUsers = () => {
   };
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
     axios
-      .get("/api/users/all-users")
+      .get("/api/users/all-users", {
+        headers: { "x-auth-token": token },
+      })
       .then((response) => {
         setNewUsers(response.data.filter((user) => user.status === null));
       })

@@ -27,7 +27,10 @@ const UpdateUserInfo = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get(`/api/users/user/${userId}`);
+        const token = localStorage.getItem("token");
+        const response = await axios.get(`/api/users/user/${userId}`, {
+          headers: { "x-auth-token": token },
+        });
         setFormData(response.data);
       } catch (error) {
         alert(`Error fetching User ${error}`);
@@ -36,7 +39,10 @@ const UpdateUserInfo = () => {
 
     const fetchDepartments = async () => {
       try {
-        const response = await axios.get("/api/departments/get-departments");
+        const token = localStorage.getItem("token");
+        const response = await axios.get("/api/departments/get-departments", {
+          headers: { "x-auth-token": token },
+        });
         setDepartments(response.data);
       } catch (error) {
         alert(`Error fetching departments ${error}`);
@@ -75,8 +81,12 @@ const UpdateUserInfo = () => {
     }
     console.log("Processing.....");
     try {
+      const token = localStorage.getItem("token");
       await axios.put(`/api/users/update/${userId}`, data, {
-        headers: { "Content-Type": "multipart/form-data" },
+        headers: {
+          "Content-Type": "multipart/form-data",
+          "x-auth-token": token,
+        },
       });
       navigate("/new-users");
       // alert("Operation Successfull.");

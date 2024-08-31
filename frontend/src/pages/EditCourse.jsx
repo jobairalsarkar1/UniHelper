@@ -26,13 +26,15 @@ const EditCourse = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const token = localStorage.getItem("token");
       const response = await axios.post(
         `/api/courses/create-section/${courseId}`,
         {
           sectionNumber,
           schedule: { day, startTime, endTime },
           classRoom,
-        }
+        },
+        { headers: { "x-auth-token": token } }
       );
       if (response.data) {
         setSuccess("Section created successfully.");
@@ -58,8 +60,11 @@ const EditCourse = () => {
 
   const handleDelete = async (sectionId) => {
     try {
+      const token = localStorage.getItem("token");
+
       const response = await axios.delete(
-        `/api/courses/delete-section/${sectionId}`
+        `/api/courses/delete-section/${sectionId}`,
+        { headers: { "x-auth-token": token } }
       );
       if (response.data) {
         setSections(sections.filter((section) => section._id != sectionId));
@@ -72,7 +77,12 @@ const EditCourse = () => {
   useEffect(() => {
     const fetchSection = async () => {
       try {
-        const response = await axios.get(`/api/courses/get-course/${courseId}`);
+        const token = localStorage.getItem("token");
+
+        const response = await axios.get(
+          `/api/courses/get-course/${courseId}`,
+          { headers: { "x-auth-token": token } }
+        );
         setSections(response.data.sections);
       } catch (error) {
         setError("Faild to fetch sections.");

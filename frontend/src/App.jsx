@@ -70,63 +70,123 @@ const App = () => {
                 <Route path="/register" element={<Register />} />
                 <Route
                   path="/profile"
-                  element={<PrivateRoute component={<Profile />} />}
+                  element={
+                    <PrivateRoute>
+                      <Profile />
+                    </PrivateRoute>
+                  }
                 />
                 <Route
                   path="/new-users"
-                  element={<PrivateRoute component={<NewUsers />} />}
+                  element={
+                    <PrivateRoute>
+                      <NewUsers />
+                    </PrivateRoute>
+                  }
                 />
                 <Route
                   path="/user/:userId"
-                  element={<PrivateRoute component={<UpdateUserInfo />} />}
+                  element={
+                    <PrivateRoute>
+                      <UpdateUserInfo />
+                    </PrivateRoute>
+                  }
                 />
                 <Route
                   path="/existing-users"
-                  element={<PrivateRoute component={<ExistingUsers />} />}
+                  element={
+                    <PrivateRoute>
+                      <ExistingUsers />
+                    </PrivateRoute>
+                  }
                 />
                 <Route
                   path="/admin-courses"
-                  element={<PrivateRoute component={<AdminCourses />} />}
+                  element={
+                    <PrivateRoute>
+                      <AdminCourses />
+                    </PrivateRoute>
+                  }
                 />
                 <Route
                   path="/edit-course/:courseId"
-                  element={<PrivateRoute component={<EditCourse />} />}
+                  element={
+                    <PrivateRoute>
+                      <EditCourse />
+                    </PrivateRoute>
+                  }
                 />
                 <Route
                   path="/admin-departments"
-                  element={<PrivateRoute component={<AdminDepartment />} />}
+                  element={
+                    <PrivateRoute>
+                      <AdminDepartment />
+                    </PrivateRoute>
+                  }
                 />
                 <Route
                   path="/course-sequence"
-                  element={<PrivateRoute component={<CourseSequence />} />}
+                  element={
+                    <PrivateRoute>
+                      <CourseSequence />
+                    </PrivateRoute>
+                  }
                 />
                 <Route
                   path="/gradesheet"
-                  element={<PrivateRoute component={<GradeSheet />} />}
+                  element={
+                    <PrivateRoute>
+                      <GradeSheet />
+                    </PrivateRoute>
+                  }
                 />
                 <Route
                   path="/advising-pannel"
-                  element={<PrivateRoute component={<AdvisingPannel />} />}
+                  element={
+                    <PrivateRoute>
+                      <AdvisingPannel />
+                    </PrivateRoute>
+                  }
                 />
                 <Route
                   path="/seat-status"
-                  element={<PrivateRoute component={<SeatStatus />} />}
+                  element={
+                    <PrivateRoute>
+                      <SeatStatus />
+                    </PrivateRoute>
+                  }
                 />
                 <Route
                   path="/courses-details"
-                  element={<PrivateRoute component={<CourseDetails />} />}
+                  element={
+                    <PrivateRoute>
+                      <CourseDetails />
+                    </PrivateRoute>
+                  }
                 />
                 <Route
                   path="/advised-courses"
-                  element={<PrivateRoute component={<AdvisedCourses />} />}
+                  element={
+                    <PrivateRoute>
+                      <AdvisedCourses />
+                    </PrivateRoute>
+                  }
                 />
                 <Route
                   path="/classroom"
-                  element={<PrivateRoute component={<Classroom />} />}
+                  element={
+                    <PrivateRoute>
+                      <Classroom />
+                    </PrivateRoute>
+                  }
                 />
                 <Route
                   path="/consultations"
-                  element={<PrivateRoute component={<Consultations />} />}
+                  element={
+                    <PrivateRoute>
+                      <Consultations />
+                    </PrivateRoute>
+                  }
                 />
                 <Route path="*" element={<NotFound />} />
               </Routes>

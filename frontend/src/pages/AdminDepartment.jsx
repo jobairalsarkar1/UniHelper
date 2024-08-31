@@ -24,11 +24,16 @@ const AdminDepartment = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/api/departments/create-department", {
-        name,
-        details,
-        selectedCourses,
-      });
+      const token = localStorage.getItem("token");
+      const response = await axios.post(
+        "/api/departments/create-department",
+        {
+          name,
+          details,
+          selectedCourses,
+        },
+        { headers: { "x-auth-token": token } }
+      );
       if (response.data) {
         setDepartments([...departments, response.data]);
         setSuccess(true);
@@ -47,7 +52,10 @@ const AdminDepartment = () => {
 
   const handleDelete = async (deptId) => {
     try {
-      const response = await axios.delete(`/api/departments/${deptId}`);
+      const token = localStorage.getItem("token");
+      const response = await axios.delete(`/api/departments/${deptId}`, {
+        headers: { "x-auth-token": token },
+      });
       if (response.data) {
         setDepartments(
           departments.filter((department) => department._id !== deptId)
@@ -59,8 +67,9 @@ const AdminDepartment = () => {
   };
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
     axios
-      .get("/api/courses/get-courses")
+      .get("/api/courses/get-courses", { headers: { "x-auth-token": token } })
       .then((response) => {
         const sortedCourses = response.data.sort((a, b) =>
           a.courseCode.localeCompare(b.courseCode)
@@ -69,7 +78,9 @@ const AdminDepartment = () => {
       })
       .catch((error) => alert(error.message));
     axios
-      .get("/api/departments/get-departments")
+      .get("/api/departments/get-departments", {
+        headers: { "x-auth-token": token },
+      })
       .then((response) => {
         const sortedDepartments = response.data.sort((a, b) =>
           a.name.localeCompare(b.name)
