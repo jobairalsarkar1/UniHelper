@@ -12,6 +12,7 @@ import AdvisingPannel from "./AdvisingPannel";
 import Classroom from "./Classroom";
 import EditCourse from "./EditCourse";
 import SeatStatus from "./SeatStatus";
+import ClassroomIndividual from "./ClassroomIndividual";
 
 export {
   Home,
@@ -28,4 +29,5 @@ export {
   Classroom,
   EditCourse,
   SeatStatus,
+  ClassroomIndividual,
 };

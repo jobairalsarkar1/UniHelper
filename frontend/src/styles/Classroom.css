@@ -57,6 +57,11 @@
   outline: 1px solid #6464ef;
 }
 
+.operation-statement {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
 .classroom-classes-container {
   margin-top: 1.5rem;
   display: grid;
@@ -137,6 +142,9 @@
   right: 2rem;
   width: 100px;
   padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
   border-radius: 0.2rem;
   background-color: var(--element-background-color);
   box-shadow: 1px 1px 1px #dedede, 0 1px 1px #dedede;
@@ -147,6 +155,10 @@
   font-size: 0.8rem;
   font-weight: 550;
   color: #000000;
+}
+
+.classroom-inner-option-link:hover {
+  background-color: #dedede;
 }
 
 .classroom-bottom-section {

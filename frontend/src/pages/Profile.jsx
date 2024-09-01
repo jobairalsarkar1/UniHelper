@@ -24,6 +24,7 @@ const Profile = () => {
         <h1>{tokens}</h1>
         <h1>{isLoggedIn ? "yes" : "no"}</h1>
         <Loader />
+        <h1>{userOne._id}</h1>
         <div className="profile-details">
           <p>
             <strong>Name:</strong> {userOne.name}

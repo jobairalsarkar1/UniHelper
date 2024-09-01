@@ -43,6 +43,7 @@ import {
   Classroom,
   EditCourse,
   SeatStatus,
+  ClassroomIndividual,
 } from "./pages";
 import "./styles/App.css";
 
@@ -177,6 +178,14 @@ const App = () => {
                   element={
                     <PrivateRoute>
                       <Classroom />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/classroom/:classroomId"
+                  element={
+                    <PrivateRoute>
+                      <ClassroomIndividual />
                     </PrivateRoute>
                   }
                 />

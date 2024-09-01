@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import { AuthContext } from "../contexts/AuthContext";
+import { formatDate } from "../utils";
 import axios from "axios";
 import "../styles/Classroom.css";
 
@@ -13,17 +14,35 @@ const Classroom = () => {
     name: "",
     semester: "",
   });
-  const [classroom, setClassroom] = useState(null);
+  // const [classrooms, setClassrooms] = useState([]);
+  const [myClassrooms, setMyClassrooms] = useState([]);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  const [clicked, setClicked] = useState(false);
-  const dropDownRef = useRef(null);
+  // const [clicked, setClicked] = useState(false);
+  // const dropDownRef = useRef(null);
+  const [openDropdown, setOpenDropdown] = useState(null);
 
   const { title, name, semester } = formData;
 
-  const handleClick = () => {
-    setClicked(!clicked);
-  };
+  useEffect(() => {
+    const fetchClassrooms = async () => {
+      try {
+        const response = await axios.get("/api/classrooms/get-classrooms");
+        // setClassrooms(response.data);
+        const userClassrooms = response.data.filter((classroom) =>
+          classroom.users.some((user) => user._id === userOne._id)
+        );
+        setMyClassrooms(userClassrooms);
+      } catch (error) {
+        setError("Error Fetching Classrooms. Please try again..");
+      }
+    };
+    fetchClassrooms();
+  }, [userOne._id]);
+
+  // const handleClick = () => {
+  //   setClicked(!clicked);
+  // };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -31,25 +50,76 @@ const Classroom = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      setError("");
+      setSuccess("");
+      const response = await axios.post("/api/classrooms/create-classroom", {
+        title,
+        name,
+        semester,
+        creator: userOne._id,
+      });
+
+      if (response.status === 201) {
+        const newClassroom = response.data.classroom;
+        setSuccess("Classroom created successfully");
+        // setClassrooms((prevClassroom) => [...prevClassroom, newClassroom]);
+
+        setMyClassrooms((prevMyClassrooms) => {
+          if (
+            newClassroom.creator === userOne._id ||
+            newClassroom.users.some((user) => user._id === userOne._id)
+          ) {
+            return [...prevMyClassrooms, newClassroom];
+          }
+          return prevMyClassrooms;
+        });
+      }
+    } catch (error) {
+      setError("Error creating classroom. Please try again.");
+    } finally {
+      setFormData({ title: "", name: "", semester: "" });
+      setTimeout(() => setSuccess(""), 2000);
+      setTimeout(() => setError(""), 2000);
+    }
+  };
+
+  const handleDelete = async (classroomId) => {
+    const response = await axios.delete(
+      `/api/classrooms/delete-classroom/${classroomId}`,
+      { data: { userId: userOne._id } }
+    );
+
+    if (response.status === 200) {
+      // setClassrooms((prevClassrooms) =>
+      //   prevClassrooms.filter((classroom) => classroom._id !== classroomId)
+      // );
+
+      setMyClassrooms((prevMyClassrooms) =>
+        prevMyClassrooms.filter((classroom) => classroom._id !== classroomId)
+      );
+    }
+  };
+
+  const handleDropdownClick = (id) => {
+    setOpenDropdown(openDropdown === id ? null : id);
   };
 
   const handleOutsideClick = (e) => {
-    if (dropDownRef.current && !dropDownRef.current.contains(e.target)) {
-      setClicked(false);
+    if (
+      !e.target.closest(".classroom-inner-option") &&
+      !e.target.closest(".classroom-vertical-menu")
+    ) {
+      setOpenDropdown(null);
     }
   };
 
   useEffect(() => {
-    if (clicked) {
-      document.addEventListener("click", handleOutsideClick);
-    } else {
-      document.removeEventListener("click", handleOutsideClick);
-    }
-
+    document.addEventListener("click", handleOutsideClick);
     return () => {
       document.removeEventListener("click", handleOutsideClick);
     };
-  }, [clicked]);
+  }, []);
 
   return (
     <div className="classroom-container">
@@ -93,8 +163,22 @@ const Classroom = () => {
                     Create Classroom
                   </button>
                 </div>
-                {error && <p style={{ color: "red" }}>{error}</p>}
-                {success && <p style={{ color: "green" }}>{success}</p>}
+                {error && (
+                  <p
+                    className="operation-statement"
+                    style={{ color: "red", textAlign: "center" }}
+                  >
+                    {error}
+                  </p>
+                )}
+                {success && (
+                  <p
+                    className="operation-statement"
+                    style={{ color: "green", textAlign: "center" }}
+                  >
+                    {success}
+                  </p>
+                )}
               </form>
               {/* <span>Create Classroom</span> */}
             </div>
@@ -102,9 +186,56 @@ const Classroom = () => {
         )}
 
         <div className="classroom-classes-container">
-          <Link to="" className="classroom-individual-class">
+          {myClassrooms.map((classroom) => (
+            <div key={classroom._id} className="classroom-individual-class">
+              <div className="classroom-top-section">
+                {/* <img src="" alt="Classroom Owner" /> */}
+                <div className="classroom-owner-picture-alter">
+                  <p>{classroom.name[0]}</p>
+                </div>
+                <div className="classroom-vertical-menu-div">
+                  <FontAwesomeIcon
+                    icon={faEllipsisVertical}
+                    className="classroom-vertical-menu"
+                    onClick={() => handleDropdownClick(classroom._id)}
+                  />
+                  <div
+                    className={
+                      openDropdown === classroom._id
+                        ? "classroom-inner-option"
+                        : "classroom-inner-option-not-active"
+                    }
+                  >
+                    <Link to="#" className="classroom-inner-option-link">
+                      Unenroll
+                    </Link>
+                    {userOne.status === "teacher" && (
+                      <Link
+                        to="#"
+                        className="classroom-inner-option-link"
+                        onClick={() => handleDelete(classroom._id)}
+                      >
+                        Delete
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              </div>
+              <Link
+                to={`/classroom/${classroom._id}`}
+                className="classroom-bottom-section classroom-individual-class"
+              >
+                <span className="classroom-couseCode">{classroom.title}</span>
+                <span className="classroom-courseName">{classroom.name}</span>
+                <span className="classroom-semester">{classroom.semester}</span>
+                <span className="classroom-created">
+                  Created: {formatDate(classroom.createdAt)}
+                </span>
+              </Link>
+            </div>
+          ))}
+          {/* <Link to="" className="classroom-individual-class">
             <div className="classroom-top-section">
-              {/* <img src="" alt="Classroom Owner" /> */}
               <div className="classroom-owner-picture-alter">
                 <p>A</p>
               </div>
@@ -136,7 +267,7 @@ const Classroom = () => {
               <span className="classroom-semester">Summer2024</span>
               <span className="classroom-created">Created: 20/03/2024</span>
             </div>
-          </Link>
+          </Link> */}
         </div>
       </div>
     </div>
