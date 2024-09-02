@@ -22,18 +22,23 @@ body {
 /*This Part of Styleis leaving the SideNavBar in Position Absolute. Might need later. */
 .side-navbar {
   position: fixed;
-  display: block;
+  /* display: block; */
   z-index: 1;
-  width: 250px;
+  width: 0;
+  overflow: hidden;
   height: calc(100vh - 4rem);
   background-color: var(--element-background-color);
-  box-shadow: 4px 0 2px -2px rgb(199, 199, 199);
-  transition: display 1s;
+  box-shadow: 4px 0 10px -2px rgb(199, 199, 199);
+  transition: width 0.3s ease-out;
 }
 
-.side-navbar-not-active {
-  display: none;
+.side-navbar.active {
+  width: 250px;
 }
+
+/* .side-navbar-not-active {
+  display: none;
+} */
 
 .side-navbar-list {
   padding: 1rem 0 0 0rem;

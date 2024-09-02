@@ -22,7 +22,7 @@ const SideNav = ({ sidebarOpen, toggleSidebar }) => {
     <>
       <div
         className={
-          isLoggedIn && sidebarOpen ? "side-navbar" : "side-navbar-not-active"
+          isLoggedIn && sidebarOpen ? "side-navbar active" : "side-navbar"
         }
       >
         <ul className="side-navbar-list">
