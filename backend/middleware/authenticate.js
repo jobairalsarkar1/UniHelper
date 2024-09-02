@@ -3,14 +3,14 @@ const User = require("../models/User");
 
 const auth = async (req, res, next) => {
   const token = req.header("x-auth-token");
-  console.log("This is token", token);
+  // console.log("This is token", token);
 
   if (!token) {
     return res.status(401).json({ message: "No token, authorization denied" });
   }
 
   try {
-    console.log(token);
+    // console.log(token);
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const user = await User.findById(decoded.id);
     if (!user) {

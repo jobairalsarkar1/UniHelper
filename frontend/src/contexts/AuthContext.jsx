@@ -7,6 +7,7 @@ const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userOne, setUserOne] = useState(null);
   const [tokens, setTokens] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const checkLogin = async () => {
@@ -25,6 +26,7 @@ const AuthProvider = ({ children }) => {
           setUserOne(null);
         }
       }
+      setLoading(false);
     };
     checkLogin();
   }, []);
@@ -49,7 +51,7 @@ const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ isLoggedIn, userOne, login, logout, tokens }}
+      value={{ isLoggedIn, userOne, login, logout, loading, tokens }}
     >
       {children}
     </AuthContext.Provider>
