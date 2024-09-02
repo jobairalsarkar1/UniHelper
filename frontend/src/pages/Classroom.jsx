@@ -27,7 +27,10 @@ const Classroom = () => {
   useEffect(() => {
     const fetchClassrooms = async () => {
       try {
-        const response = await axios.get("/api/classrooms/get-classrooms");
+        const token = localStorage.getItem("token");
+        const response = await axios.get("/api/classrooms/get-classrooms", {
+          headers: { "x-auth-token": token },
+        });
         // setClassrooms(response.data);
         const userClassrooms = response.data.filter((classroom) =>
           classroom.users.some((user) => user._id === userOne._id)
@@ -53,12 +56,17 @@ const Classroom = () => {
     try {
       setError("");
       setSuccess("");
-      const response = await axios.post("/api/classrooms/create-classroom", {
-        title,
-        name,
-        semester,
-        creator: userOne._id,
-      });
+      const token = localStorage.getItem("token");
+      const response = await axios.post(
+        "/api/classrooms/create-classroom",
+        {
+          title,
+          name,
+          semester,
+          creator: userOne._id,
+        },
+        { headers: { "x-auth-token": token } }
+      );
 
       if (response.status === 201) {
         const newClassroom = response.data.classroom;
@@ -223,7 +231,7 @@ const Classroom = () => {
               </div>
               <Link
                 to={`/classroom/${classroom._id}`}
-                className="classroom-bottom-section classroom-individual-class"
+                className="classroom-bottom-section"
               >
                 <span className="classroom-couseCode">{classroom.title}</span>
                 <span className="classroom-courseName">{classroom.name}</span>

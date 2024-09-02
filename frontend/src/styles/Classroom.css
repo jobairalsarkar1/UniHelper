@@ -75,8 +75,10 @@
   text-decoration: none;
   display: flex;
   flex-direction: column;
-  border-radius: 0.6rem;
-  border: 1px solid #d2d1d1;
+  /* border-radius: 0.5rem; */
+  /* border: 1px solid #d2d1d1; */
+  border-radius: 0.5rem;
+  overflow: hidden;
 }
 
 .classroom-individual-class:hover {
@@ -95,7 +97,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-radius: 0.5rem 0.5rem 0 0;
+  /* border-radius: 0.5rem 0.5rem 0 0; */
   background: conic-gradient(from 30deg, #6adef9, #fffe75);
 }
 
@@ -167,13 +169,14 @@
 }
 
 .classroom-bottom-section {
+  text-decoration: none;
   padding: 1rem;
   display: flex;
   flex-direction: column;
   color: #000000;
   background-color: var(--element-background-color);
-  border-bottom-left-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
+  /* border-bottom-left-radius: 0.5rem; */
+  /* border-bottom-right-radius: 0.5rem; */
 }
 
 .classroom-couseCode {
@@ -334,6 +337,11 @@
   cursor: pointer;
 }
 
+.create-post-status {
+  text-align: center;
+  font-size: 0.7rem;
+}
+
 .classroomIndividual-posts-container {
   margin-top: 1rem;
   display: flex;
@@ -365,6 +373,12 @@
   border-radius: 50%;
   color: #fff;
   background-color: var(--text-color);
+}
+
+.post-owner-profileimg {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
 }
 
 .classroomIndividual-owner-info {
@@ -434,6 +448,12 @@
   border-radius: 50%;
   color: var(--element-background-color);
   background-color: #000000;
+}
+
+.comment-owner-profile-img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
 }
 
 .post-comment-details {
