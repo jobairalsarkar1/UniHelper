@@ -6,20 +6,33 @@ import { formatDate } from "../utils";
 
 const ClassroomIndividual = () => {
   const { classroomId } = useParams();
+  const [classroomInfo, setClassroomInfo] = useState(null);
   const { userOne } = useContext(AuthContext);
   const [formData, setFormData] = useState({ content: "", files: [] });
-  // const [content, setContent] = useState("");
   const [posts, setPosts] = useState([]);
-  // const [isCommentsVisible, setIsCommentsVisible] = useState(false);
   const [commentsVisible, setCommentsVisible] = useState({});
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [posting, setPosting] = useState(false);
   const [postComments, setPostComments] = useState({});
-  // const commentsRef = useRef(null);
   const fileInputRef = useRef(null);
 
   useEffect(() => {
+    const fetchClassroomInfo = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axios.get(
+          `/api/classrooms/get-classroomInfo/${classroomId}`,
+          { headers: { "x-auth-token": token } }
+        );
+        if (response.data) {
+          setClassroomInfo(response.data);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
     const fetchPosts = async () => {
       try {
         const token = localStorage.getItem("token");
@@ -32,6 +45,8 @@ const ClassroomIndividual = () => {
         alert("Error Fetching Posts");
       }
     };
+
+    fetchClassroomInfo();
     fetchPosts();
   }, [classroomId]);
 
@@ -52,6 +67,7 @@ const ClassroomIndividual = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (posting) return;
     const formDatas = new FormData();
     formDatas.append("author", userOne._id);
     formDatas.append("classroomId", classroomId);
@@ -75,17 +91,18 @@ const ClassroomIndividual = () => {
         }
       );
       if (response.data) {
-        // setPosts((prevPosts) => [response.data, ...prevPosts]);
+        setPosts((prevPosts) => [...prevPosts, response.data]);
         setSuccess("Post created successfully");
+        refreshForm();
       }
     } catch (error) {
       setError("Failed to make post" + error.message);
     } finally {
       setPosting(false);
-      setTimeout(() => setFormData({ content: "", files: [] }), 500);
-      if (fileInputRef.current) {
-        fileInputRef.current.value = "";
-      }
+      // setTimeout(() => setFormData({ content: "", files: [] }), 500);
+      // if (fileInputRef.current) {
+      //   fileInputRef.current.value = "";
+      // }
       setTimeout(() => setError(""), 1000);
       setTimeout(() => setSuccess(""), 1000);
     }
@@ -110,15 +127,15 @@ const ClassroomIndividual = () => {
         { headers: { "x-auth-token": token } }
       );
 
-      if (response.data) {
-        setPosts((prevPosts) =>
-          prevPosts.map((post) =>
-            post._id === postId
-              ? { ...post, comments: [...post.comments, response.data] }
-              : post
-          )
-        );
-      }
+      // if (response.data) {
+      //   setPosts((prevPosts) =>
+      //     prevPosts.map((post) =>
+      //       post._id === postId
+      //         ? { ...post, comments: [...post.comments, response.data] }
+      //         : post
+      //     )
+      //   );
+      // }
     } catch (error) {
       alert(error.message);
     } finally {
@@ -161,13 +178,32 @@ const ClassroomIndividual = () => {
     <div className="classroomIndividual-container">
       <div className="classroomIndividual-inner-container">
         <div className="classroomIndividual-banner-container">
-          <div className="classroomIndividual-info">
-            <span className="classroomIndividual-title">CSE340</span>
-            <span className="classroomIndividual-name">
-              Computer Architecture
-            </span>
-            <span className="classroomIndividual-semester">Summer2024</span>
-          </div>
+          {classroomInfo ? (
+            <>
+              {" "}
+              <div className="classroomIndividual-info">
+                <span className="classroomIndividual-title">
+                  {classroomInfo.title}
+                </span>
+                <span className="classroomIndividual-name">
+                  {classroomInfo.name}
+                </span>
+                <span className="classroomIndividual-semester">
+                  {classroomInfo.semester}
+                </span>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="classroomIndividual-info">
+                <span className="classroomIndividual-title">
+                  Classroom Titile
+                </span>
+                <span className="classroomIndividual-name">Classroom Name</span>
+                <span className="classroomIndividual-semester">Semester</span>
+              </div>
+            </>
+          )}
         </div>
         <div className="classroomIndividual-navbar-container">
           <ul className="classroomIndividual-navbar">
@@ -293,7 +329,7 @@ const ClassroomIndividual = () => {
               </form>
             </div>
           </div> */}
-          {posts.map((post) => (
+          {posts?.map((post) => (
             <div key={post._id} className="classroomIndividual-post">
               <div className="classroomIndividual-post-owner-info">
                 <div className="classroomIndividual-owner-img">
@@ -338,7 +374,7 @@ const ClassroomIndividual = () => {
                       key={index}
                       className="classroomIndividual-post-comment"
                     >
-                      <div className="post-comment-owner-img">
+                      <div className="post-comment-owner-img-div">
                         {comment.author.profileImage ? (
                           <img
                             src={comment.author.profileImage}
@@ -346,9 +382,10 @@ const ClassroomIndividual = () => {
                             className="comment-owner-profile-img"
                           />
                         ) : (
-                          <>{comment.author.name[0]}</>
+                          <div className="post-comment-owner-img">
+                            {comment.author.name[0]}
+                          </div>
                         )}
-                        A
                       </div>
                       <div className="post-comment-details">
                         <span className="comment-owner-name">

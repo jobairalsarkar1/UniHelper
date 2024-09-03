@@ -6,6 +6,11 @@ const auth = require("../middleware/authenticate");
 
 router.post("/create-classroom", auth, ClassroomController.createClassroom);
 router.get("/get-classrooms", auth, ClassroomController.getClassrooms);
+router.get(
+  "/get-classroomInfo/:classroomId",
+  auth,
+  ClassroomController.getClassroomInfo
+);
 router.delete(
   "/delete-classroom/:classroomId",
   ClassroomController.deleteClassroom

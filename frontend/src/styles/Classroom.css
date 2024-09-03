@@ -1,6 +1,10 @@
-.classroom-container {
+/* .classroom-container {
   padding: 1rem 2.1rem 0.5rem 2.1rem;
-  /* background-color: #d4d4d4; */
+  background-color: var(--background-color);
+} */
+
+.classroom-inner-container {
+  padding: 1rem 2.1rem 0.5rem 2.1rem;
   background-color: var(--background-color);
 }
 
@@ -62,6 +66,35 @@
 .operation-statement {
   margin-top: 0.5rem;
   font-size: 0.9rem;
+}
+
+.no-classroom-available-for-you {
+  padding-top: 15rem;
+  /* height: 87.55vh; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* background-color: red; */
+}
+
+.text {
+  font-size: 2rem;
+  font-weight: 550;
+  opacity: 0;
+  color: #6c6c6c;
+  animation: fadeInOut 5s infinite;
+}
+
+@keyframes fadeInOut {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  25%,
+  75% {
+    opacity: 1;
+  }
 }
 
 .classroom-classes-container {

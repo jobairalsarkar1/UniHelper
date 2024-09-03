@@ -193,56 +193,64 @@ const Classroom = () => {
           </>
         )}
 
-        <div className="classroom-classes-container">
-          {myClassrooms.map((classroom) => (
-            <div key={classroom._id} className="classroom-individual-class">
-              <div className="classroom-top-section">
-                {/* <img src="" alt="Classroom Owner" /> */}
-                <div className="classroom-owner-picture-alter">
-                  <p>{classroom.name[0]}</p>
-                </div>
-                <div className="classroom-vertical-menu-div">
-                  <FontAwesomeIcon
-                    icon={faEllipsisVertical}
-                    className="classroom-vertical-menu"
-                    onClick={() => handleDropdownClick(classroom._id)}
-                  />
-                  <div
-                    className={
-                      openDropdown === classroom._id
-                        ? "classroom-inner-option"
-                        : "classroom-inner-option-not-active"
-                    }
-                  >
-                    <Link to="#" className="classroom-inner-option-link">
-                      Unenroll
-                    </Link>
-                    {userOne.status === "teacher" && (
-                      <Link
-                        to="#"
-                        className="classroom-inner-option-link"
-                        onClick={() => handleDelete(classroom._id)}
+        {myClassrooms.length > 0 ? (
+          <>
+            <div className="classroom-classes-container">
+              {myClassrooms.map((classroom) => (
+                <div key={classroom._id} className="classroom-individual-class">
+                  <div className="classroom-top-section">
+                    {/* <img src="" alt="Classroom Owner" /> */}
+                    <div className="classroom-owner-picture-alter">
+                      <p>{classroom.name[0]}</p>
+                    </div>
+                    <div className="classroom-vertical-menu-div">
+                      <FontAwesomeIcon
+                        icon={faEllipsisVertical}
+                        className="classroom-vertical-menu"
+                        onClick={() => handleDropdownClick(classroom._id)}
+                      />
+                      <div
+                        className={
+                          openDropdown === classroom._id
+                            ? "classroom-inner-option"
+                            : "classroom-inner-option-not-active"
+                        }
                       >
-                        Delete
-                      </Link>
-                    )}
+                        <Link to="#" className="classroom-inner-option-link">
+                          Unenroll
+                        </Link>
+                        {userOne.status === "teacher" && (
+                          <Link
+                            to="#"
+                            className="classroom-inner-option-link"
+                            onClick={() => handleDelete(classroom._id)}
+                          >
+                            Delete
+                          </Link>
+                        )}
+                      </div>
+                    </div>
                   </div>
+                  <Link
+                    to={`/classroom/${classroom._id}`}
+                    className="classroom-bottom-section"
+                  >
+                    <span className="classroom-couseCode">
+                      {classroom.title}
+                    </span>
+                    <span className="classroom-courseName">
+                      {classroom.name}
+                    </span>
+                    <span className="classroom-semester">
+                      {classroom.semester}
+                    </span>
+                    <span className="classroom-created">
+                      Created: {formatDate(classroom.createdAt)}
+                    </span>
+                  </Link>
                 </div>
-              </div>
-              <Link
-                to={`/classroom/${classroom._id}`}
-                className="classroom-bottom-section"
-              >
-                <span className="classroom-couseCode">{classroom.title}</span>
-                <span className="classroom-courseName">{classroom.name}</span>
-                <span className="classroom-semester">{classroom.semester}</span>
-                <span className="classroom-created">
-                  Created: {formatDate(classroom.createdAt)}
-                </span>
-              </Link>
-            </div>
-          ))}
-          {/* <Link to="" className="classroom-individual-class">
+              ))}
+              {/* <Link to="" className="classroom-individual-class">
             <div className="classroom-top-section">
               <div className="classroom-owner-picture-alter">
                 <p>A</p>
@@ -276,7 +284,26 @@ const Classroom = () => {
               <span className="classroom-created">Created: 20/03/2024</span>
             </div>
           </Link> */}
-        </div>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="no-classroom-available-for-you">
+              {userOne.status === "teacher" ? (
+                <>
+                  {" "}
+                  <div className="text">Create Classroom</div>
+                </>
+              ) : (
+                <>
+                  {" "}
+                  <div className="text">No Classroom</div>
+                  <div className="text">is Assigned</div>
+                </>
+              )}
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

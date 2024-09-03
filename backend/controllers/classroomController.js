@@ -59,6 +59,19 @@ const deleteClassroom = async (req, res) => {
   }
 };
 
+const getClassroomInfo = async (req, res) => {
+  const { classroomId } = req.params;
+  try {
+    const classroom = await Classroom.findById(classroomId);
+    if (!classroom) {
+      return res.status(404).json({ message: "Classroom do not exists." });
+    }
+    res.status(200).json(classroom);
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong" });
+  }
+};
+
 const createPost = async (req, res) => {
   // console.log("body", req.body);
   // console.log("files", req.files);
@@ -125,7 +138,7 @@ const getClassroomPosts = async (req, res) => {
 
 const makeComment = async (req, res) => {
   const { author, post, content } = req.body;
-  console.log("body", req.body);
+  // console.log("body", req.body);
   try {
     const newComment = await Comment({
       author,
@@ -136,6 +149,11 @@ const makeComment = async (req, res) => {
       return res.status(404).json({ message: "Failed to make comment." });
     }
     await newComment.save();
+    await Post.findByIdAndUpdate(
+      post,
+      { $push: { comments: newComment._id } },
+      { new: true, useFindAndModify: false }
+    );
     res.status(201).json(newComment);
   } catch (error) {
     res.status(500).json({ message: "Something went wrong" });
@@ -146,6 +164,7 @@ module.exports = {
   createClassroom,
   getClassrooms,
   deleteClassroom,
+  getClassroomInfo,
   createPost,
   getClassroomPosts,
   makeComment,
