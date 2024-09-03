@@ -75,7 +75,6 @@ const ClassroomIndividual = () => {
     formData.files.forEach((file) => {
       formDatas.append("files", file);
     });
-    // console.log(formDatas.content);
 
     try {
       const token = localStorage.getItem("token");
@@ -91,7 +90,7 @@ const ClassroomIndividual = () => {
         }
       );
       if (response.data) {
-        setPosts((prevPosts) => [...prevPosts, response.data]);
+        // setPosts((prevPosts) => [response.data, ...prevPosts]);
         setSuccess("Post created successfully");
         refreshForm();
       }
@@ -329,7 +328,7 @@ const ClassroomIndividual = () => {
               </form>
             </div>
           </div> */}
-          {posts?.map((post) => (
+          {posts.map((post) => (
             <div key={post._id} className="classroomIndividual-post">
               <div className="classroomIndividual-post-owner-info">
                 <div className="classroomIndividual-owner-img">
