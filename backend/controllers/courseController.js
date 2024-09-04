@@ -86,8 +86,11 @@ const getAllSection = async (req, res) => {
 const getSection = async (req, res) => {
   try {
     const { sectionId } = req.params;
-    const section = await Section.findById(sectionId).populate("course");
-    res.status(200).json(section);
+    const section = await Section.findById(sectionId)
+      .populate("course")
+      .populate("faculty")
+      .populate("students");
+    res.status(200).json({ section });
   } catch (error) {
     res.status(500).json({ message: "Server Eroor." });
   }
@@ -101,10 +104,58 @@ const deleteSection = async (req, res) => {
       return res.status(404).json({ message: "Course do not exists." });
     }
 
+    const course = await Course.findById(section.course);
+    if (course) {
+      course.sections.pull(sectionId);
+      await course.save();
+    }
+
     await Section.findByIdAndDelete(sectionId);
     res.status(200).json({ message: "Course deleted successfully." });
   } catch (error) {
     res.status(500).json({ message: error.message });
+  }
+};
+
+const addSectionMembers = async (req, res) => {
+  const { faculty, students } = req.body;
+  const { sectionId } = req.params;
+  try {
+    const updateData = {};
+    if (faculty) {
+      updateData.faculty = faculty;
+    }
+
+    if (students && students.length > 0) {
+      updateData.$addToSet = { students: { $each: students } };
+    }
+
+    const updatedSection = await Section.findByIdAndUpdate(
+      sectionId,
+      updateData,
+      { new: true, runValidators: true }
+    );
+    res.status(200).json(updatedSection);
+  } catch (error) {
+    res.status(500).json({ message: "Faild to update section." });
+  }
+};
+
+const removeMember = async (req, res) => {
+  const { sectionId, userId } = req.params;
+  // console.log(sectionId, userId);
+  try {
+    const updatedSection = await Section.findByIdAndUpdate(
+      sectionId,
+      {
+        $pull: { students: userId },
+      },
+      { new: true, runValidators: true }
+    );
+
+    res.status(200).json(updatedSection);
+  } catch (error) {
+    res.status(500).json({ message: "Failed to remove member" });
   }
 };
 
@@ -117,4 +168,6 @@ module.exports = {
   getAllSection,
   getSection,
   deleteSection,
+  addSectionMembers,
+  removeMember,
 };

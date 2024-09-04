@@ -35,9 +35,14 @@ const AuthProvider = ({ children }) => {
     try {
       const res = await axios.post("/api/users/login", { email, password });
       localStorage.setItem("token", res.data.token);
-      setIsLoggedIn(true);
-      setUserOne(res.data.user);
       setTokens(res.data.token);
+
+      const userProfile = await axios.get("/api/users/profile", {
+        headers: { "x-auth-token": res.data.token },
+      });
+      setIsLoggedIn(true);
+      setUserOne(userProfile.data);
+      // setUserOne(res.data.user);
     } catch (err) {
       throw new Error(err.response.data.message);
     }

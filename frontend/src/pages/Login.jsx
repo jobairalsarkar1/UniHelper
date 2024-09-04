@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import { FormInput } from "../components";
+import Vector from "../assets/Vector.jpg";
 import "../styles/Authentication.css";
 
 const Login = () => {
@@ -31,7 +32,7 @@ const Login = () => {
     <div className="authentication-container">
       <div className="login-container">
         <div className="login-featuring-image">
-          <img src="logo.png" alt="Loading.." className="feature-image" />
+          <img src={Vector} alt="Loading.." className="login-feature-image" />
         </div>
 
         <form onSubmit={onSubmit} className="login-form">

@@ -16,8 +16,24 @@ const EditCourse = () => {
   const [sections, setSections] = useState([]);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState("");
-
   const { sectionNumber, day, startTime, endTime, classRoom } = formData;
+
+  useEffect(() => {
+    const fetchSection = async () => {
+      try {
+        const token = localStorage.getItem("token");
+
+        const response = await axios.get(
+          `/api/courses/get-course/${courseId}`,
+          { headers: { "x-auth-token": token } }
+        );
+        setSections(response.data.sections);
+      } catch (error) {
+        setError("Faild to fetch sections.");
+      }
+    };
+    fetchSection();
+  }, [courseId]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -73,23 +89,6 @@ const EditCourse = () => {
       alert("Failed to delete Section.");
     }
   };
-
-  useEffect(() => {
-    const fetchSection = async () => {
-      try {
-        const token = localStorage.getItem("token");
-
-        const response = await axios.get(
-          `/api/courses/get-course/${courseId}`,
-          { headers: { "x-auth-token": token } }
-        );
-        setSections(response.data.sections);
-      } catch (error) {
-        setError("Faild to fetch sections.");
-      }
-    };
-    fetchSection();
-  }, [courseId]);
 
   return (
     <>

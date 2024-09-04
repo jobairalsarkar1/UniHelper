@@ -16,6 +16,8 @@ router.delete(
   auth,
   CourseController.deleteSection
 );
+router.put("/:sectionId/add-members", auth, CourseController.addSectionMembers);
+router.delete("/:sectionId/remove/:userId", auth, CourseController.removeMember);
 // router.get('/:id', CourseController.getCourseById);
 // router.put('/:id', CourseController.updateCourse);
 

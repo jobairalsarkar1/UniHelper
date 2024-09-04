@@ -12,6 +12,7 @@ import SearchThings from "./SearchThings";
 import Schedule from "./Schedule";
 import AdvisedCourses from "./AdvisedCourses";
 import Loader from "./Loader";
+import MultiSelect from "./MultiSelect";
 
 export {
   PrivateRoute,
@@ -28,4 +29,5 @@ export {
   Schedule,
   AdvisedCourses,
   Loader,
+  MultiSelect,
 };

@@ -12,7 +12,7 @@
   height: auto;
   /* position: relative; */
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
   /* box-shadow: -3.5px 3.5px 1.5px #dedede, 3.5px 3.5px 1.5px #dedede,
     0 3.5px 1.5px #dedede, 0 -3.5px 1.5px #dedede; */
@@ -21,17 +21,30 @@
   /* box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1); */
   box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
     0 2px 6px 2px rgba(60, 64, 67, 0.15);
+  overflow: hidden;
 }
 
 .login-featuring-image {
+  /* height: 100%; */
+  padding: 0.1rem;
+  width: 45%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: gray; */
+  overflow: hidden;
+}
+
+.login-feature-image {
   height: 100%;
-  width: 40%;
-  background-color: gray;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 0.5rem 0 0 0.5rem;
 }
 
 .login-form {
+  width: 55%;
   height: 100%;
-  width: 60%;
   padding: 0.5rem 1rem 0.8rem 1rem;
   display: flex;
   gap: 0.5rem;
@@ -39,6 +52,8 @@
   background-color: var(--element-background-color);
   border-top-right-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
+  justify-content: center;
+  flex-grow: 1;
 }
 
 .login-form .login-form-title {

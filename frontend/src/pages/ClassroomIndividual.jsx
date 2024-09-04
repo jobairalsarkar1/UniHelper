@@ -7,15 +7,15 @@ import { formatDate } from "../utils";
 const ClassroomIndividual = () => {
   const { classroomId } = useParams();
   const [classroomInfo, setClassroomInfo] = useState(null);
-  const { userOne } = useContext(AuthContext);
   const [formData, setFormData] = useState({ content: "", files: [] });
   const [posts, setPosts] = useState([]);
   const [commentsVisible, setCommentsVisible] = useState({});
+  const [postComments, setPostComments] = useState({});
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [posting, setPosting] = useState(false);
-  const [postComments, setPostComments] = useState({});
   const fileInputRef = useRef(null);
+  const { userOne } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchClassroomInfo = async () => {
@@ -408,7 +408,7 @@ const ClassroomIndividual = () => {
                     />
                   ) : (
                     <div className="current-commentor">
-                      <span>A</span>
+                      <span>{userOne.name[0]}</span>
                     </div>
                   )}
                   <input
