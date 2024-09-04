@@ -1,16 +1,14 @@
-// MultiSelect.js
 // import React from "react";
 import Select from "react-select";
 import "../styles/Components.css";
-// import "./MultiSelect.css"; // Import the external CSS file
 
 const MultiSelect = ({ options, onChange }) => {
   return (
     <div className="multi-select-container">
       <Select
         isMulti
-        options={options} // Accept options as a prop
-        onChange={onChange} // Pass the onChange handler
+        options={options}
+        onChange={onChange}
         placeholder="Select users..."
         className="basic-multi-select"
         classNamePrefix="select"

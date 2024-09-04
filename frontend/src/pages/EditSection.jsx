@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { MultiSelect } from "../components";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import "../styles/Courses.css";
 
@@ -102,9 +102,9 @@ const EditSection = () => {
           students: updatedStudents,
         }));
       }
-    //   alert("Ok");
+      //   alert("Ok");
     } catch (error) {
-    //   alert("no");
+      //   alert("no");
       console.error(error.message);
     }
   };

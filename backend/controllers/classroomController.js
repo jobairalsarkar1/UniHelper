@@ -120,15 +120,23 @@ const getClassroomPosts = async (req, res) => {
     const posts = await Post.find({ classroom: classroomId })
       .populate({
         path: "comments",
-        model: "Comment",
-        select: "content author createdAt",
         populate: {
           path: "author",
-          model: "User",
-          select: "name profileImage",
         },
       })
-      .populate("author", "name profileImage");
+      .populate("author");
+    // const posts = await Post.find({ classroom: classroomId })
+    //   .populate({
+    //     path: "comments",
+    //     model: "Comment",
+    //     select: "content author createdAt",
+    //     populate: {
+    //       path: "author",
+    //       model: "User",
+    //       select: "name profileImage",
+    //     },
+    //   })
+    //   .populate("author", "name profileImage");
     // console.log(posts);
     res.status(200).json(posts);
   } catch (error) {

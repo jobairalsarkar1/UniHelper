@@ -434,6 +434,33 @@
   margin-top: 0.5rem;
 }
 
+.classroomIndividual-post-files {
+  margin-top: 2rem;
+  width: 100%;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  /* overflow: hidden; */
+}
+
+.individual-file {
+  padding: 0.4rem 0.5rem 0.4rem 0.5rem;
+  font-weight: 550;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  border-radius: 0.35rem;
+  border: 0.1rem solid #6a6a6a;
+}
+
+.download-file-btn {
+  width: 35px;
+  height: 30px;
+  border: none;
+  cursor: pointer;
+}
+
 .classroomIndividual-post-comments-div {
   margin-top: 0.5rem;
   padding: 0.2rem 0 0 0;

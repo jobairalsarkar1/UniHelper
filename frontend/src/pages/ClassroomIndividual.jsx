@@ -1,8 +1,10 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFileDownload } from "@fortawesome/free-solid-svg-icons";
+import { formatDate, saveFile } from "../utils";
 import axios from "axios";
-import { formatDate } from "../utils";
 
 const ClassroomIndividual = () => {
   const { classroomId } = useParams();
@@ -13,6 +15,7 @@ const ClassroomIndividual = () => {
   const [postComments, setPostComments] = useState({});
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [ok, setOk] = useState("");
   const [posting, setPosting] = useState(false);
   const fileInputRef = useRef(null);
   const { userOne } = useContext(AuthContext);
@@ -32,7 +35,10 @@ const ClassroomIndividual = () => {
         console.error(error);
       }
     };
+    fetchClassroomInfo();
+  }, [classroomId]);
 
+  useEffect(() => {
     const fetchPosts = async () => {
       try {
         const token = localStorage.getItem("token");
@@ -46,9 +52,8 @@ const ClassroomIndividual = () => {
       }
     };
 
-    fetchClassroomInfo();
     fetchPosts();
-  }, [classroomId]);
+  }, [classroomId, success, ok]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -125,6 +130,9 @@ const ClassroomIndividual = () => {
         },
         { headers: { "x-auth-token": token } }
       );
+      if (response.data) {
+        setOk("Ok");
+      }
 
       // if (response.data) {
       //   setPosts((prevPosts) =>
@@ -138,6 +146,7 @@ const ClassroomIndividual = () => {
     } catch (error) {
       alert(error.message);
     } finally {
+      setTimeout(() => setOk(""), 1000);
       setPostComments((prevComments) => ({
         ...prevComments,
         [postId]: "",
@@ -328,7 +337,7 @@ const ClassroomIndividual = () => {
               </form>
             </div>
           </div> */}
-          {posts.map((post) => (
+          {posts?.map((post) => (
             <div key={post._id} className="classroomIndividual-post">
               <div className="classroomIndividual-post-owner-info">
                 <div className="classroomIndividual-owner-img">
@@ -352,6 +361,20 @@ const ClassroomIndividual = () => {
               <div className="classroomIndividual-post-content">
                 <p>{post.content}</p>
               </div>
+              <div className="classroomIndividual-post-files">
+                {post.files?.map((file, index) => (
+                  <div key={index} className="individual-file">
+                    <span>{`Download/File/${index}`}</span>
+                    <FontAwesomeIcon
+                      icon={faFileDownload}
+                      className="download-file-btn"
+                      onClick={() => saveFile(file)}
+                    />
+                    {/* <button className="download-file-btn">
+                    </button> */}
+                  </div>
+                ))}
+              </div>
               <div className="classroomIndividual-post-comments-div">
                 <button
                   className="posts-total-comments-btn"
@@ -368,7 +391,7 @@ const ClassroomIndividual = () => {
                       : "comments-container"
                   }
                 >
-                  {post.comments.map((comment, index) => (
+                  {post?.comments.map((comment, index) => (
                     <div
                       key={index}
                       className="classroomIndividual-post-comment"
