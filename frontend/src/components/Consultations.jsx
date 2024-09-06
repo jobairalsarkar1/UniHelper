@@ -7,7 +7,7 @@ import "../styles/Consultations.css";
 
 const Consultations = () => {
   const { userOne } = useContext(AuthContext);
-  const [myConsultations, setMyConsultations] = useState([]);
+  // const [myConsultations, setMyConsultations] = useState([]);
   const [approvedRequests, setApprovedRequests] = useState([]);
   const [pendingRequests, setPendingRequests] = useState([]);
   const [rejectedRequests, setRejectedRequests] = useState([]);
@@ -17,8 +17,10 @@ const Consultations = () => {
     topic: "",
     consultationTime: "",
   });
+  const [rejectionReason, setRejectionReason] = useState("");
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
+  const [openRejectionForm, setOpenRejectionForm] = useState(null);
 
   const { teacher, topic, consultationTime } = newConsultation;
 
@@ -119,6 +121,28 @@ const Consultations = () => {
     }
   };
 
+  const handleRejection = async (requestId) => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.put(
+        "/api/consultations/reject-consultation",
+        { consultationId: requestId, status: "Rejected", rejectionReason },
+        { headers: { "x-auth-token": token } }
+      );
+      if (response.status === 200) {
+        fetchConsultations();
+      }
+    } catch (error) {
+      alert("Failed to Reject Request");
+    } finally {
+      setTimeout(() => setRejectionReason(""), 2000);
+    }
+  };
+
+  const handleClick = (requestI) => {
+    setOpenRejectionForm((prev) => (prev === requestI ? null : requestI));
+  };
+
   return (
     <>
       <div className="consultations-container">
@@ -204,37 +228,46 @@ const Consultations = () => {
                   {approvedRequests.map((request) => (
                     <div
                       key={request._id}
-                      className="individual-consultation-request"
+                      className="individual-consultation-container"
                     >
-                      <div className="basic-consultation-info">
-                        <p>
-                          With:{" "}
-                          {userOne.status === "teacher" ? (
+                      <div className="individual-consultation-request">
+                        <div className="basic-consultation-info">
+                          <p>
+                            With:{" "}
+                            {userOne.status === "teacher" ? (
+                              <>
+                                <strong>{request.student.name}</strong>
+                              </>
+                            ) : (
+                              <>
+                                <strong>{request.teacher.name}</strong>
+                              </>
+                            )}
+                          </p>
+                          <p>
+                            Schedule:{" "}
+                            <small>
+                              {convertUTCToLocal(request.consultationTime)}
+                            </small>
+                          </p>
+                        </div>
+                        <div className="basic-consultation-info2">
+                          <span className="request-status">
+                            Status: <strong>{request.status}</strong>
+                          </span>
+                          {request.meetingLink && (
                             <>
-                              <strong>{request.student.name}</strong>
-                            </>
-                          ) : (
-                            <>
-                              <strong>{request.teacher.name}</strong>
+                              <a
+                                href={request.meetingLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="join-consultation-btn"
+                              >
+                                Join
+                              </a>
                             </>
                           )}
-                        </p>
-                        <p>
-                          Schedule:{" "}
-                          <small>
-                            {convertUTCToLocal(request.consultationTime)}
-                          </small>
-                        </p>
-                      </div>
-                      <div className="basic-consultation-info2">
-                        <span className="request-status">
-                          Status: <strong>{request.status}</strong>
-                        </span>
-                        {request.meetingLink && (
-                          <>
-                            <Link to={`${request._id}`}>Join</Link>
-                          </>
-                        )}
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -255,57 +288,86 @@ const Consultations = () => {
                   {pendingRequests.map((request) => (
                     <div
                       key={request._id}
-                      className="individual-consultation-request"
+                      className="individual-consultation-container"
                     >
-                      <div className="basic-consultation-info">
-                        <p>
-                          With:{" "}
-                          {userOne.status === "teacher" ? (
+                      <div className="individual-consultation-request">
+                        <div className="basic-consultation-info">
+                          <p>
+                            With:{" "}
+                            {userOne.status === "teacher" ? (
+                              <>
+                                <strong>{request.student.name}</strong>
+                              </>
+                            ) : (
+                              <>
+                                <strong>{request.teacher.name}</strong>
+                              </>
+                            )}
+                          </p>
+                          <p>
+                            Schedule:{" "}
+                            <small>
+                              {convertUTCToLocal(request.consultationTime)}
+                            </small>
+                          </p>
+                        </div>
+                        <div className="basic-consultation-info2">
+                          <span className="request-status">
+                            Status: <strong>{request.status}</strong>
+                          </span>
+                          {userOne.status === "teacher" && (
                             <>
-                              <strong>{request.student.name}</strong>
-                            </>
-                          ) : (
-                            <>
-                              <strong>{request.teacher.name}</strong>
-                            </>
-                          )}
-                        </p>
-                        <p>
-                          Schedule:{" "}
-                          <small>
-                            {convertUTCToLocal(request.consultationTime)}
-                          </small>
-                        </p>
-                      </div>
-                      <div className="basic-consultation-info2">
-                        <span className="request-status">
-                          Status: <strong>{request.status}</strong>
-                        </span>
-                        {userOne.status === "teacher" && (
-                          <>
-                            <div className="consultation-takeAction-div">
-                              <button
-                                type="button"
-                                className="consultation-approve-btn"
-                                onClick={() => handleApprove(request._id)}
-                              >
-                                Approve
-                              </button>
-                              <Link
-                                to={`/consultation/${request._id}`}
-                                className="consultation-reject-btn"
-                              >
-                                Reject
-                              </Link>
-                            </div>
-                            {/* <Link
+                              <div className="consultation-takeAction-div">
+                                <button
+                                  type="button"
+                                  className="consultation-approve-btn"
+                                  onClick={() => handleApprove(request._id)}
+                                >
+                                  Approve
+                                </button>
+                                <button
+                                  className={
+                                    openRejectionForm === request._id
+                                      ? "consultation-reject-btn notActive"
+                                      : "consultation-reject-btn"
+                                  }
+                                  onClick={() => handleClick(request._id)}
+                                >
+                                  Reject
+                                </button>
+                              </div>
+                              {/* <Link
                               to={`/consultation/${request._id}`}
                               className="consultation-takeAction-btn"
                             >
                               Take Action
                             </Link> */}
-                          </>
-                        )}
+                            </>
+                          )}
+                        </div>
+                      </div>
+                      <div
+                        className={
+                          openRejectionForm === request._id
+                            ? "consultation-rejection-form active"
+                            : "consultation-rejection-form"
+                        }
+                      >
+                        <input
+                          type="text"
+                          name="rejectionReason"
+                          className="rejectionReason"
+                          value={rejectionReason}
+                          onChange={(e) => setRejectionReason(e.target.value)}
+                          placeholder="Reason for rejection"
+                        />
+                        <button
+                          type="submit"
+                          className="consultation-reject-btn"
+                          onClick={() => handleRejection(request._id)}
+                        >
+                          Reject
+                        </button>
                       </div>
                     </div>
                   ))}
@@ -326,32 +388,37 @@ const Consultations = () => {
                   {rejectedRequests.map((request) => (
                     <div
                       key={request._id}
-                      className="individual-consultation-request"
+                      className="individual-consultation-container"
                     >
-                      <div className="basic-consultation-info">
-                        <p>
-                          With:{" "}
-                          {userOne.status === "teacher" ? (
-                            <>
-                              <strong>{request.student.name}</strong>
-                            </>
-                          ) : (
-                            <>
-                              <strong>{request.teacher.name}</strong>
-                            </>
-                          )}
-                        </p>
-                        <p>
-                          Schedule:{" "}
-                          <small>
-                            {convertUTCToLocal(request.consultationTime)}
-                          </small>
-                        </p>
-                      </div>
-                      <div className="basic-consultation-info2">
-                        <span className="request-status">
-                          Status: <strong>{request.status}</strong>
-                        </span>
+                      <div className="individual-consultation-request">
+                        <div className="basic-consultation-info">
+                          <p>
+                            With:{" "}
+                            {userOne.status === "teacher" ? (
+                              <>
+                                <strong>{request.student.name}</strong>
+                              </>
+                            ) : (
+                              <>
+                                <strong>{request.teacher.name}</strong>
+                              </>
+                            )}
+                          </p>
+                          <p>
+                            Schedule:{" "}
+                            <small>
+                              {convertUTCToLocal(request.consultationTime)}
+                            </small>
+                          </p>
+                        </div>
+                        <div className="basic-consultation-info2">
+                          <span className="request-status">
+                            Status:{" "}
+                            <strong style={{ color: "red" }}>
+                              {request.status}
+                            </strong>
+                          </span>
+                        </div>
                       </div>
                     </div>
                   ))}

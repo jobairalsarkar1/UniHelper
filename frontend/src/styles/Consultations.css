@@ -1,5 +1,5 @@
 .consultations-container {
-  padding: 0.5rem 2.2rem 0.5rem 2.2rem;
+  padding: 0.5rem 2.2rem 1rem 2.2rem;
   display: flex;
   gap: 0.5rem;
   justify-content: center;
@@ -20,6 +20,7 @@
   /* border: 0.1rem solid #dedede; */
   box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
     0 2px 6px 2px rgba(60, 64, 67, 0.15);
+  background-color: var(--element-background-color);
 }
 
 .consultation-request-form span {
@@ -108,17 +109,33 @@
   font-weight: 550;
 }
 
-.individual-consultation-request {
+.join-consultation-btn {
+  margin-top: 0.4rem;
+  padding: 0.35rem 0.8rem 0.35rem 0.8rem;
+  font-weight: 550;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.4rem;
+  color: var(--element-background-color);
+  background-color: #007bff;
+}
+
+.individual-consultation-container {
   margin-top: 0.5rem;
   padding: 0.5rem 0.8rem 0.5rem 0.8rem;
+  border-radius: 0.5rem;
+  border: 0.1rem solid #dadce0;
+  background-color: var(--element-background-color);
+}
+
+.individual-consultation-request {
   display: grid;
   gap: 0.5rem;
   grid-template-columns: 60% auto;
   justify-content: space-between;
   align-items: center;
-  border-radius: 0.5rem;
-  border: 0.1rem solid #dadce0;
-  background-color: var(--element-background-color);
 }
 
 .basic-consultation-info2 {
@@ -150,6 +167,10 @@
   cursor: pointer;
 }
 
+.consultation-reject-btn.notActive {
+  display: none;
+}
+
 .consultation-reject-btn {
   text-decoration: none;
   padding: 0.45rem 0.4rem 0.45rem 0.4rem;
@@ -161,11 +182,39 @@
   color: var(--element-background-color);
   border-radius: 0.5rem;
   background-color: hsl(0, 270%, 65%);
+  border: none;
   /* background-color: #f12432; */
 }
 
 .consultation-reject-btn:hover {
   background-color: hsl(0, 270%, 50%);
+}
+
+.consultation-rejection-form {
+  margin-top: 0.5rem;
+  /* padding: 0.2rem; */
+  max-height: 0;
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: 70% auto;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.consultation-rejection-form.active {
+  max-height: 50px;
+}
+
+.rejectionReason {
+  padding: 0.5rem 0.8rem 0.5rem 0.8rem;
+  border-radius: 0.4rem;
+  border: 0.1rem solid #dadce0;
+}
+
+.rejectionReason:focus {
+  border: 0.1rem solid #007bff;
+  /* outline: 0.1rem solid #007bff; */
+  outline: none;
 }
 
 .consultations-current-status-null {

@@ -4,7 +4,7 @@ const { generateMeetLink } = require("../middleware/googleMeetUtils");
 
 const requestConsultation = async (req, res) => {
   const { student, teacher, topic, consultationTime } = req.body;
-  console.log(student, teacher, topic, consultationTime);
+  // console.log(student, teacher, topic, consultationTime);
   try {
     const startTime = new Date(consultationTime);
     const endTime = new Date(startTime.getTime() + 60 * 60 * 1000);
@@ -76,8 +76,32 @@ const approveConsultation = async (req, res) => {
   }
 };
 
+const rejectConsultation = async (req, res) => {
+  const { consultationId, status, rejectionReason } = req.body;
+  try {
+    const consultation = await Consultation.findById(consultationId);
+    if (!consultation) {
+      return res.status(404).json({
+        message: "Seems like there is a glitch, Consultation do not exists",
+      });
+    }
+    const rejectedConsultation = await Consultation.findByIdAndUpdate(
+      consultationId,
+      { status, rejectionReason },
+      { new: true, runValidators: true }
+    );
+    res.status(200).json({
+      message: "Consultation rejected successfully",
+      consultation: rejectedConsultation,
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to reject." });
+  }
+};
+
 module.exports = {
   requestConsultation,
   getConsultations,
   approveConsultation,
+  rejectConsultation,
 };
