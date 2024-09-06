@@ -1,25 +1,25 @@
 .consultations-container {
-  width: 100%;
   padding: 0.5rem 2.2rem 0.5rem 2.2rem;
   display: flex;
   gap: 0.5rem;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
   background-color: var(--background-color);
 }
 
 .consultations-inner-container {
-  max-width: 100%;
+  width: 100%;
 }
 
 .consultation-request-form {
+  margin-top: 0.5rem;
   padding: 0.8rem;
   display: flex;
   gap: 0.5rem;
   flex-direction: column;
   border-radius: 5px;
-  border: 2px solid #dedede;
-  box-shadow: -1px 1px 1px #a6a6a6, 1px 1px 1px #a6a6a6, 0 1px 1px #a6a6a6;
+  /* border: 0.1rem solid #dedede; */
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
+    0 2px 6px 2px rgba(60, 64, 67, 0.15);
 }
 
 .consultation-request-form span {
@@ -31,12 +31,12 @@
 .consultation-reason-input {
   padding: 0.5rem;
   border-radius: 5px;
-  border: 2px solid #9c9c9c;
+  border: 0.1rem solid #dadce0;
 }
 
 .consultation-reason-input:focus {
-  border: 2px solid #6464e6;
   outline: none;
+  border: 0.1rem solid #007bff;
 }
 
 .consultation-others-container {
@@ -48,40 +48,45 @@
   width: 40%;
   padding: 0.5rem;
   border-radius: 5px;
-  border: 2px solid #9c9c9c;
+  border: 0.1rem solid #dadce0;
 }
 
 .select-faculty:focus {
-  border: 2px solid #6464e6;
   outline: none;
+  border: 0.1rem solid #007bff;
 }
 
 .consultation-time {
   width: 35%;
   padding: 0.5rem;
   border-radius: 5px;
-  border: 2px solid #9c9c9c;
+  border: 0.1rem solid #dadce0;
 }
 
 .consultation-time:focus {
-  border: 2px solid #6464e6;
   outline: none;
+  border: 0.1rem solid #007bff;
 }
 
 .consultation-request-btn {
   width: 25%;
   padding: 0.5rem;
   font-weight: 550;
-  border-radius: 10px;
-  background-color: var(--background-color);
+  border-radius: 0.5rem;
+  color: var(--element-background-color);
+  background-color: hsl(0, 0%, 25%);
+  border: none;
   cursor: pointer;
-  border: 2px solid var(--text-color);
 }
 
 .consultation-request-btn:hover {
   color: var(--background-color);
-  background-color: #000000;
-  box-shadow: 0 2px 4px 2px rgb(118, 118, 118);
+  background-color: hsl(0, 0%, 0%);
+}
+
+.operation-status {
+  /* text-align: center; */
+  font-size: 0.8rem;
 }
 
 .approved-consultation-request {
@@ -92,20 +97,93 @@
   margin-top: 1rem;
 }
 
+.rejected-counsultation-request {
+  margin-top: 1rem;
+}
+
 .approved-requests,
-.pending-requests {
+.pending-requests,
+.rejected-requests {
   font-size: 1rem;
   font-weight: 550;
 }
 
+.individual-consultation-request {
+  margin-top: 0.5rem;
+  padding: 0.5rem 0.8rem 0.5rem 0.8rem;
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: 60% auto;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0.5rem;
+  border: 0.1rem solid #dadce0;
+  background-color: var(--element-background-color);
+}
+
+.basic-consultation-info2 {
+  padding-left: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.request-status strong {
+  color: #007bff;
+}
+
+.consultation-takeAction-div {
+  margin-top: 0.25rem;
+  display: grid;
+  gap: 0.45rem;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+}
+
+.consultation-approve-btn {
+  padding: 0.45rem 0.5rem 0.45rem 0.5rem;
+  border-radius: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 550;
+  border: none;
+  color: var(--element-background-color);
+  background-color: #007bff;
+  cursor: pointer;
+}
+
+.consultation-reject-btn {
+  text-decoration: none;
+  padding: 0.45rem 0.4rem 0.45rem 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 550;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--element-background-color);
+  border-radius: 0.5rem;
+  background-color: hsl(0, 270%, 65%);
+  /* background-color: #f12432; */
+}
+
+.consultation-reject-btn:hover {
+  background-color: hsl(0, 270%, 50%);
+}
+
+.consultations-current-status-null {
+  text-align: center;
+  margin-top: 0.5rem;
+  font-size: 1.3rem;
+  font-weight: 550;
+  color: #007bff;
+}
+
 @media (min-width: 900px) {
   .consultations-inner-container {
-    min-width: 60%;
+    max-width: 60%;
   }
 }
 
 @media (min-width: 1200px) {
   .consultations-inner-container {
-    min-width: 50%;
+    width: 60%;
   }
 }

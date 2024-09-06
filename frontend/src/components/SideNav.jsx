@@ -343,6 +343,128 @@ const SideNav = ({ sidebarOpen, toggleSidebar }) => {
           {userOne?.status === "teacher" && (
             <>
               {" "}
+              <li
+                className="side-navbar-list-item"
+                onClick={() => {
+                  expand.account == false
+                    ? setExpand({
+                        ...expand,
+                        users: false,
+                        account: true,
+                        advising: false,
+                        facilities: false,
+                      })
+                    : setExpand({ ...expand, account: false });
+                }}
+              >
+                <span>
+                  Account
+                  {expand.account == true ? (
+                    <FontAwesomeIcon icon={faMinus} />
+                  ) : (
+                    <FontAwesomeIcon icon={faPlus} />
+                  )}
+                </span>
+                <ul
+                  className={
+                    expand.account
+                      ? "side-navbar-inner-list-active"
+                      : "side-navbar-inner-list"
+                  }
+                >
+                  <li className="side-navbar-inner-list-item">
+                    <Link
+                      to="/profile"
+                      className="side-navbar-inner-item-link"
+                      onClick={() => toggleSidebar()}
+                    >
+                      Profile
+                      <FontAwesomeIcon icon={faArrowRight} />
+                    </Link>
+                  </li>
+                </ul>
+              </li>
+              <li
+                className="side-navbar-list-item"
+                onClick={() => {
+                  expand.advising == false
+                    ? setExpand({
+                        ...expand,
+                        users: false,
+                        account: false,
+                        advising: true,
+                        facilities: false,
+                      })
+                    : setExpand({ ...expand, advising: false });
+                }}
+              >
+                <span>
+                  Advising
+                  {expand.advising == true ? (
+                    <FontAwesomeIcon icon={faMinus} />
+                  ) : (
+                    <FontAwesomeIcon icon={faPlus} />
+                  )}
+                </span>
+                <ul
+                  className={
+                    expand.advising
+                      ? "side-navbar-inner-list-active"
+                      : "side-navbar-inner-list"
+                  }
+                >
+                  <li className="side-navbar-inner-list-item">
+                    <Link
+                      to="/advising-pannel"
+                      className="side-navbar-inner-item-link"
+                      onClick={() => toggleSidebar()}
+                    >
+                      Pannel
+                      <FontAwesomeIcon icon={faArrowRight} />
+                    </Link>
+                  </li>
+                  <li className="side-navbar-inner-list-item">
+                    <Link
+                      to="/seat-status"
+                      className="side-navbar-inner-item-link"
+                      onClick={() => toggleSidebar()}
+                    >
+                      Seat Status
+                      <FontAwesomeIcon icon={faArrowRight} />
+                    </Link>
+                  </li>
+                  <li className="side-navbar-inner-list-item">
+                    <Link
+                      to="/courses-details"
+                      className="side-navbar-inner-item-link"
+                      onClick={() => toggleSidebar()}
+                    >
+                      Course Details
+                      <FontAwesomeIcon icon={faArrowRight} />
+                    </Link>
+                  </li>
+                  <li className="side-navbar-inner-list-item">
+                    <Link
+                      to="/class-schedule"
+                      className="side-navbar-inner-item-link"
+                      onClick={() => toggleSidebar()}
+                    >
+                      Class Schedule
+                      <FontAwesomeIcon icon={faArrowRight} />
+                    </Link>
+                  </li>
+                  <li className="side-navbar-inner-list-item">
+                    <Link
+                      to="/advised-courses"
+                      className="side-navbar-inner-item-link"
+                      onClick={() => toggleSidebar()}
+                    >
+                      Advised Courses
+                      <FontAwesomeIcon icon={faArrowRight} />
+                    </Link>
+                  </li>
+                </ul>
+              </li>
               <li className="side-navbar-list-item sidenav-item-hover">
                 <Link
                   to="/classroom"
@@ -350,6 +472,16 @@ const SideNav = ({ sidebarOpen, toggleSidebar }) => {
                   onClick={() => toggleSidebar()}
                 >
                   Classroom
+                  <FontAwesomeIcon icon={faArrowRight} />
+                </Link>
+              </li>
+              <li className="side-navbar-list-item sidenav-item-hover">
+                <Link
+                  to="/consultations"
+                  className="side-navbar-item-link"
+                  onClick={() => toggleSidebar()}
+                >
+                  Consultation
                   <FontAwesomeIcon icon={faArrowRight} />
                 </Link>
               </li>

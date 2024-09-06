@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { SearchThings } from "../components";
+import { timeConverter } from "../utils";
+import axios from "axios";
 import "../styles/Advising.css";
 
 const SeatStatus = () => {
@@ -8,6 +9,35 @@ const SeatStatus = () => {
   const [searchText, setSearchText] = useState("");
   const [searchedResults, setSearchedResults] = useState(null);
   const [searchTimeout, setSearchTimeout] = useState(null);
+
+  useEffect(() => {
+    const fetchSections = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axios.get("/api/courses/get-sections", {
+          headers: { "x-auth-token": token },
+        });
+        if (response.data) {
+          const validSections = response.data.filter(
+            (item) =>
+              item.course && item.course.courseCode && item.sectionNumber
+          );
+
+          const sortedSections = validSections.sort((a, b) => {
+            const courseCodeA = a.course.courseCode;
+            const courseCodeB = b.course.courseCode;
+            if (courseCodeA < courseCodeB) return -1;
+            if (courseCodeA > courseCodeB) return 1;
+            return a.sectionNumber - b.sectionNumber;
+          });
+          setSections(sortedSections);
+        }
+      } catch (error) {
+        alert("Error Fetching sections.");
+      }
+    };
+    fetchSections();
+  }, []);
 
   const handleSearchChange = (e) => {
     // e.preventDefault();
@@ -24,28 +54,6 @@ const SeatStatus = () => {
       }, 500)
     );
   };
-
-  useEffect(() => {
-    const fetchSections = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        const response = await axios.get("/api/courses/get-sections", {
-          headers: { "x-auth-token": token },
-        });
-        if (response.data) {
-          const sortedSections = response.data.sort((a, b) => {
-            if (a.course.courseCode < b.course.courseCode) return -1;
-            if (a.course.courseCode > b.course.courseCode) return 1;
-            return a.sectionNumber - b.sectionNumber;
-          });
-          setSections(sortedSections);
-        }
-      } catch (error) {
-        alert("Error Fetching sections.");
-      }
-    };
-    fetchSections();
-  }, []);
 
   // console.log(sections);
 
@@ -97,7 +105,8 @@ const SeatStatus = () => {
                       </li>
                       <li className="seatStatus-info-items">
                         {section.schedule.day.toUpperCase()}{" "}
-                        {section.schedule.startTime}-{section.schedule.endTime}
+                        {timeConverter(section.schedule.startTime)}-
+                        {timeConverter(section.schedule.endTime)}
                       </li>
                       <li className="seatStatus-info-items">
                         {section.seat
@@ -136,7 +145,8 @@ const SeatStatus = () => {
                       </li>
                       <li className="seatStatus-info-items">
                         {section.schedule.day.toUpperCase()}{" "}
-                        {section.schedule.startTime}-{section.schedule.endTime}
+                        {timeConverter(section.schedule.startTime)}-
+                        {timeConverter(section.schedule.endTime)}
                       </li>
                       <li className="seatStatus-info-items">
                         {section.seat

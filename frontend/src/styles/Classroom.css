@@ -112,6 +112,7 @@
   /* border: 1px solid #d2d1d1; */
   border-radius: 0.5rem;
   overflow: hidden;
+  border: 0.1rem solid #dadce0;
 }
 
 .classroom-individual-class:hover {

@@ -1,5 +1,7 @@
 const Course = require("../models/Course");
 const Section = require("../models/Section");
+const dotenv = require("dotenv");
+dotenv.config();
 
 const createCourse = async (req, res) => {
   const { name, courseCode, credit, description } = req.body;

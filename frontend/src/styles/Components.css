@@ -19,7 +19,7 @@
 
 .searchField:focus {
   /* border: 1px solid #6469ff; */
-  outline: 2px solid #6a6ef6;
+  outline: 2px solid #007bff;
   /* outline: none; */
   border: none;
 }
@@ -88,7 +88,6 @@
   position: relative; /* Infinite rotation */
 }
 
-
 /* MultiSelector */
 /* MultiSelect.css */
 
@@ -101,7 +100,6 @@
   display: flex;
   align-items: center;
 }
-
 
 @keyframes spin {
   0% {

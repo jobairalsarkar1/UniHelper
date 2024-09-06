@@ -1,12 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const ConsultationController = require("../controllers/consultationController");
+const auth = require("../middleware/authenticate");
 
-// Define routes
-// router.post("/", ConsultationController.createConsultation);
-// router.get("/", ConsultationController.getConsultations);
-// router.get("/:id", ConsultationController.getConsultationById);
-// router.put("/:id", ConsultationController.updateConsultation);
-// router.delete("/:id", ConsultationController.deleteConsultation);
+router.post("/make-request", auth, ConsultationController.requestConsultation);
+router.get("/get-consultations", auth, ConsultationController.getConsultations);
+router.put("/approve-conulstation", ConsultationController.approveConsultation);
 
 module.exports = router;
