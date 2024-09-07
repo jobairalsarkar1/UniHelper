@@ -1,0 +1,190 @@
+.finance-container {
+  padding: 1rem 2.1rem 0.5rem 2.1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.finance-inner-container {
+  width: 100%;
+}
+
+.finance-payment-status {
+  padding: 1rem 1rem 0 1rem;
+  border-radius: 0.4rem;
+  border: 0.1rem solid #dadce0;
+  background-color: var(--element-background-color);
+}
+
+.finance-payment-status-title {
+  width: 100%;
+  font-size: 0.95rem;
+  font-weight: 550;
+  color: #777777;
+}
+
+.finance-payment-status-form {
+  margin-top: 0.2rem;
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: 70% auto;
+}
+
+.selectSemester {
+  padding: 0.45rem 0.5rem 0.45rem 0.5rem;
+  border-radius: 0.4rem;
+  border: 0.1rem solid #d2d2d6;
+}
+
+.selectSemester:focus {
+  border: 0.1rem solid #0077ef;
+  outline: none;
+  /* outline: 0.1rem solid #0077ef; */
+}
+
+.finance-payment-status-btn {
+  border-radius: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--element-background-color);
+  background-color: #0077ef;
+  border: none;
+  cursor: pointer;
+}
+
+.finance-payment-status-popup {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s;
+}
+
+.finance-payment-status-popup.active {
+  max-height: 100px;
+}
+
+.finance-payment-paid,
+.finance-payment-unpaid {
+  padding: 0.35rem 0.5rem 0.35rem 0.5rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  border-radius: 0.4rem;
+}
+
+.not-active {
+  display: none;
+}
+
+.finance-payment-paid {
+  color: #19c42d;
+  border: 0.1rem solid #19c42d;
+}
+
+.finance-payment-paid:hover {
+  color: #ffffff;
+  background-color: #19c42d;
+}
+
+.finance-payment-unpaid {
+  color: hsl(0, 270%, 50%);
+  border: 0.1rem solid hsl(0, 270%, 50%);
+}
+
+.finance-payment-unpaid:hover {
+  color: #ffffff;
+  background-color: hsl(0, 270%, 50%);
+}
+
+.finance-payment-slip-form {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.4rem;
+  border: 0.1rem solid #dadce0;
+  background-color: var(--element-background-color);
+}
+
+.finance-payment-semester-bank {
+  width: 100%;
+  margin-top: 0.3rem;
+  display: grid;
+  grid-template-columns: 40% auto;
+  gap: 0.6rem;
+}
+
+.finance-payment-bank-online-btns {
+  width: 100%;
+  margin-top: 0.6rem;
+  display: grid;
+  gap: 0.6rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.selectPaymentSemester,
+.selectBank {
+  padding: 0.45rem 0.5rem 0.45rem 0.5rem;
+  border-radius: 0.4rem;
+  border: 0.1rem solid #d2d2d6;
+}
+
+.selectPaymentSemester:focus,
+.selectBank:focus {
+  border: 0.1rem solid #0077ef;
+  outline: none;
+}
+
+.download-slip-btn,
+.digital-pay-btn {
+  padding: 0.5rem;
+  border-radius: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--element-background-color);
+  background-color: #0077ef;
+  border: none;
+  cursor: pointer;
+}
+
+.download-slip-btn {
+  background-color: #6c757d;
+}
+
+.digital-pay-btn {
+  background-color: #28a745;
+}
+
+@media (min-width: 1024px) {
+  .finance-inner-container {
+    width: 60%;
+  }
+
+  .finance-payment-bank-online-btns {
+    width: 50%;
+  }
+}
+
+@media (max-width: 460px) {
+  .finance-payment-status-form {
+    grid-template-columns: 67% auto;
+  }
+
+  .finance-payment-status-btn {
+    font-size: 0.72rem;
+  }
+
+  .download-slip-btn,
+  .digital-pay-btn {
+    font-size: 0.72rem;
+  }
+}

@@ -90,7 +90,28 @@ body {
   color: inherit;
 }
 
+/* Under Development */
+/* .side-navbar-inner-list-test {
+  max-height: 0;
+  transition: max-height 0.5s;
+  overflow: hidden;
+}
+
+.side-navbar-inner-list-test.active {
+  max-height: 150px;
+} */
+
 .side-navbar-inner-list {
+  max-height: 0;
+  transition: max-height 0.5s;
+  overflow: hidden;
+}
+
+.side-navbar-inner-list.active {
+  max-height: 150px;
+}
+
+/* .side-navbar-inner-list {
   display: none;
   padding: 0.4rem 1rem 0.4rem 2.1rem;
   transition: display 1s;
@@ -98,8 +119,7 @@ body {
 
 .side-navbar-inner-list-active {
   display: block;
-  /* transition: all 1s; */
-}
+} */
 
 .side-navbar-inner-list-item {
   list-style-type: none;

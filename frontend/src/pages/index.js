@@ -14,6 +14,7 @@ import EditCourse from "./EditCourse";
 import SeatStatus from "./SeatStatus";
 import ClassroomIndividual from "./ClassroomIndividual";
 import EditSection from "./EditSection";
+import Finance from "./Finance";
 
 export {
   Home,
@@ -32,4 +33,5 @@ export {
   SeatStatus,
   ClassroomIndividual,
   EditSection,
+  Finance,
 };

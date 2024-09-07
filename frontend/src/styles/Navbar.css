@@ -148,7 +148,10 @@
 .loggedin-user-profile-picture {
   width: 35px;
   aspect-ratio: 1/1;
-  border-radius: 1.5rem;
+  object-fit: cover;
+  border-radius: 50%;
+  pointer-events: none;
+  border: 0.1rem solid #dadce0;
 }
 
 .user-profile-picture-alter {
@@ -159,9 +162,10 @@
   justify-content: center;
   font-size: 1rem;
   font-weight: 660;
-  border-radius: 1.5rem;
+  border-radius: 50%;
   color: #ffffff;
   background-color: #000000;
+  border: 0.1rem solid #dadce0;
 }
 
 .loggedin-user-name {

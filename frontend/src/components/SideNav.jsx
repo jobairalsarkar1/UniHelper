@@ -53,7 +53,7 @@ const SideNav = ({ sidebarOpen, toggleSidebar }) => {
                 <ul
                   className={
                     expand.users
-                      ? "side-navbar-inner-list-active"
+                      ? "side-navbar-inner-list active"
                       : "side-navbar-inner-list"
                   }
                 >
@@ -139,7 +139,7 @@ const SideNav = ({ sidebarOpen, toggleSidebar }) => {
                 <ul
                   className={
                     expand.account
-                      ? "side-navbar-inner-list-active"
+                      ? "side-navbar-inner-list active"
                       : "side-navbar-inner-list"
                   }
                 >
@@ -200,7 +200,7 @@ const SideNav = ({ sidebarOpen, toggleSidebar }) => {
                 <ul
                   className={
                     expand.advising
-                      ? "side-navbar-inner-list-active"
+                      ? "side-navbar-inner-list active"
                       : "side-navbar-inner-list"
                   }
                 >
@@ -311,7 +311,7 @@ const SideNav = ({ sidebarOpen, toggleSidebar }) => {
                 <ul
                   className={
                     expand.facilities
-                      ? "side-navbar-inner-list-active"
+                      ? "side-navbar-inner-list active"
                       : "side-navbar-inner-list"
                   }
                 >
@@ -368,7 +368,7 @@ const SideNav = ({ sidebarOpen, toggleSidebar }) => {
                 <ul
                   className={
                     expand.account
-                      ? "side-navbar-inner-list-active"
+                      ? "side-navbar-inner-list active"
                       : "side-navbar-inner-list"
                   }
                 >
@@ -409,7 +409,7 @@ const SideNav = ({ sidebarOpen, toggleSidebar }) => {
                 <ul
                   className={
                     expand.advising
-                      ? "side-navbar-inner-list-active"
+                      ? "side-navbar-inner-list active"
                       : "side-navbar-inner-list"
                   }
                 >

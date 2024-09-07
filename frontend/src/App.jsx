@@ -45,6 +45,7 @@ import {
   SeatStatus,
   ClassroomIndividual,
   EditSection,
+  Finance,
 } from "./pages";
 import "./styles/App.css";
 
@@ -203,6 +204,14 @@ const App = () => {
                   element={
                     <PrivateRoute>
                       <Consultations />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/finance"
+                  element={
+                    <PrivateRoute>
+                      <Finance />
                     </PrivateRoute>
                   }
                 />

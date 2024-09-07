@@ -171,7 +171,7 @@ const Consultations = () => {
                 />
                 <div className="consultation-others-container">
                   <select
-                    name="JMA"
+                    name="select-faculty"
                     id="select-faculty"
                     className="select-faculty"
                     value={teacher}
@@ -183,7 +183,7 @@ const Consultations = () => {
                     }
                     required
                   >
-                    <option value="JMA">Select Faculty</option>
+                    <option value="">Select Faculty</option>
                     {faculties.map((faculty) => (
                       <option key={faculty._id} value={faculty._id}>
                         {faculty.name}
