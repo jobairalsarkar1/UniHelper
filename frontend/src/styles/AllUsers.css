@@ -21,7 +21,7 @@
   margin-top: 1rem;
   text-align: center;
   font-size: 1.5rem;
-  color: #6469ff;
+  color: #0077ef;
 }
 
 .all-users-conatiner {
@@ -75,7 +75,7 @@
   text-decoration: none;
   border-radius: 0.3rem;
   color: #ffffff;
-  background-color: #6469ff;
+  background-color: #0077ef;
 }
 
 @media (max-width: 460px) {
@@ -90,6 +90,10 @@
     font-size: 0.5rem;
   }
 
+  .student-info-items {
+    font-size: 0.5rem;
+  }
+
   .edit-btn {
     width: 100%;
   }
@@ -97,6 +101,10 @@
 
 @media (max-width: 760px) {
   .user-info-items {
+    font-size: 0.8rem;
+  }
+
+  .student-info-items {
     font-size: 0.8rem;
   }
 }
@@ -275,7 +283,7 @@
 .course-code-inner {
   font-weight: 550;
   text-decoration: none;
-  color: #6469ff;
+  color: #0077ef;
 }
 
 .delete-course-btn {
@@ -288,7 +296,7 @@
 }
 
 .no-courses-found {
-  color: #6469ff;
+  color: #0077ef;
 }
 
 @media (min-width: 1024px) {
@@ -334,4 +342,47 @@
   overflow-y: auto;
   background-color: #fff;
   border: 1px solid #ccc;
+}
+
+/* AllStudents.jsx */
+.all-students-title {
+  font-size: 1.1rem;
+  font-weight: 550;
+}
+
+.student-info-list {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: 15% 24% 37% 24%;
+  border-top: 1px solid #666e75;
+}
+
+.student-info-list-inner {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: 15% 24% 37% 24%;
+}
+
+.student-info-items {
+  word-break: break-all;
+  overflow-wrap: break-word;
+  white-space: normal;
+  display: grid;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  border-bottom: 1px solid #666e75;
+  border-right: 1px solid #666e75;
+  /* justify-items: center; */
+  align-items: center;
+}
+
+.student-info-item-id {
+  border-left: 1px solid #666e75;
+}
+
+.student-list-header {
+  font-weight: 700;
 }

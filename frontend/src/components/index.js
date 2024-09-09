@@ -13,6 +13,7 @@ import Schedule from "./Schedule";
 import AdvisedCourses from "./AdvisedCourses";
 import Loader from "./Loader";
 import MultiSelect from "./MultiSelect";
+import AllStudents from "./AllStudents";
 
 export {
   PrivateRoute,
@@ -30,4 +31,5 @@ export {
   AdvisedCourses,
   Loader,
   MultiSelect,
+  AllStudents,
 };

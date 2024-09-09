@@ -10,6 +10,7 @@ const Finance = () => {
   const [clicked, setClicked] = useState(false);
 
   const handleSearch = () => {};
+
   const handleClick = () => {
     setClicked(!clicked);
   };

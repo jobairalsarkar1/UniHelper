@@ -3,6 +3,7 @@
   --background-color: hsl(220, 37%, 97%);
   --text-color: hsl(244, 44%, 14%);
   --external-color: hsl(240, 100%, 90%);
+  --color-blue-1: #007bff;
 }
 
 * {

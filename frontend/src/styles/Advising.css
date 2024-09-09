@@ -169,6 +169,7 @@
   display: grid;
   grid-template-columns: 15% 25% 30% 15% 15%;
   border-top: 1px solid #666e75;
+  background-color: var(--element-background-color);
 }
 
 .seatStatus-info-list-inner {
@@ -206,12 +207,20 @@
   text-align: center;
   font-size: 1.5rem;
   font-weight: 600;
-  color: #6469ff;
+  color: #007eff;
 }
 
 /* AdvisedCourses.jsx */
 .advised-courses-inner-container {
   padding: 0.5rem 2.1rem 0.5rem 2.1rem;
+}
+
+.advised-courses-list {
+  margin-top: 0.5rem;
+  padding: 1rem;
+  border-radius: 0.4rem;
+  border: 0.1rem solid #dadce0;
+  background-color: var(--element-background-color);
 }
 
 .advised-courses-title {

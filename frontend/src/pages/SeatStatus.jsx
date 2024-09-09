@@ -3,6 +3,7 @@ import { SearchThings } from "../components";
 import { timeConverter } from "../utils";
 import axios from "axios";
 import "../styles/Advising.css";
+import "../styles/Components.css";
 
 const SeatStatus = () => {
   const [sections, setSections] = useState(null);
@@ -92,10 +93,14 @@ const SeatStatus = () => {
               {searchedResults?.length > 0 ? (
                 <>
                   {" "}
-                  {searchedResults.map((section) => (
+                  {searchedResults.map((section, index) => (
                     <ul
                       key={section._id}
-                      className="seatStatus-info-list-inner"
+                      className={
+                        index % 2
+                          ? "seatStatus-info-list-inner custom-bg-1"
+                          : "seatStatus-info-list-inner custom-bg-3"
+                      }
                     >
                       <li className="seatStatus-info-items seatStatus-info-item-id">
                         {section.sectionNumber}
@@ -132,10 +137,14 @@ const SeatStatus = () => {
               {sections?.length > 0 ? (
                 <>
                   {" "}
-                  {sections.map((section) => (
+                  {sections.map((section, index) => (
                     <ul
                       key={section._id}
-                      className="seatStatus-info-list-inner"
+                      className={
+                        index % 2
+                          ? "seatStatus-info-list-inner custom-bg-1"
+                          : "seatStatus-info-list-inner custom-bg-3"
+                      }
                     >
                       <li className="seatStatus-info-items seatStatus-info-item-id">
                         {section.sectionNumber}

@@ -27,6 +27,7 @@ import {
   Consultations,
   NotFound,
   AdvisedCourses,
+  AllStudents,
 } from "./components";
 import {
   Home,
@@ -46,6 +47,7 @@ import {
   ClassroomIndividual,
   EditSection,
   Finance,
+  GradeSheetIndividual,
 } from "./pages";
 import "./styles/App.css";
 
@@ -136,6 +138,14 @@ const App = () => {
                   }
                 />
                 <Route
+                  path="/payslip"
+                  element={
+                    <PrivateRoute>
+                      <AllStudents />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
                   path="/course-sequence"
                   element={
                     <PrivateRoute>
@@ -148,6 +158,14 @@ const App = () => {
                   element={
                     <PrivateRoute>
                       <GradeSheet />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/gradesheet/admin/:studentId"
+                  element={
+                    <PrivateRoute>
+                      <GradeSheetIndividual />
                     </PrivateRoute>
                   }
                 />

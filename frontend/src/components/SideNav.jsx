@@ -109,6 +109,26 @@ const SideNav = ({ sidebarOpen, toggleSidebar }) => {
                   <FontAwesomeIcon icon={faArrowRight} />
                 </Link>
               </li>
+              <li className="side-navbar-list-item sidenav-item-hover">
+                <Link
+                  to="/gradesheet"
+                  className="side-navbar-item-link"
+                  onClick={() => toggleSidebar()}
+                >
+                  GradeSheets
+                  <FontAwesomeIcon icon={faArrowRight} />
+                </Link>
+              </li>
+              <li className="side-navbar-list-item sidenav-item-hover">
+                <Link
+                  to="/payslip"
+                  className="side-navbar-item-link"
+                  onClick={() => toggleSidebar()}
+                >
+                  PaySlip
+                  <FontAwesomeIcon icon={faArrowRight} />
+                </Link>
+              </li>
             </>
           )}
 

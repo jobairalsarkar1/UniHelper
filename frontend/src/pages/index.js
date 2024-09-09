@@ -15,6 +15,7 @@ import SeatStatus from "./SeatStatus";
 import ClassroomIndividual from "./ClassroomIndividual";
 import EditSection from "./EditSection";
 import Finance from "./Finance";
+import GradeSheetIndividual from "./GradeSheetIndividual";
 
 export {
   Home,
@@ -34,4 +35,5 @@ export {
   ClassroomIndividual,
   EditSection,
   Finance,
+  GradeSheetIndividual,
 };

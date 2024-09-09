@@ -1,3 +1,17 @@
+/* Custom Background-Colors */
+.custom-bg-1 {
+  background-color: #f0edee;
+}
+
+.custom-bg-2 {
+  background-color: #90ddf0;
+}
+
+.custom-bg-3 {
+  background-color: #afd2f4;
+}
+
+/* Search Bar */
 .search-input-field {
   margin: 0 0 0.5rem 0;
   display: flex;
@@ -13,15 +27,15 @@
 .searchField {
   padding: 0.5rem 1rem 0.5rem 1rem;
   border-radius: 0.5rem;
-  border: 1px solid #919395;
+  border: 0.1rem solid #abadae;
   outline: none;
 }
 
 .searchField:focus {
-  /* border: 1px solid #6469ff; */
-  outline: 2px solid #007bff;
-  /* outline: none; */
-  border: none;
+  border: 0.1rem solid #007bff;
+  /* outline: 0.1rem solid #007bff; */
+  outline: none;
+  /* border: none; */
 }
 
 /* Class Routine */

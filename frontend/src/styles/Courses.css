@@ -13,6 +13,7 @@
   display: grid;
   grid-template-columns: 30% 50% 20%;
   border-top: 1px solid #666e75;
+  background-color: var(--element-background-color);
 }
 
 .course-info-list-inner {

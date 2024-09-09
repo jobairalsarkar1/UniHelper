@@ -1,7 +1,9 @@
 import { useState } from "react";
+import "../styles/Advising.css";
 
 const AdvisedCourses = () => {
   const [advisedCourses, setAdvisedCourses] = useState(null);
+
   return (
     <div className="advised-courses-container">
       <div className="advised-courses-inner-container">

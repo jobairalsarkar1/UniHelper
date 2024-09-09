@@ -1,7 +1,13 @@
+/* Home */
+.home-inner-container {
+  padding: 0.5rem 2.1rem 0.5rem 2.1rem;
+}
+
+/* Finance */
 .finance-container {
-  padding: 1rem 2.1rem 0.5rem 2.1rem;
   display: flex;
   justify-content: center;
+  padding: 1rem 2.1rem 0.5rem 2.1rem;
 }
 
 .finance-inner-container {
@@ -164,6 +170,167 @@
   background-color: #28a745;
 }
 
+/* GradeSheet.jsx */
+.gradeSheet-container {
+  padding: 0.5rem 2.1rem 0.5rem 2.1rem;
+}
+
+.gradeSheet-inner-container {
+  padding: 0.5rem;
+  background-color: var(--element-background-color);
+}
+
+/* GradeSheetIndividual.jsx */
+.gradeSheetIndividual-container {
+  padding-top: 0.5rem;
+}
+
+.gradeSheetIndividual-inner-container {
+  padding: 0 2.1rem 0.5rem 2.1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* background-color: var(--element-background-color); */
+}
+
+.make-gradesheet-button-container {
+  width: 100%;
+  margin-top: 0.4rem;
+  text-align: center;
+}
+
+.gradeSheetIndividual-create-gradesheet-btn {
+  padding: 0.6rem 1rem 0.6rem 1rem;
+  width: 100%;
+  border-radius: 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 550;
+  border: none;
+  color: #ffffff;
+  background-color: #19c42d;
+  /* background-color: #007bff; */
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.gradeSheetIndividual-create-gradesheet-btn:hover {
+  background-color: #27a542;
+}
+
+.gradeSheetIndividual-create-semester-form {
+  padding: 1rem;
+  width: 100%;
+  display: grid;
+  gap: 0.6rem;
+  grid-template-columns: 70% auto;
+  background-color: var(--element-background-color);
+  border-radius: 0.35rem;
+  /* box-shadow: 2px 0 6px -2px #dadce0, 0 2px 6px -2px #dadce0,
+    -2px 0 6px -2px #dadce0; */
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
+    0 2px 6px 2px rgba(60, 64, 67, 0.15);
+}
+
+.gradeSheetIndividual-semester-input {
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  border-radius: 0.4rem;
+  border: 0.1rem solid #dadce0;
+}
+
+.gradeSheetIndividual-semester-input:focus {
+  border: 0.1rem solid #0077ef;
+  outline: none;
+}
+
+.gradeSheetIndividual-semester-course-container {
+  margin-top: 1rem;
+  width: 100%;
+  padding: 0.8rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+  border-radius: 0.3rem;
+  border: 0.1rem solid #dadce0;
+  background-color: var(--element-background-color);
+}
+
+/* .gradeSheetIndividual-semesters-container {
+  padding: 0.5rem;
+  background-color: #d2d2d6;
+} */
+
+.gradeSheetIndividual-semester-name {
+  padding: 0.5rem 1rem;
+  font-weight: 550;
+  border-radius: 0.3rem;
+  border: none;
+  background-color: var(--element-background-color);
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
+    0 2px 6px 2px rgba(60, 64, 67, 0.15);
+  cursor: pointer;
+}
+
+.gradeSheetIndividual-semester-course-grade-update-from {
+  /* display: none; */
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding: 0 0.5rem;
+  overflow: hidden;
+  max-height: 0;
+  display: grid;
+  gap: 0.4rem;
+  grid-template-columns: 35% 25% 20% auto;
+  border-radius: 0.35rem;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.gradeSheetIndividual-semester-course-grade-update-from.visible {
+  max-height: 200px; /* Set to the max height of your content */
+  padding: 0.5rem;
+  border: 0.1rem solid #dadce0;
+}
+
+.gradeSheetIndividual-semester-course-grade-update-from.hidden {
+  max-height: 0;
+  padding: 0 0.5rem;
+}
+
+.course-grade-options {
+  padding: 0.4rem 0.7rem;
+  border: 0.1rem solid #dadce0;
+  border-radius: 0.3rem;
+}
+
+.course-grade-options:focus {
+  outline: none;
+  border: 0.1rem solid #0077ef;
+}
+
+.gradeSheetIndividual-course-grade-btn {
+  font-weight: 550;
+  border-radius: 0.35rem;
+  border: none;
+  color: #ffffff;
+  background-color: #0077ef;
+  cursor: pointer;
+}
+
+.gradeSheetIndividual-course-grade-btn:hover {
+  background-color: #0d69c5;
+}
+
+.semesters-container-title {
+  font-size: 0.9rem;
+  font-weight: 550;
+  color: #737373;
+}
+
+/* Payment (Admin)  */
+.payslip-container {
+  padding: 0.5rem 2.1rem 0.5rem 2.1rem;
+}
+
 @media (min-width: 1024px) {
   .finance-inner-container {
     width: 60%;
@@ -171,6 +338,18 @@
 
   .finance-payment-bank-online-btns {
     width: 50%;
+  }
+
+  .gradeSheetIndividual-create-gradesheet-btn {
+    width: auto;
+  }
+
+  .gradeSheetIndividual-create-semester-form {
+    width: 70%;
+  }
+
+  .gradeSheetIndividual-semester-course-container {
+    width: 70%;
   }
 }
 
@@ -186,5 +365,9 @@
   .download-slip-btn,
   .digital-pay-btn {
     font-size: 0.72rem;
+  }
+
+  .gradeSheetIndividual-create-semester-form {
+    grid-template-columns: 60% auto;
   }
 }

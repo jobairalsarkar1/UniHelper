@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { SearchThings } from "../components";
 import axios from "axios";
 import "../styles/Courses.css";
+import "../styles/Components.css";
 // import "../styles/AllUsers.css";
 
 const CourseDetails = () => {
@@ -60,8 +61,15 @@ const CourseDetails = () => {
                   </li>
                   <li className="list-header course-info-items">Credit</li>
                 </ul>
-                {searchedResults.map((course) => (
-                  <ul key={course._id} className="course-info-list-inner">
+                {searchedResults.map((course, index) => (
+                  <ul
+                    key={course._id}
+                    className={
+                      index % 2
+                        ? "course-info-list-inner custom-bg-1"
+                        : "course-info-list-inner custom-bg-3"
+                    }
+                  >
                     <li className="course-info-items course-info-item-id">
                       {course.courseCode}
                     </li>
@@ -89,8 +97,15 @@ const CourseDetails = () => {
                   </li>
                   <li className="list-header course-info-items">Credit</li>
                 </ul>
-                {courses.map((course) => (
-                  <ul key={course._id} className="course-info-list-inner">
+                {courses.map((course, index) => (
+                  <ul
+                    key={course._id}
+                    className={
+                      index % 2
+                        ? "course-info-list-inner custom-bg-1"
+                        : "course-info-list-inner custom-bg-3"
+                    }
+                  >
                     <li className="course-info-items course-info-item-id">
                       {course.courseCode}
                     </li>
