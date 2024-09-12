@@ -289,6 +289,88 @@ const GradeSheetIndividual = () => {
             </div>
           </>
         )}
+        {gradeSheet && (
+          <>
+            <div className="gradeSheetIndividual-gradeSheet-container">
+              <div className="gradeSheetIndividual-gradeSheet-basic-info">
+                <span>Name: {gradeSheet.student.name}</span>
+                <span>ID: {gradeSheet.student.ID}</span>
+              </div>
+              <div className="gradeSheetIndividual-actual-gradeSheet">
+                <ul className="gradeSheet-info-list">
+                  <li className="gradeSheet-list-header gradeSheet-info-items gradeSheet-info-item-id">
+                    Code
+                  </li>
+                  <li className="gradeSheet-list-header gradeSheet-info-items">
+                    Grade
+                  </li>
+                  <li className="gradeSheet-list-header gradeSheet-info-items">
+                    Credit
+                  </li>
+                  <li className="gradeSheet-list-header gradeSheet-info-items">
+                    CGPA
+                  </li>
+                </ul>
+                {gradeSheet.semesters?.map((semester) => (
+                  <>
+                    <div key={semester._id}>
+                      <li className="gradeSheet-info-items-inner semester-name-holder">
+                        Semester: {semester.semester}
+                      </li>
+                      {semester.courses?.map((course) => (
+                        <>
+                          <ul
+                            key={course._id}
+                            className="gradeSheet-info-list-inner"
+                          >
+                            {/* <li className="gradeSheet-info-items-inner">
+                              Semester: {semester.semester}
+                            </li> */}
+                            <li className="gradeSheet-info-items-inner gradeSheet-info-item-id">
+                              {course.course.courseCode}
+                            </li>
+                            <li className="gradeSheet-info-items-inner">
+                              {course.grade}
+                            </li>
+                            <li className="gradeSheet-info-items-inner">
+                              {course.course.credit}
+                            </li>
+                            <li className="gradeSheet-info-items-inner">
+                              {course.cgpa}
+                            </li>
+                          </ul>
+                        </>
+                      ))}
+                      {/* <ul className="gradeSheet-info-list-inner">
+                        <li className="gradeSheet-info-items-inner">
+                          Semester: {semester.semester}
+                        </li>
+                        <li className="gradeSheet-info-items-inner gradeSheet-info-item-id">
+                          Code
+                        </li>
+                        <li className="gradeSheet-info-items-inner">Grade</li>
+                        <li className="gradeSheet-info-items-inner">Credit</li>
+                        <li className="gradeSheet-info-items-inner">GPA</li>
+                      </ul> */}
+                      <ul className="gradeSheet-info-list-inner-total">
+                        <li className="gradeSheet-info-items gradeSheet-info-item-id">
+                          Semester Total
+                        </li>
+                        <li className="gradeSheet-info-items">Grade</li>
+                        <li className="gradeSheet-info-items">
+                          {semester.courses.length * 3}
+                        </li>
+                        <li className="gradeSheet-info-items">
+                          {semester.semesterCGPA}
+                        </li>
+                      </ul>
+                    </div>
+                  </>
+                ))}
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

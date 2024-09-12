@@ -67,28 +67,28 @@
 .form-password-field,
 .form-email-field,
 .form-name-field {
-  padding: 0.8rem 1rem 0.8rem 1rem;
+  padding: 0.6rem 1rem 0.6rem 1rem;
   border-radius: 0.5rem;
   /* border: none; */
   /* outline: none; */
   /* margin-bottom: 1rem; */
   /* border: 1px solid #828181; */
-  border: 1px solid #666e75;
-  font-size: 0.9rem;
+  border: 0.091rem solid #c7c7c7;
+  font-size: 0.725rem;
 }
 
 .form-login-button {
   position: relative;
-  padding: 0.7rem 1rem 0.7rem 1rem;
+  padding: 0.6rem 1rem 0.6rem 1rem;
   margin-top: 0.3rem;
   border-radius: 0.5rem;
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   font-weight: 550;
   border: none;
   cursor: pointer;
   /* outline: 2px solid var(--text-color); */
   /* background-color: var(--background-color); */
-  color: var(--background-color);
+  color: var(--element-background-color);
   background-color: var(--text-color);
   transition: background 1s;
 }
@@ -122,7 +122,7 @@
 
 .forget-password-reminder {
   text-align: center;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
 }
 
 /* Register Form */

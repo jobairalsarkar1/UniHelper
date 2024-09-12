@@ -246,9 +246,9 @@
 .gradeSheetIndividual-semester-course-container {
   margin-top: 1rem;
   width: 100%;
-  padding: 0.8rem;
+  padding: 0.8rem 0.8rem 0.2rem 0.8rem;
   display: flex;
-  gap: 0.5rem;
+  gap: 0.4rem;
   flex-direction: column;
   border-radius: 0.3rem;
   border: 0.1rem solid #dadce0;
@@ -288,7 +288,9 @@
 .gradeSheetIndividual-semester-course-grade-update-from.visible {
   max-height: 200px; /* Set to the max height of your content */
   padding: 0.5rem;
-  border: 0.1rem solid #dadce0;
+  /* border: 0.1rem solid #dadce0; */
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
+    0 2px 10px 2px rgba(60, 64, 67, 0.15);
 }
 
 .gradeSheetIndividual-semester-course-grade-update-from.hidden {
@@ -326,6 +328,95 @@
   color: #737373;
 }
 
+.gradeSheetIndividual-gradeSheet-container {
+  margin-top: 0.5rem;
+  padding: 0.8rem;
+  width: 100%;
+  border: 0.1rem solid #dadce0;
+  background-color: var(--element-background-color);
+}
+
+.gradeSheetIndividual-gradeSheet-basic-info {
+  margin-bottom: 0.5rem;
+  /* padding: 0 0.1rem 0 0.1rem; */
+  font-size: 0.9rem;
+  font-weight: 550;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-between;
+  /* color: #585858; */
+}
+
+.all-gradeSheet-title {
+  font-size: 1.1rem;
+  font-weight: 550;
+}
+
+.gradeSheet-info-list {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: 27% 24% 24% 25%;
+  border-top: 1px solid #666e75;
+}
+
+.gradeSheet-info-list-inner {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: 27% 24% 24% 25%;
+}
+
+.gradeSheet-info-list-inner-total {
+  /* list-style-type: none; */
+  font-size: 0.8rem;
+  display: grid;
+  grid-template-columns: 27% 24% 24% 25%;
+}
+
+.gradeSheet-info-items-inner {
+  word-break: break-all;
+  overflow-wrap: break-word;
+  white-space: normal;
+  font-size: 0.8rem;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  border-bottom: 1px solid #666e75;
+  border-right: 1px solid #666e75;
+}
+
+/* .gradeSheet-info-items-inner:first-child {
+  grid-column: span 4;
+  border-left: 1px solid #666e75;
+} */
+
+.semester-name-holder {
+  list-style-type: none;
+  border-left: 1px solid #666e75;
+}
+
+.gradeSheet-info-items {
+  word-break: break-all;
+  overflow-wrap: break-word;
+  white-space: normal;
+  display: grid;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  border-bottom: 1px solid #666e75;
+  border-right: 1px solid #666e75;
+  /* justify-items: center; */
+  align-items: center;
+}
+
+.gradeSheet-info-item-id {
+  border-left: 1px solid #666e75;
+}
+
+.gradeSheet-list-header {
+  font-weight: 600;
+  font-size: 0.76rem;
+}
+
 /* Payment (Admin)  */
 .payslip-container {
   padding: 0.5rem 2.1rem 0.5rem 2.1rem;
@@ -351,6 +442,10 @@
   .gradeSheetIndividual-semester-course-container {
     width: 70%;
   }
+
+  .gradeSheetIndividual-gradeSheet-container {
+    width: 70%;
+  }
 }
 
 @media (max-width: 460px) {
@@ -369,5 +464,9 @@
 
   .gradeSheetIndividual-create-semester-form {
     grid-template-columns: 60% auto;
+  }
+
+  .gradeSheet-list-header {
+    font-size: 0.6rem;
   }
 }

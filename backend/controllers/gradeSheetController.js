@@ -99,7 +99,19 @@ const addCourseGrade = async (req, res) => {
 const getGradeSheet = async (req, res) => {
   const { studentId } = req.params;
   try {
-    const gradeSheet = await GradeSheet.findOne({ student: studentId });
+    const gradeSheet = await GradeSheet.findOne({
+      student: studentId,
+    })
+      .populate({
+        path: "student",
+        select: "name email ID departmentId",
+        populate: { path: "departmentId", select: "name details" },
+      })
+      .populate({
+        path: "semesters.courses.course",
+        model: "Course",
+        select: "name courseCode credit department",
+      });
     if (!gradeSheet) {
       return res
         .status(404)
