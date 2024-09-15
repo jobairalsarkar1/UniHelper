@@ -176,11 +176,12 @@ const AdminDepartment = () => {
           </button>
         </form>
         <div className="active-courses">
+          <h2>Available Departments</h2>
+          <hr />
           {departments ? (
             <>
               <div className="active-courses-list">
-                <h2>Available Departments</h2>
-                <hr />
+                {/* <h2>Available Departments</h2> */}
                 {departments.map((department) => (
                   <div key={department._id} className="active-course">
                     <div className="course-info-inner">

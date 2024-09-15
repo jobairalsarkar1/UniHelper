@@ -315,8 +315,11 @@
   padding: 1rem;
   /* height: 200px; */
   margin-top: 1rem;
-  border: 0.1rem solid #dadce0;
+  /* border: 0.1rem solid #dadce0; */
   border-radius: 0.5rem;
+  background-color: var(--element-background-color);
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
+    0 2px 50px 2px rgba(60, 64, 67, 0.15);
 }
 
 /* .classroomIndividual-create-post-form {
@@ -390,6 +393,7 @@
   flex-direction: column;
   border-radius: 0.5rem;
   border: 0.1rem solid #dadce0;
+  background-color: var(--element-background-color);
 }
 
 .classroomIndividual-post-owner-info {

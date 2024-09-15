@@ -29,6 +29,25 @@ export function convertUTCToLocal(dateTimeUTC) {
   return `${formatDate} ${formatTime}`;
 }
 
+export function dayFull(dayShort) {
+  switch (dayShort) {
+    case "sat":
+      return "Saturday";
+    case "sun":
+      return "Sunday";
+    case "mon":
+      return "Monday";
+    case "tue":
+      return "Tuesday";
+    case "wed":
+      return "Wednesday";
+    case "thu":
+      return "Thursday";
+    default:
+      return "Unvalid";
+  }
+}
+
 export function saveFile(fileUrl) {
   FileSaver.saveAs(fileUrl);
   // const fileName = fileUrl.subString(fileUrl.lastIndexOf("/") + 1);

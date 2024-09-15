@@ -197,9 +197,9 @@ const AdminCourses = () => {
             <>
               {searchedResults?.length > 0 ? (
                 <>
+                  <h2>Searched Courses</h2>
+                  <hr />
                   <div className="active-courses-list">
-                    <h2>Searched Courses</h2>
-                    <hr />
                     {searchedResults.map((course) => (
                       <div key={course._id} className="active-course">
                         <div className="course-info-inner">
@@ -237,9 +237,9 @@ const AdminCourses = () => {
             <>
               {courses?.length > 0 ? (
                 <>
+                  <h2>Available Courses</h2>
+                  <hr />
                   <div className="active-courses-list">
-                    <h2>Available Courses</h2>
-                    <hr />
                     {courses.map((course) => (
                       <div key={course._id} className="active-course">
                         <div className="course-info-inner">

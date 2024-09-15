@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import registerImage from "../assets/Vector.jpg";
 import "../styles/Authentication.css";
 
 const Register = () => {
@@ -46,7 +47,11 @@ const Register = () => {
     <div className="authentication-container">
       <div className="register-container">
         <div className="register-featuring-image">
-          <img src="logo.png" alt="Logo" className="feature-image" />
+          <img
+            src={registerImage}
+            alt="Logo"
+            className="register-feature-image"
+          />
         </div>
 
         <form onSubmit={onSubmit} className="register-form">

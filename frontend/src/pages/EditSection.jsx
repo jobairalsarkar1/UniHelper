@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { MultiSelect } from "../components";
 import { useParams } from "react-router-dom";
+import { dayFull, timeConverter } from "../utils";
 import axios from "axios";
 import "../styles/Courses.css";
 
@@ -168,6 +169,23 @@ const EditSection = () => {
                   </span>
                   <span>
                     Room: <strong>{sectionDetails.classRoom}</strong>
+                  </span>
+                  <span>
+                    Day/Time:{" "}
+                    <strong>
+                      {dayFull(sectionDetails.schedule.day.toLowerCase())}{" "}
+                      {`(${timeConverter(
+                        sectionDetails.schedule.startTime
+                      )}-${timeConverter(sectionDetails.schedule.endTime)})`}
+                    </strong>
+                  </span>
+                  <span>
+                    Time:{" "}
+                    <strong>
+                      {`${timeConverter(
+                        sectionDetails.schedule.startTime
+                      )}-${timeConverter(sectionDetails.schedule.endTime)}`}
+                    </strong>
                   </span>
                 </div>
               </>

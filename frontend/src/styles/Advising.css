@@ -9,8 +9,10 @@
   grid-template-columns: 35% 32.5% 32.5%;
   background-color: var(--element-background-color);
   border-radius: 0.5rem;
-  box-shadow: -1.5px 1.5px 1px #bdbdbd, 1.5px 1.5px 1px #bdbdbd,
-    0 1.5px 1px #bdbdbd, 0 -1.5px 1px #bdbdbd;
+  /* box-shadow: -1.5px 1.5px 1px #bdbdbd, 1.5px 1.5px 1px #bdbdbd,
+    0 1.5px 1px #bdbdbd, 0 -1.5px 1px #bdbdbd; */
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
+    0 2px 6px 2px rgba(60, 64, 67, 0.15);
 }
 
 .advising-pannel-first-info {
@@ -27,12 +29,16 @@
 }
 
 .advising-pannel-window {
-  margin-top: 0.8rem;
+  margin-top: 1.5rem;
   padding: 0.5rem;
   /* background-color: #d9d9d9; */
   border-radius: 0.5rem;
-  box-shadow: -1.5px 1.5px 1px #bdbdbd, 1.5px 1.5px 1px #bdbdbd,
-    0 1.5px 1px #bdbdbd, 0 -1.5px 1px #bdbdbd;
+  /* box-shadow: -1.5px 1.5px 1px #bdbdbd, 1.5px 1.5px 1px #bdbdbd,
+    0 1.5px 1px #bdbdbd, 0 -1.5px 1px #bdbdbd; */
+
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
+    0 2px 6px 2px rgba(60, 64, 67, 0.15);
+  /* background-color: var(--element-background-color); */
 }
 
 /* .advising-pannel-search-course {
@@ -48,11 +54,13 @@
 .advising-pannel-search-bar {
   margin-top: 0.5rem;
   width: 35%;
+  /* width: 50%; */
 }
 
 .advising-pannel-course-selection {
   display: grid;
-  grid-template-columns: 35% 35% 28.85%;
+  grid-template-columns: 35% 35% auto;
+  /* grid-template-columns: 50% auto; */
   gap: 0.5rem;
   /* grid-template-rows: 250px 250px 250px auto; */
 }
@@ -136,12 +144,15 @@
 }
 
 .advising-pannel-semester-routine {
-  margin-top: 0.8rem;
+  margin-top: 1rem;
   padding: 0.5rem;
   /* background-color: #d9d9d9; */
   border-radius: 0.5rem;
-  box-shadow: -1.5px 1.5px 1px #bdbdbd, 1.5px 1.5px 1px #bdbdbd,
-    0 1.5px 1px #bdbdbd, 0 -1.5px 1px #bdbdbd;
+  /* box-shadow: -1.5px 1.5px 1px #bdbdbd, 1.5px 1.5px 1px #bdbdbd,
+    0 1.5px 1px #bdbdbd, 0 -1.5px 1px #bdbdbd; */
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
+    0 2px 6px 2px rgba(60, 64, 67, 0.15);
+  background-color: var(--element-background-color);
 }
 
 .advising-pannel-semester-routine span {
@@ -268,19 +279,17 @@
   font-weight: 550;
 }
 
-@media (max-width: 1250px) {
+/* @media (max-width: 1250px) {
   .advising-pannel-course-selection {
-    grid-template-columns: 35% 35% 28.5%;
-    /* grid-template-rows: 250px 250px 250px auto; */
+    grid-template-columns: 35% 35% auto;
   }
 }
 
 @media (max-width: 980px) {
   .advising-pannel-course-selection {
-    grid-template-columns: 35% 35% 28%;
-    /* grid-template-rows: 250px 250px 250px auto; */
+    grid-template-columns: 35% 35% auto;
   }
-}
+} */
 
 @media (max-width: 780px) {
   .advising-pannel-search-bar {
@@ -290,5 +299,21 @@
   .advising-pannel-course-selection {
     grid-template-columns: auto;
     grid-template-rows: 250px 250px 250px auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .advising-course-info {
+    font-size: 0.7rem;
+  }
+
+  .advising-course-add-btn {
+    padding: 0.3rem 0.65rem 0.4rem 0.65rem;
+    font-size: 0.75rem;
+  }
+
+  .advising-course-drop-btn {
+    padding: 0.3rem 0.65rem 0.4rem 0.65rem;
+    font-size: 0.75rem;
   }
 }

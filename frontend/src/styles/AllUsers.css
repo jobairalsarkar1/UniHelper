@@ -192,7 +192,9 @@
   gap: 0.5rem;
   flex-direction: column;
   border-radius: 0.5rem;
-  border: 2px solid #919395;
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
+    0 2px 50px 2px rgba(60, 64, 67, 0.15);
+  background-color: var(--element-background-color);
 }
 
 .course-success-popup {
@@ -216,31 +218,42 @@
 
 .course-form-items label {
   font-weight: 550;
-  /* font-size: 0.9rem; */
+  font-size: 0.8rem;
 }
 
 .course-form-items input {
   padding: 0.6rem 0.6rem 0.6rem 0.6rem;
-  font-size: 0.9rem;
+  font-size: 0.72rem;
   border-radius: 0.4rem;
-  border: 1px solid #666e75;
+  border: 0.1rem solid #dadce0;
 }
 
 .description {
   resize: vertical;
   border-radius: 0.4rem;
   padding: 0.5rem;
-  width: 100%;
+  /* width: 100%; */
   /* box-sizing: border-box; */
   min-width: 100%;
+  min-height: 70px;
+  border: 0.1rem solid #dadce0;
 }
 
 .details {
   resize: vertical;
   border-radius: 0.4rem;
   padding: 0.5rem;
-  width: 100%;
   min-width: 100%;
+  min-height: 70px;
+  font-size: 0.72rem;
+  border: 0.1rem solid #dadce0;
+}
+
+.course-form-items input:focus,
+.details:focus,
+.description:focus {
+  border: 0.1rem solid #000000;
+  outline: transparent;
 }
 
 .course-create-btn {
@@ -259,25 +272,46 @@
 .active-courses {
   min-width: 100%;
   margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 0.3rem;
+  background-color: #ffffff;
 }
 
-.active-courses-list h2 {
-  font-size: 1.1rem;
+.active-courses h2 {
+  font-size: 1rem;
+}
+
+.active-courses-list {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
 }
 
 .active-course {
-  margin-top: 0.5rem;
-  padding: 0.5rem;
+  /* margin-top: 0.5rem; */
+  padding: 0.8rem;
   display: flex;
+  gap: 0.5rem;
   justify-content: space-between;
   align-items: center;
-  border: 2px solid #919395;
   border-radius: 0.5rem;
-  /* flex-direction: column; */
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
+    0 2px 50px 2px rgba(60, 64, 67, 0.15);
 }
 
 .active-course h2 {
-  font-size: 1rem;
+  font-size: 0.9rem;
+}
+
+/* .course-info-inner {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+} */
+
+.course-info-inner p {
+  font-size: 0.8rem;
 }
 
 .course-code-inner {
@@ -326,8 +360,11 @@
   border: 1px solid #ccc;
   padding: 8px;
   border-radius: 4px;
+  font-size: 0.75rem;
   cursor: pointer;
   position: relative;
+  background-color: var(--element-background-color);
+  border: 0.1rem solid #dadce0;
 }
 
 .inner-dropdown-selectedCourse {

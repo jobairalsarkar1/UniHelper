@@ -367,6 +367,18 @@ const GradeSheetIndividual = () => {
                     </div>
                   </>
                 ))}
+                <ul className="gradeSheet-info-list-inner-total final-result">
+                  <li className="gradeSheet-info-items gradeSheet-info-item-id">
+                    Semester Total
+                  </li>
+                  <li className="gradeSheet-info-items">Grade</li>
+                  <li className="gradeSheet-info-items">
+                    {gradeSheet.semesters.length * 4 * 3}
+                  </li>
+                  <li className="gradeSheet-info-items">
+                    {gradeSheet.totalCGPA}
+                  </li>
+                </ul>
               </div>
             </div>
           </>

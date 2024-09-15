@@ -92,14 +92,24 @@
 
 .approved-consultation-request {
   margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 0.3rem;
+  background-color: var(--element-background-color);
+  /* border: 0.1rem solid #dadce0; */
 }
 
 .pending-counsultation-request {
   margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 0.3rem;
+  background-color: var(--element-background-color);
 }
 
 .rejected-counsultation-request {
   margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 0.3rem;
+  background-color: var(--element-background-color);
 }
 
 .approved-requests,
@@ -124,13 +134,16 @@
 
 .individual-consultation-container {
   margin-top: 0.5em;
+  /* margin-bottom: 0.5rem; */
   /* margin-bottom: 1.2rem; */
   padding: 0.75rem 0.85rem 0.75rem 0.85rem;
   border-radius: 0.5rem;
   /* border: 0.1rem solid #dadce0; */
   background-color: var(--element-background-color);
-  box-shadow: 2px 0 20px rgba(157, 159, 161, 0.3),
-    0 2px 10px rgba(157, 159, 161, 0.15), -2px 0 2px rgba(157, 159, 161, 0.3);
+  /* box-shadow: 2px 0 20px rgba(157, 159, 161, 0.3),
+    0 2px 10px rgba(157, 159, 161, 0.15), -2px 0 2px rgba(157, 159, 161, 0.3); */
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
+    0 2px 6px 2px rgba(60, 64, 67, 0.15);
 }
 
 .individual-consultation-request {

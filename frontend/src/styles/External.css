@@ -359,6 +359,8 @@
   display: grid;
   grid-template-columns: 27% 24% 24% 25%;
   border-top: 1px solid #666e75;
+  color: var(--element-background-color);
+  background-color: #37363d;
 }
 
 .gradeSheet-info-list-inner {
@@ -374,6 +376,7 @@
   font-size: 0.8rem;
   display: grid;
   grid-template-columns: 27% 24% 24% 25%;
+  background-color: #b5ecc4;
 }
 
 .gradeSheet-info-items-inner {
@@ -394,6 +397,7 @@
 .semester-name-holder {
   list-style-type: none;
   border-left: 1px solid #666e75;
+  background-color: #d9e6f4;
 }
 
 .gradeSheet-info-items {
@@ -415,6 +419,11 @@
 .gradeSheet-list-header {
   font-weight: 600;
   font-size: 0.76rem;
+}
+
+.final-result {
+  color: var(--element-background-color);
+  background-color: #0077ef;
 }
 
 /* Payment (Admin)  */
