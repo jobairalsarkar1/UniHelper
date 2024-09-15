@@ -127,6 +127,43 @@
   gap: 0.5rem;
 }
 
+.edit-course-have-lab-container span {
+  padding: 0;
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 550;
+  cursor: pointer;
+}
+
+.edit-course-have-lab-container span:hover {
+  padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+  border-radius: 0.5rem;
+  background-color: #dadce0;
+}
+
+.edit-course-add-lab-too {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in;
+}
+
+.edit-course-add-lab-too.active {
+  max-height: 250px;
+}
+
+.edit-course-section-lab-add {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 50% auto;
+}
+
+.edit-course-section-lab-add-2 {
+  margin-top: 0.4rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 50% auto;
+}
+
 .edit-course-items {
   display: flex;
   flex-direction: column;
@@ -140,7 +177,7 @@
 
 .edit-course-items input,
 .edit-course-day-select {
-  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  padding: 0.65rem 0.5rem 0.65rem 0.5rem;
   font-size: 0.75rem;
   border-radius: 0.5rem;
   /* border: 1px solid #827f7f; */
@@ -285,14 +322,11 @@
 .selectFaculty {
   border-radius: 0.35rem;
   padding: 0.5rem;
-  /* border: 0.091rem solid #dadce0; */
 }
 
 .selectFaculty:focus {
-  /* outline-color: none; */
   border: 0.1rem solid #007bff;
   outline-color: transparent;
-  /* outline: none; */
 }
 
 .add-members-btn {
@@ -328,6 +362,17 @@
   flex-direction: column;
 }
 
+.editSection-section-info > span {
+  display: flex;
+  gap: 0.3rem;
+  /* background-color: red; */
+}
+
+.day-time-multiple {
+  display: flex;
+  gap: 0.4rem;
+}
+
 .editSection-members-title {
   font-size: 1rem;
   font-weight: 700;
@@ -339,7 +384,7 @@
   margin-bottom: 0;
   list-style-type: none;
   display: grid;
-  grid-template-columns: 15% 20% 35% 12% 18%;
+  grid-template-columns: 15% 20% 35% 10% auto;
   border-top: 1px solid #666e75;
 }
 
@@ -348,7 +393,7 @@
   margin-bottom: 0;
   list-style-type: none;
   display: grid;
-  grid-template-columns: 15% 20% 35% 12% 18%;
+  grid-template-columns: 15% 20% 35% 10% auto;
 }
 
 .member-info-items {
@@ -430,13 +475,13 @@
   }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 440px) {
   .editSection-section-info {
     font-size: 0.7rem;
   }
 
   .editSection-header {
-    font-size: 0.65rem;
+    font-size: 0.7rem;
   }
 
   .member-info-items {
@@ -444,16 +489,16 @@
   }
 
   .editSection-remove-btn {
-    font-size: 0.375rem;
+    font-size: 0.5rem;
   }
 }
 
-@media (max-width: 350px) {
+@media (max-width: 395px) {
   .member-info-items {
-    font-size: 0.5rem;
+    font-size: 0.6rem;
   }
 
   .editSection-remove-btn {
-    font-size: 0.4rem;
+    font-size: 0.44rem;
   }
 }

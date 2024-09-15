@@ -1,7 +1,7 @@
 import { useState } from "react";
-import "../styles/External.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
+import "../styles/External.css";
 
 const Finance = () => {
   const [paymentStatus, setPaymentStatus] = useState();

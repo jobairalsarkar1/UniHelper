@@ -115,7 +115,11 @@ const EditSection = () => {
       <div className="editSection-inner-container">
         <div className="editSection-elements-container">
           <form onSubmit={handleSubmit} className="editSection-form">
-            <MultiSelect options={students} onChange={handleStudentChange} />
+            <MultiSelect
+              options={students}
+              onChange={handleStudentChange}
+              placeholder="Select Students.."
+            />
             <div className="editSection-faculty-submit">
               <select
                 name="selectFaculty"
@@ -172,21 +176,41 @@ const EditSection = () => {
                   </span>
                   <span>
                     Day/Time:{" "}
-                    <strong>
-                      {dayFull(sectionDetails.schedule.day.toLowerCase())}{" "}
-                      {`(${timeConverter(
+                    <strong className="day-time-multiple">
+                      {sectionDetails.schedule.days?.map((day, index) => (
+                        <div key={index}>{dayFull(day.toLowerCase())}</div>
+                      ))}
+                      {/* {dayFull(sectionDetails.schedule.day.toLowerCase())}{" "} */}
+                      {/* {`(${timeConverter(
                         sectionDetails.schedule.startTime
-                      )}-${timeConverter(sectionDetails.schedule.endTime)})`}
+                      )}-${timeConverter(sectionDetails.schedule.endTime)})`} */}
                     </strong>
                   </span>
                   <span>
-                    Time:{" "}
+                    Class Time:{" "}
                     <strong>
                       {`${timeConverter(
                         sectionDetails.schedule.startTime
                       )}-${timeConverter(sectionDetails.schedule.endTime)}`}
                     </strong>
                   </span>
+                  {sectionDetails.lab.dayL !== null ? (
+                    <>
+                      <span>
+                        Lab Room: <strong>{sectionDetails.lab?.roomL}</strong>
+                      </span>
+                      <span>
+                        Lab:{" "}
+                        <strong>
+                          {`${dayFull(
+                            sectionDetails.lab.dayL?.toLowerCase()
+                          )} (${timeConverter(
+                            sectionDetails.lab.startTimeL
+                          )}-${timeConverter(sectionDetails.lab.endTimeL)})`}
+                        </strong>
+                      </span>
+                    </>
+                  ) : null}
                 </div>
               </>
             ) : (

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { MultiSelect } from "../components";
 import axios from "axios";
 import "../styles/Courses.css";
 
@@ -8,15 +9,40 @@ const EditCourse = () => {
   // const navigate = useNavigate();
   const [formData, setFormData] = useState({
     sectionNumber: null,
-    day: "",
+    days: [],
     startTime: "",
     endTime: "",
     classRoom: "",
+    dayL: "",
+    startTimeL: "",
+    endTimeL: "",
+    roomL: "",
   });
   const [sections, setSections] = useState([]);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState("");
-  const { sectionNumber, day, startTime, endTime, classRoom } = formData;
+  const [haveLab, setHaveLab] = useState(false);
+  const {
+    sectionNumber,
+    days,
+    startTime,
+    endTime,
+    classRoom,
+    dayL,
+    startTimeL,
+    endTimeL,
+    roomL,
+  } = formData;
+
+  const dayOptions = [
+    { _id: "1", name: "Mon", ID: "MON", status: "monday" },
+    { _id: "2", name: "Tue", ID: "TUE", status: "tuesday" },
+    { _id: "3", name: "Wed", ID: "WED", status: "wednesday" },
+    { _id: "4", name: "Thu", ID: "THU", status: "thursday" },
+    { _id: "5", name: "Fri", ID: "FRI", status: "friday" },
+    { _id: "6", name: "Sat", ID: "SAT", status: "saturday" },
+    { _id: "7", name: "Sun", ID: "SUN", status: "sunday" },
+  ];
 
   useEffect(() => {
     const fetchSection = async () => {
@@ -35,6 +61,11 @@ const EditCourse = () => {
     fetchSection();
   }, [courseId]);
 
+  const handleDayChange = (selectedDays) => {
+    const daysArray = selectedDays ? selectedDays.map((day) => day.ID) : [];
+    setFormData({ ...formData, days: daysArray });
+  };
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -43,12 +74,22 @@ const EditCourse = () => {
     e.preventDefault();
     try {
       const token = localStorage.getItem("token");
+      const lab =
+        haveLab && dayL && startTimeL && endTimeL && roomL
+          ? {
+              dayL: dayL,
+              startTimeL: startTimeL,
+              endTimeL: endTimeL,
+              roomL: roomL,
+            }
+          : null;
       const response = await axios.post(
         `/api/courses/create-section/${courseId}`,
         {
           sectionNumber,
-          schedule: { day, startTime, endTime },
+          schedule: { days, startTime, endTime },
           classRoom,
+          ...(lab && { lab }),
         },
         { headers: { "x-auth-token": token } }
       );
@@ -61,7 +102,12 @@ const EditCourse = () => {
           startTime: "",
           endTime: "",
           classRoom: "",
+          dayL: "",
+          startTimeL: "",
+          endTimeL: "",
+          roomL: "",
         });
+        setHaveLab(false);
       }
     } catch (error) {
       // alert(error);
@@ -114,8 +160,13 @@ const EditCourse = () => {
                 />
               </div>
               <div className="edit-course-items">
-                <label htmlFor="day">Select Day:</label>
-                <select
+                <label htmlFor="days">Select Day:</label>
+                <MultiSelect
+                  options={dayOptions}
+                  onChange={handleDayChange}
+                  placeholder="Select Days"
+                />
+                {/* <select
                   name="day"
                   id="day"
                   className="edit-course-day-select"
@@ -130,7 +181,7 @@ const EditCourse = () => {
                   <option value="wed">Wed</option>
                   <option value="thu">Thu</option>
                   <option value="fri">Fri</option>
-                </select>
+                </select> */}
               </div>
             </div>
             <div className="edit-course-startTime-endTime">
@@ -170,6 +221,75 @@ const EditCourse = () => {
                   required
                 />
               </div>
+            </div>
+            <div className="edit-course-have-lab-container">
+              <span onClick={() => setHaveLab(!haveLab)}>
+                {haveLab ? "No Lab?" : "Have Lab?"}
+              </span>
+              <div
+                className={
+                  haveLab
+                    ? "edit-course-add-lab-too active"
+                    : "edit-course-add-lab-too"
+                }
+              >
+                <div className="edit-course-section-lab-add">
+                  <div className="edit-course-items">
+                    <label htmlFor="days">Select Day:</label>
+                    <select
+                      name="dayL"
+                      id="dayL"
+                      className="edit-course-day-select"
+                      value={dayL}
+                      onChange={handleChange}
+                    >
+                      <option value="">Select Day</option>
+                      <option value="sat">Sat</option>
+                      <option value="sun">Sun</option>
+                      <option value="mon">Mon</option>
+                      <option value="tue">Tue</option>
+                      <option value="wed">Wed</option>
+                      <option value="thu">Thu</option>
+                      <option value="fri">Fri</option>
+                    </select>
+                  </div>
+                  <div className="edit-course-items">
+                    <label htmlFor="startTimeL">Start Time:</label>
+                    <input
+                      type="time"
+                      id="startTimeL"
+                      name="startTimeL"
+                      value={startTimeL}
+                      onChange={handleChange}
+                    />
+                  </div>
+                </div>
+                <div className="edit-course-section-lab-add-2">
+                  <div className="edit-course-items">
+                    <label htmlFor="roomL">Lab Room:</label>
+                    <input
+                      type="text"
+                      id="roomL"
+                      name="roomL"
+                      value={roomL}
+                      onChange={handleChange}
+                      placeholder="Lab Room"
+                    />
+                  </div>
+                  <div className="edit-course-items">
+                    <label htmlFor="endTimeL">End Time:</label>
+                    <input
+                      type="time"
+                      id="endTimeL"
+                      name="endTimeL"
+                      value={endTimeL}
+                      onChange={handleChange}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="edit-course-classRoom-request">
               {error && (
                 <p style={{ color: "red", textAlign: "center" }}>{error}</p>
               )}

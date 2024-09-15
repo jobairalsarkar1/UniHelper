@@ -43,6 +43,8 @@ export function dayFull(dayShort) {
       return "Wednesday";
     case "thu":
       return "Thursday";
+    case "fri":
+      return "Friday";
     default:
       return "Unvalid";
   }

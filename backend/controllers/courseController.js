@@ -39,6 +39,8 @@ const deleteCourse = async (req, res) => {
     if (!course) {
       return res.status(404).json({ message: "Course not found." });
     }
+
+    await Section.deleteMany({ _id: { $in: course.sections } });
     await Course.findByIdAndDelete(req.params.id);
     res.status(200).json({ message: "Course deleted successfully." });
   } catch (error) {
@@ -49,12 +51,13 @@ const deleteCourse = async (req, res) => {
 const createSection = async (req, res) => {
   try {
     const { courseId } = req.params;
-    const { sectionNumber, schedule, classRoom } = req.body;
+    const { sectionNumber, schedule, classRoom, lab } = req.body;
     const newSection = await Section({
       course: courseId,
       sectionNumber,
       schedule,
       classRoom,
+      ...(lab && { lab }),
     });
     await newSection.save();
     await Course.findByIdAndUpdate(courseId, {

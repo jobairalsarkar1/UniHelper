@@ -2,14 +2,14 @@
 import Select from "react-select";
 import "../styles/Components.css";
 
-const MultiSelect = ({ options, onChange }) => {
+const MultiSelect = ({ options, onChange, placeholder }) => {
   return (
     <div className="multi-select-container">
       <Select
         isMulti
         options={options}
         onChange={onChange}
-        placeholder="Select users..."
+        placeholder={placeholder ? placeholder : "Select.."}
         className="basic-multi-select"
         classNamePrefix="select"
         theme={(theme) => ({
