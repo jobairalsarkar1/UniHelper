@@ -25,6 +25,7 @@ const GradeSheetSchema = new mongoose.Schema(
     },
     semesters: [SemesterSchema],
     totalCGPA: { type: Number, default: 0 },
+    creditCompleted: { type: Number, default: 0 },
   },
   { timestamps: true }
 );

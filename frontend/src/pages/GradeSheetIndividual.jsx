@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import "../styles/External.css";
 
 const GradeSheetIndividual = () => {
   const { studentId } = useParams();
@@ -293,8 +294,12 @@ const GradeSheetIndividual = () => {
           <>
             <div className="gradeSheetIndividual-gradeSheet-container">
               <div className="gradeSheetIndividual-gradeSheet-basic-info">
-                <span>Name: {gradeSheet.student.name}</span>
-                <span>ID: {gradeSheet.student.ID}</span>
+                <span>
+                  Name: <strong>{gradeSheet.student.name}</strong>
+                </span>
+                <span>
+                  ID: <strong>{gradeSheet.student.ID}</strong>
+                </span>
               </div>
               <div className="gradeSheetIndividual-actual-gradeSheet">
                 <ul className="gradeSheet-info-list">
@@ -315,7 +320,7 @@ const GradeSheetIndividual = () => {
                   <>
                     <div key={semester._id}>
                       <li className="gradeSheet-info-items-inner semester-name-holder">
-                        Semester: {semester.semester}
+                        Semester: <strong>{semester.semester}</strong>
                       </li>
                       {semester.courses?.map((course) => (
                         <>
@@ -373,7 +378,7 @@ const GradeSheetIndividual = () => {
                   </li>
                   <li className="gradeSheet-info-items">Grade</li>
                   <li className="gradeSheet-info-items">
-                    {gradeSheet.semesters.length * 4 * 3}
+                    {gradeSheet.creditCompleted}
                   </li>
                   <li className="gradeSheet-info-items">
                     {gradeSheet.totalCGPA}

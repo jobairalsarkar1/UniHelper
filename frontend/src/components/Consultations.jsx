@@ -166,7 +166,7 @@ const Consultations = () => {
                       topic: e.target.value,
                     })
                   }
-                  placeholder="Enter your Consultation Reason"
+                  placeholder="Consultation Reason"
                   required
                 />
                 <div className="consultation-others-container">
@@ -193,6 +193,7 @@ const Consultations = () => {
                   <input
                     type="datetime-local"
                     className="consultation-time"
+                    placeholder="MM/DD/YYYY"
                     value={consultationTime}
                     onChange={(e) =>
                       setNewConsultation({

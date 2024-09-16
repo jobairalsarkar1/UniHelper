@@ -1,4 +1,5 @@
 const GradeSheet = require("../models/GradeSheet");
+const Course = require("../models/Course");
 
 const createGradeSheet = async (req, res) => {
   const { studentId } = req.params;
@@ -52,6 +53,12 @@ const addCourseGrade = async (req, res) => {
     if (!gradeSheet) {
       return res.status(404).json({ message: "GradeSheet not found." });
     }
+
+    const courseSpecific = await Course.findById(courseId);
+    if (!courseSpecific) {
+      return res.status(404).json({ message: "Course not found." });
+    }
+
     const semesterData = gradeSheet.semesters.find(
       (sem) => sem.semester === semester
     );
@@ -67,6 +74,7 @@ const addCourseGrade = async (req, res) => {
       semesterData.courses[existingCourse].cgpa = cgpa;
     } else {
       semesterData.courses.push({ course: courseId, grade, cgpa });
+      gradeSheet.creditCompleted += courseSpecific.credit;
     }
     const totalSemesterCGPA = semesterData.courses.reduce(
       (sum, course) => sum + course.cgpa,

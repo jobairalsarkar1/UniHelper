@@ -1,7 +1,7 @@
 .authentication-container {
   padding: 0.5rem 2.1rem 0.5rem 2.1rem;
   background-color: var(--background-color);
-  height: calc(100vh - 4.2rem);
+  height: calc(100dvh - 4.2rem);
   display: flex;
   justify-content: center;
   align-items: center;

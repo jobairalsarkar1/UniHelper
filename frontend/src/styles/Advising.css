@@ -71,21 +71,22 @@
 }
 
 .advising-pannel-select-course p {
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   font-weight: 550;
 }
 
 .advising-pannel-courses {
   overflow-y: scroll;
   list-style-type: none;
-  padding: 0.5rem;
+  padding: 0.7rem;
   height: 250px;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.8rem;
   border-radius: 0.5rem;
   background-color: #ffffff;
   border: 1px solid #949393;
+  border: 0.1rem solid #dadce0;
   /* overflow: hidden; */
 }
 
@@ -95,7 +96,9 @@
   align-items: center;
   justify-content: space-between;
   border-radius: 0.5rem;
-  border: 1px solid #949494;
+  /* border: 1px solid #949494; */
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
+    0 2px 6px 2px rgba(60, 64, 67, 0.15);
 }
 
 .advising-course-info {
@@ -109,7 +112,7 @@
   border-radius: 0.4rem;
   color: #ffffff;
   /* background-color: #6a6af9; */
-  background-color: #6469ff;
+  background-color: #007eff;
   border: none;
   cursor: pointer;
 }
@@ -131,16 +134,25 @@
 }
 
 .advising-pannel-course-sechedule p {
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   font-weight: 550;
 }
 
 .advising-pannel-course-time {
+  padding: 1rem;
   height: 250px;
+  display: flex;
+  flex-direction: column;
   overflow-y: scroll;
   background-color: #ffffff;
   border: 1px solid #949393;
   border-radius: 0.5rem;
+}
+
+.advising-pannel-course-time > span {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.9rem;
 }
 
 .advising-pannel-semester-routine {
@@ -156,12 +168,40 @@
 }
 
 .advising-pannel-semester-routine span {
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   font-weight: 550;
 }
 
 .advising-pannel-class-schedule {
   background-color: #ffffff;
+}
+
+.advising-pannel-not-eligible {
+  padding: 1.5rem;
+  text-align: center;
+  height: 30dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #2a4172;
+  color: #dc143c;
+  color: #dc14c3;
+  color: #008080;
+  color: #2f4f4f;
+  border-radius: 0.35rem;
+  background-color: var(--element-background-color);
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
+    0 2px 6px 2px rgba(60, 64, 67, 0.15);
+}
+
+.advising-pannel-not-eligible > span {
+  font-size: 1.3rem;
+  font-weight: 550;
+  display: inline-block;
+  word-wrap: break-word;
+  white-space: normal;
+  max-width: 100%;
 }
 
 /* SeatStatus.jsx Component */
@@ -179,7 +219,7 @@
   margin-bottom: 0;
   list-style-type: none;
   display: grid;
-  grid-template-columns: 15% 25% 30% 15% 15%;
+  grid-template-columns: 15% 23% 32% 15% auto;
   border-top: 1px solid #666e75;
   background-color: var(--element-background-color);
 }
@@ -189,7 +229,7 @@
   margin-bottom: 0;
   list-style-type: none;
   display: grid;
-  grid-template-columns: 15% 25% 30% 15% 15%;
+  grid-template-columns: 15% 23% 32% 15% auto;
 }
 
 .seatStatus-info-items {
@@ -279,13 +319,173 @@
   font-weight: 550;
 }
 
-/* @media (max-width: 1250px) {
-  .advising-pannel-course-selection {
+/* AdminAdvising.jsx */
+.adminAdvising-container {
+  padding: 0.5rem 2.1rem 0.5rem 2.1rem;
+}
+
+/* .adminAdvising-inner-container {
+  width: 100%;
+  background-color: red;
+} */
+
+.adminAdvising-create-slot-container {
+  padding: 0.9rem 1rem;
+  border-radius: 0.4rem;
+  display: flex;
+  gap: 0.4rem;
+  flex-direction: column;
+  /* background-color: red; */
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
+    0 2px 6px 2px rgba(60, 64, 67, 0.15);
+  background-color: var(--element-background-color);
+}
+
+.create-slot-title {
+  font-size: 1rem;
+  font-weight: 550;
+}
+
+.adminAdvising-slot-items {
+  display: flex;
+  gap: 0.2rem;
+  flex-direction: column;
+}
+
+.adminAdvising-credit-range {
+  width: 100%;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.slot-items-inner {
+  width: 50%;
+}
+
+#slotTime {
+  width: 100%;
+  background-color: var(--element-background-color);
+}
+
+.slot-items-inner > input {
+  width: 100%;
+}
+
+.adminAdvising-slot-items label {
+  font-size: 0.8rem;
+  font-weight: 550;
+  color: #5a5a5b;
+}
+
+.adminAdvising-slot-items input {
+  padding: 0.4rem 0.5rem;
+  font-size: 0.75rem;
+  border-radius: 0.35rem;
+  border: 0.1rem solid #dadce0;
+}
+
+.adminAdvising-slot-items input:focus {
+  outline: none;
+  border: 0.1rem solid #007eff;
+}
+
+.create-advising-slot-btn {
+  margin-top: 0.4rem;
+  font-weight: 550;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.5rem;
+  border-radius: 0.45rem;
+  border: transparent;
+  color: var(--element-background-color);
+  background-color: #007eff;
+}
+
+.adminAdvising-available-slots-container {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  width: 100%;
+  border-radius: 0.35rem;
+  background-color: var(--element-background-color);
+}
+
+.adminAdvising-slot-toApprove {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0.35rem;
+  /* border: 0.1rem solid #dadce0; */
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
+    0 2px 6px 2px rgba(60, 64, 67, 0.15);
+}
+
+.adminAdvising-panel-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.adminAdvising-panel-details > span {
+  font-size: 0.85rem;
+}
+
+/* .slot-datetime-special {
+  font-size: 0.5rem;
+} */
+
+.advising-approve-btn {
+  padding: 0.4rem 0.6rem 0.4rem 0.6rem;
+  font-weight: 550;
+  border-radius: 0.35rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  color: var(--element-background-color);
+  background-color: #007eff;
+  cursor: pointer;
+}
+
+.nothing-available {
+  margin-top: 0.8rem;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #007eff;
+}
+
+@media (min-width: 1240px) {
+  /* .advising-pannel-course-selection {
     grid-template-columns: 35% 35% auto;
+  } */
+
+  /* .adminAdvising-inner-container {
+    margin: auto;
+    max-width: 70%;
+  } */
+
+  .adminAdvising-create-slot-container {
+    margin: auto;
+    width: 50%;
+    /* background-color: red; */
+  }
+
+  .create-advising-slot-btn {
+    margin: auto;
+    margin-top: 0.4rem;
+    width: 50%;
+  }
+
+  .adminAdvising-available-slots-container {
+    margin: auto;
+    margin-top: 1.5rem;
+    width: 50%;
   }
 }
 
-@media (max-width: 980px) {
+/* @media (max-width: 980px) {
   .advising-pannel-course-selection {
     grid-template-columns: 35% 35% auto;
   }
@@ -315,5 +515,37 @@
   .advising-course-drop-btn {
     padding: 0.3rem 0.65rem 0.4rem 0.65rem;
     font-size: 0.75rem;
+  }
+
+  .seatStatus-info-list {
+    font-size: 0.7rem;
+  }
+
+  .seatStatus-info-list-inner {
+    font-size: 0.7rem;
+  }
+
+  .advising-pannel-course-time > span {
+    font-size: 0.8rem;
+  }
+
+  .adminAdvising-slot-items input {
+    font-size: 0.7rem;
+  }
+
+  .create-advising-slot-btn {
+    font-size: 0.75rem;
+  }
+
+  .adminAdvising-panel-details > span {
+    font-size: 0.67rem;
+  }
+
+  .advising-approve-btn {
+    font-size: 0.65rem;
+  }
+
+  .advising-pannel-not-eligible > span {
+    font-size: 1.1rem;
   }
 }

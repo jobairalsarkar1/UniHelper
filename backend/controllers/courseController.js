@@ -81,7 +81,9 @@ const getCourse = async (req, res) => {
 
 const getAllSection = async (req, res) => {
   try {
-    const sections = await Section.find().populate("course");
+    const sections = await Section.find()
+      .populate("course")
+      .populate("faculty");
     res.status(200).json(sections);
   } catch (error) {
     res.status(500).json({ message: "Server Error." });

@@ -48,6 +48,7 @@ import {
   EditSection,
   Finance,
   GradeSheetIndividual,
+  AdminAdvising,
 } from "./pages";
 import "./styles/App.css";
 
@@ -134,6 +135,14 @@ const App = () => {
                   element={
                     <PrivateRoute>
                       <AdminDepartment />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/admin-advising"
+                  element={
+                    <PrivateRoute>
+                      <AdminAdvising />
                     </PrivateRoute>
                   }
                 />

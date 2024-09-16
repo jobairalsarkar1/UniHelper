@@ -50,6 +50,15 @@ export function dayFull(dayShort) {
   }
 }
 
+export function decorateFaculty(faculty) {
+  const fac = faculty.split(" ");
+  let facShort = "";
+  for (let i = 0; i < fac.length; i++) {
+    facShort += fac[i][0];
+  }
+  return facShort;
+}
+
 export function saveFile(fileUrl) {
   FileSaver.saveAs(fileUrl);
   // const fileName = fileUrl.subString(fileUrl.lastIndexOf("/") + 1);

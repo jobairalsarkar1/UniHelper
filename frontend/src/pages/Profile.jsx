@@ -5,7 +5,7 @@ import "../styles/Account.css";
 
 const Profile = () => {
   const { userOne } = useContext(AuthContext);
-  const [profileImage, setProfileImage] = useState(null);
+  // const [profileImage, setProfileImage] = useState(null);
 
   // useEffect(() => {
   //   if (userOne && userOne.profileImage) {
@@ -26,6 +26,12 @@ const Profile = () => {
               <span className="profile-label">Name</span>
               <span className="profile-value">: {`${userOne.name}`}</span>
             </div>
+            <div className="profile-row">
+              <span className="profile-label">Status</span>
+              <span className="profile-value">
+                : {userOne.status.toUpperCase()[0] + userOne.status.slice(1)}
+              </span>
+            </div>
             {userOne.status === "student" && (
               <>
                 <div className="profile-row">
@@ -33,37 +39,27 @@ const Profile = () => {
                   <span className="profile-value">: {userOne.ID}</span>
                 </div>
                 <div className="profile-row">
-                  <span className="profile-label">Status</span>
-                  <span className="profile-value">
-                    :{" "}
-                    {userOne.status.toUpperCase()[0] + userOne.status.slice(1)}
-                  </span>
-                </div>
-                <div className="profile-row">
                   <span className="profile-label">Department</span>
                   <span className="profile-value">: CSE</span>
                 </div>
-                <div className="profile-row">
+                {/* <div className="profile-row">
                   <span className="profile-label">Email</span>
                   <span className="profile-value">: {userOne.email}</span>
-                </div>
+                </div> */}
               </>
             )}
-            {userOne.status === "admin" && (
+            {/* {userOne.status === "admin" && (
               <>
                 <div className="profile-row">
-                  <span className="profile-label">Status</span>
-                  <span className="profile-value">
-                    :{" "}
-                    {userOne.status.toUpperCase()[0] + userOne.status.slice(1)}
-                  </span>
-                </div>
-                <div className="profile-row">
                   <span className="profile-label">Email</span>
                   <span className="profile-value">: {userOne.email}</span>
                 </div>
               </>
-            )}
+            )} */}
+            <div className="profile-row">
+              <span className="profile-label">Email</span>
+              <span className="profile-value">: {userOne.email}</span>
+            </div>
           </div>
           <div className="profile-picture-container">
             {userOne.profileImage ? (

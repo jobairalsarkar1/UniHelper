@@ -93,7 +93,7 @@ const SeatStatus = () => {
               {searchedResults?.length > 0 ? (
                 <>
                   {" "}
-                  {searchedResults.map((section, index) => (
+                  {searchedResults?.map((section, index) => (
                     <ul
                       key={section._id}
                       className={
@@ -109,7 +109,7 @@ const SeatStatus = () => {
                         {section.course.courseCode}
                       </li>
                       <li className="seatStatus-info-items">
-                        {section.schedule.day.toUpperCase()}{" "}
+                        {`(${section.schedule.days.join(", ").toUpperCase()})`}{" "}
                         {timeConverter(section.schedule.startTime)}-
                         {timeConverter(section.schedule.endTime)}
                       </li>
@@ -137,7 +137,7 @@ const SeatStatus = () => {
               {sections?.length > 0 ? (
                 <>
                   {" "}
-                  {sections.map((section, index) => (
+                  {sections?.map((section, index) => (
                     <ul
                       key={section._id}
                       className={
@@ -153,7 +153,8 @@ const SeatStatus = () => {
                         {section.course.courseCode}
                       </li>
                       <li className="seatStatus-info-items">
-                        {section.schedule.day.toUpperCase()}{" "}
+                        {/* {section.schedule.days.join(", ").toUpperCase()}{" "} */}
+                        {`(${section.schedule.days.join(", ").toUpperCase()})`}{" "}
                         {timeConverter(section.schedule.startTime)}-
                         {timeConverter(section.schedule.endTime)}
                       </li>

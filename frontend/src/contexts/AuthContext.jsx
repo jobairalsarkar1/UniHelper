@@ -10,6 +10,7 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    
     const checkLogin = async () => {
       const token = localStorage.getItem("token");
       if (token) {

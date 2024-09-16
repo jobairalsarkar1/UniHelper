@@ -67,6 +67,7 @@
 
 .edit-btn {
   /* width: 100%; */
+  font-size: 0.8rem;
   font-weight: 550;
   display: flex;
   align-items: center;
@@ -80,7 +81,7 @@
 
 @media (max-width: 460px) {
   .edit-btn {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     width: 100%;
   }
 }
@@ -124,7 +125,7 @@
 }
 
 .update-userinfo-title {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
 }
 
 .update-userinfo-form {
@@ -134,8 +135,10 @@
   /* gap: 0.5rem; */
   flex-direction: column;
   border-radius: 0.5rem;
-  border: 1px solid #919395;
   /* align-items: center; */
+  background-color: var(--element-background-color);
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
+    0 2px 6px 2px rgba(60, 64, 67, 0.15);
 }
 
 .form-items {
@@ -145,20 +148,30 @@
   flex-direction: column; */
 }
 
+.form-items label {
+  font-size: 0.91rem;
+  font-weight: 550;
+}
+
 /* This is a special modification. */
 .form-items input,
 .form-select-option {
   width: 100%;
-  font-size: 1rem;
+  font-size: 0.8rem;
   padding: 0.8rem 0.5rem 0.8rem 0.5rem;
   border-radius: 0.5rem;
-  border: 1px solid #666e75;
+  border: 0.1rem solid #dadce0;
 }
 
 .form-items input:focus,
 .form-select-option:focus {
-  border: 1px solid #4949ff;
+  /* border: 1px solid #4949ff; */
+  border: 0.1rem solid #0077ef;
   outline: none;
+}
+
+.form-items select {
+  background-color: var(--element-background-color);
 }
 
 .userinfo-update-btn {
@@ -169,10 +182,17 @@
   font-size: 1rem;
   font-weight: 550;
   color: #ffffff;
-  background-color: #4949ff;
+  background-color: #0077ef;
   border: none;
   align-self: center;
+  cursor: pointer;
 }
+
+.userinfo-update-btn:hover {
+  background-color: #0072e4;
+}
+
+/* AdminCourse.jsx */
 .create-course-container {
   padding: 0.5rem 2.45rem 0.5rem 2rem;
 }

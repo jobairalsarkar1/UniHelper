@@ -8,59 +8,74 @@
   background-color: var(--background-color);
 }
 
-.classroom-create-class-container {
+/* .classroom-create-class-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   background-color: var(--element-background-color);
-  /* box-shadow: -1.5px 1.5px 1.5px #dedede, 1.5px 1.5px 1.5px #dedede,
-    0 1.5px 1.5px #dedede, 0 -1.5px 1.5px #dedede; */
   box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
     0 2px 6px 2px rgba(60, 64, 67, 0.15);
-}
+} */
 
 .classroom-create-form {
+  margin: auto;
   width: 100%;
   padding: 0.8rem;
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
+    0 2px 6px 2px rgba(60, 64, 67, 0.15);
+  background-color: var(--element-background-color);
 }
 
 .classroom-create-title-name {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.8rem;
+  /* display: grid; */
+  /* grid-template-columns: 50% auto; */
+  display: flex;
+  gap: 0.5rem;
   margin-bottom: 0.5rem;
 }
 
 .classroom-create-title-name input {
+  width: 50%;
   padding: 0.4rem 0.6rem 0.4rem 0.6rem;
+  font-size: 0.75rem;
   font-weight: 550;
   border-radius: 0.5rem;
-  border: 1px solid #8a8989;
+  /* border: 1px solid #8a8989; */
+  border: 0.1rem solid #dadce0;
 }
 
 .classroom-create-semester-request {
   display: grid;
-  grid-template-columns: 65% 32%;
-  gap: 3%;
+  grid-template-columns: 65% auto;
+  gap: 0.5rem;
 }
 
 .classroom-create-semester-request input {
   padding: 0.4rem 0.6rem 0.4rem 0.6rem;
+  font-size: 0.75rem;
   font-weight: 550;
   border-radius: 0.5rem;
-  border: 1px solid #8a8989;
+  border: 0.1rem solid #dadce0;
 }
 
 .classroom-create-btn {
   border-radius: 0.4rem;
-  border: 1px solid #8a8989;
+  /* border: 1px solid #8a8989; */
+  font-size: 0.8rem;
   font-weight: 550;
   color: var(--element-background-color);
   background-color: var(--text-color);
+  border: none;
   cursor: pointer;
 }
 
 .classroom-create-title-name input:focus,
 .classroom-create-semester-request input:focus {
-  outline: 1px solid #6464ef;
+  border: 0.1rem solid #007bff;
+  /* outline: 0.1rem solid #007bff; */
+  outline: none;
 }
 
 .operation-statement {
@@ -346,14 +361,18 @@
 
 .file-input-cancel-post {
   margin-top: 0.3rem;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 50% auto;
   align-items: center;
+  /* display: flex; */
+  /* justify-content: space-between; */
+  /* align-items: center; */
 }
 
 .cancel-post-btn {
   display: flex;
   gap: 0.5rem;
+  justify-content: end;
 }
 
 .cancel-btn {
@@ -371,7 +390,7 @@
   font-weight: 600;
   color: var(--element-background-color);
   border: none;
-  background-color: #6464ef;
+  background-color: #007bff;
   cursor: pointer;
 }
 
@@ -566,7 +585,7 @@
 
 .comment:focus {
   border: none;
-  outline: 0.1rem solid #6464ef;
+  outline: 0.1rem solid #007bff;
 }
 
 .make-comment-btn {
@@ -579,7 +598,7 @@
   font-weight: 550;
   border: none;
   color: var(--element-background-color);
-  background-color: #6464ef;
+  background-color: #007bff;
   cursor: pointer;
 }
 
@@ -603,11 +622,19 @@
     font-size: 0.75rem;
     font-weight: 600;
   }
+
+  .classroom-create-btn {
+    font-size: 0.6rem;
+  }
 }
 
 @media (min-width: 1024px) {
   .classroomIndividual-inner-container {
     width: 70%;
     /* background-color: red; */
+  }
+
+  .classroom-create-form {
+    width: 50%;
   }
 }

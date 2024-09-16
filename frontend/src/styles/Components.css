@@ -1,6 +1,7 @@
 /* Custom Background-Colors */
 .custom-bg-1 {
-  background-color: #f0edee;
+  /* background-color: #f0edee; */
+  background-color: #d9e6f4;
 }
 
 .custom-bg-2 {
@@ -8,7 +9,8 @@
 }
 
 .custom-bg-3 {
-  background-color: #afd2f4;
+  /* background-color: #afd2f4; */
+  background-color: #b5ecc4;
 }
 
 /* Search Bar */
@@ -125,5 +127,15 @@
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 580px) {
+  .schedule-items {
+    font-size: 0.533rem;
+  }
+
+  .schedule-items-inner {
+    font-size: 0.533rem;
   }
 }

@@ -11,7 +11,7 @@
   margin-bottom: 0;
   list-style-type: none;
   display: grid;
-  grid-template-columns: 30% 50% 20%;
+  grid-template-columns: 30% 50% auto;
   border-top: 1px solid #666e75;
   background-color: var(--element-background-color);
 }
@@ -109,17 +109,37 @@
 
 .edit-course-sectionNumber-day {
   /* width: 100%; */
-  display: grid;
+  /* display: grid; */
+  display: flex;
   gap: 1rem;
-  grid-template-columns: 50% auto;
+  /* grid-template-columns: 50% auto; */
   /* grid-template-columns: repeat(2, 1fr); */
 }
 
+.edit-course-sectionNumber-day .edit-course-items {
+  width: 100%;
+  /* background-color: red; */
+}
+
+.edit-course-sectionNumber-day .edit-course-items input {
+  width: 100%;
+}
+
 .edit-course-startTime-endTime {
-  display: grid;
+  display: flex;
+  /* display: grid; */
   gap: 1rem;
-  grid-template-columns: 50% auto;
+  /* grid-template-columns: 52% auto; */
   /* grid-template-columns: repeat(2, 1fr); */
+}
+
+.edit-course-startTime-endTime .edit-course-items {
+  width: 100%;
+}
+
+.edit-course-startTime-endTime .edit-course-items input {
+  width: 100%;
+  /* background-color: red; */
 }
 
 .edit-course-classRoom-request {
@@ -154,14 +174,14 @@
 .edit-course-section-lab-add {
   display: grid;
   gap: 1rem;
-  grid-template-columns: 50% auto;
+  grid-template-columns: 52% auto;
 }
 
 .edit-course-section-lab-add-2 {
   margin-top: 0.4rem;
   display: grid;
   gap: 1rem;
-  grid-template-columns: 50% auto;
+  grid-template-columns: 52% auto;
 }
 
 .edit-course-items {
@@ -182,7 +202,12 @@
   border-radius: 0.5rem;
   /* border: 1px solid #827f7f; */
   border: 0.1rem solid #dadce0;
+  background-color: var(--element-background-color);
 }
+
+/* .edit-course-items select {
+  background-color: var(--element-background-color);
+} */
 
 .edit-course-items input:focus,
 .edit-course-day-select:focus {
@@ -199,7 +224,7 @@
   font-weight: 550;
   border-radius: 0.5rem;
   color: #ffffff;
-  background-color: #6464ef;
+  background-color: #007bff;
   /* border: 1px solid #939393; */
   border: none;
   cursor: pointer;
@@ -272,19 +297,19 @@
   font-size: 0.8rem;
   text-decoration: none;
   color: #ffffff;
-  background-color: #6464ef;
+  background-color: #007bff;
 }
 
 .edit-course-delete-btn {
   color: #ffffff;
-  background-color: #ad0e0e;
+  background-color: #f23d3d;
 }
 
 .no-section-available {
   margin-top: 1rem;
   text-align: center;
   font-weight: 550;
-  color: #6464ef;
+  color: #007bff;
 }
 
 /* EditSection.jsx */
@@ -322,6 +347,8 @@
 .selectFaculty {
   border-radius: 0.35rem;
   padding: 0.5rem;
+  background-color: var(--element-background-color);
+  border: 0.1rem solid #dadce0;
 }
 
 .selectFaculty:focus {
@@ -334,13 +361,13 @@
   font-weight: 600;
   border-radius: 0.3rem;
   color: var(--element-background-color);
-  background-color: hsl(240, 77%, 60%);
+  background-color: #007bff;
   border: none;
   cursor: pointer;
 }
 
 .add-members-btn:hover {
-  background-color: #6464ef;
+  background-color: #0570e2;
 }
 
 .operation-status {
@@ -476,6 +503,14 @@
 }
 
 @media (max-width: 440px) {
+  .course-info-list {
+    font-size: 0.76rem;
+  }
+
+  .course-info-list-inner {
+    font-size: 0.78rem;
+  }
+
   .editSection-section-info {
     font-size: 0.7rem;
   }

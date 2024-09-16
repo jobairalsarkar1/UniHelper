@@ -312,6 +312,9 @@
 .gradeSheetIndividual-course-grade-btn {
   font-weight: 550;
   border-radius: 0.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: none;
   color: #ffffff;
   background-color: #0077ef;
@@ -340,7 +343,7 @@
   margin-bottom: 0.5rem;
   /* padding: 0 0.1rem 0 0.1rem; */
   font-size: 0.9rem;
-  font-weight: 550;
+  /* font-weight: 550; */
   display: flex;
   /* flex-direction: column; */
   justify-content: space-between;
@@ -374,6 +377,7 @@
 .gradeSheet-info-list-inner-total {
   /* list-style-type: none; */
   font-size: 0.8rem;
+  font-weight: 550;
   display: grid;
   grid-template-columns: 27% 24% 24% 25%;
   background-color: #b5ecc4;
@@ -422,6 +426,8 @@
 }
 
 .final-result {
+  font-size: 0.85rem;
+  font-weight: 550;
   color: var(--element-background-color);
   background-color: #0077ef;
 }

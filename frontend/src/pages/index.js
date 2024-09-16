@@ -16,6 +16,7 @@ import ClassroomIndividual from "./ClassroomIndividual";
 import EditSection from "./EditSection";
 import Finance from "./Finance";
 import GradeSheetIndividual from "./GradeSheetIndividual";
+import AdminAdvising from "./AdminAdvising";
 
 export {
   Home,
@@ -36,4 +37,5 @@ export {
   EditSection,
   Finance,
   GradeSheetIndividual,
+  AdminAdvising,
 };
