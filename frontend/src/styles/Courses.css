@@ -332,7 +332,7 @@
   gap: 0.5rem;
   border-radius: 0.5rem;
   /* border: 0.1rem solid #dadce0; */
-  /* background-color: var(--element-background-color); */
+  background-color: var(--element-background-color);
   box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
     0 2px 60px 2px rgba(60, 64, 67, 0.15);
 }
@@ -525,6 +525,18 @@
 
   .editSection-remove-btn {
     font-size: 0.5rem;
+  }
+
+  .editSection-inner-container {
+    padding: 0.5rem 1.4rem 0.5rem 1.4rem;
+  }
+
+  .edit-course-container {
+    padding: 0.5rem 1.4rem 0.5rem 1.4rem;
+  }
+
+  .courses-details-container {
+    padding: 0.5rem 1.4rem 0.5rem 1.35rem;
   }
 }
 

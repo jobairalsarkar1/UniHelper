@@ -3,7 +3,7 @@ import "../styles/AllUsers.css";
 
 const UserList = ({ users, title }) => {
   return (
-    <div>
+    <div className="user-list-div">
       <h2 className="user-title">{title}</h2>
       <hr style={{ marginBottom: "0.3rem" }} />
       {users?.length > 0 ? (
@@ -21,7 +21,9 @@ const UserList = ({ users, title }) => {
             <ul key={user._id} className="user-info-list-inner">
               <li className="user-info-items user-info-item-id">{user.ID}</li>
               <li className="user-info-items">{user.name}</li>
-              <li className="user-info-items">{user.email}</li>
+              <li className="user-info-items">
+                <a href={`mailto:${user.email}`}>{user.email}</a>
+              </li>
               <li className="user-info-items">
                 {user.status ? user.status : "N/A"}
               </li>

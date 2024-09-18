@@ -2,13 +2,16 @@ import { useContext, useEffect, useRef, useState } from "react";
 import {
   faBars,
   faDashboard,
+  faPerson,
   // faEllipsisVertical,
   faSignOut,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 // import ProfilePicture from "../assets/EditedC2.jpg";
+// import UniHelperLogo from "../assets/UniHelper.png";
 import "../styles/Navbar.css";
 
 const Navbar = ({ toggleSidebar, setSidebarOpen }) => {
@@ -66,7 +69,8 @@ const Navbar = ({ toggleSidebar, setSidebarOpen }) => {
             )}
 
             <Link to="/" className="logo">
-              UniHelper
+              UH
+              {/* <img src={UniHelperLogo} alt="Logo" className="unihelper-logo" /> */}
             </Link>
           </div>
           <ul className="top-navbar-list">
@@ -137,6 +141,10 @@ const Navbar = ({ toggleSidebar, setSidebarOpen }) => {
                     </div>
                   </div>
                   <hr />
+                  <Link to="/profile" className="loggedin-item-link">
+                    <FontAwesomeIcon icon={faUser} />
+                    Profile
+                  </Link>
                   <Link to="/dashboard" className="loggedin-item-link">
                     <FontAwesomeIcon icon={faDashboard} />
                     Dashboard

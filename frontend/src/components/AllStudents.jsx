@@ -22,7 +22,9 @@ const AllStudents = ({ students, redirectTo }) => {
                 {student.ID}
               </li>
               <li className="student-info-items">{student.name}</li>
-              <li className="student-info-items">{student.email}</li>
+              <li className="student-info-items">
+                <a href={`mailto:${student.email}`}>{student.email}</a>
+              </li>
               <li className="student-info-items">
                 <Link to={`${redirectTo}/${student._id}`} className="edit-btn">
                   GradeSheet

@@ -18,11 +18,21 @@ router.put(
   auth,
   AdvisingPanelController.approveAdvising
 );
-// Define routes
-// router.post('/', AdvisingPanelController.createAdvisingPanel);
-// router.get('/', AdvisingPanelController.getAdvisingPanels);
-// router.get('/:id', AdvisingPanelController.getAdvisingPanelById);
-// router.put('/:id', AdvisingPanelController.updateAdvisingPanel);
-// router.delete('/:id', AdvisingPanelController.deleteAdvisingPanel);
+router.get(
+  "/get-my-advisingpanel/:studentId",
+  auth,
+  AdvisingPanelController.getMyAdvisingPanel
+);
+
+router.post(
+  "/add-course-section",
+  auth,
+  AdvisingPanelController.addCourseSection
+);
+router.post(
+  "/drop-course-section",
+  auth,
+  AdvisingPanelController.dropCourseSection
+);
 
 module.exports = router;

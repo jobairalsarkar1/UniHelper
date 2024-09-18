@@ -38,6 +38,11 @@
   overflow-wrap: anywhere;
 }
 
+.profile-value > a {
+  text-decoration: none;
+  font-size: 0.75rem;
+}
+
 .profile-picture-container {
   display: flex;
   justify-content: end;
@@ -67,6 +72,10 @@
 }
 
 @media (max-width: 400px) {
+  .profile-container {
+    padding: 0.5rem 1.3rem 0.5rem 1.3rem;
+  }
+
   .profile-info {
     gap: 0rem;
     font-size: 0.6rem;
@@ -75,6 +84,10 @@
   /* .profile-label {
     width: 60px;
   } */
+
+  .profile-value > a {
+    font-size: 0.6rem;
+  }
 
   .profile-picture-container img {
     width: 65px;

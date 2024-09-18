@@ -39,12 +39,15 @@
 
 .logo {
   text-decoration: none;
-  font-size: 1.5rem;
-  font-weight: 550;
+  font-size: 1.7rem;
+  font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #701313;
+  /* color: #701313; */
+  color: transparent;
+  background: linear-gradient(120deg, blue, red);
+  background-clip: text;
 }
 
 .top-navbar-list {
@@ -56,7 +59,7 @@
 
 .top-navbar-list-item .top-navbar-item-link {
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 550;
   color: var(--text-color);
 }
@@ -74,12 +77,12 @@
 .authentication-div .login-button {
   position: relative;
   text-decoration: none;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 550;
   padding: 0.3rem 0.7rem 0.4rem 0.7rem;
-  border-radius: 0.5rem;
+  border-radius: 0.35rem;
   color: var(--text-color);
-  outline: 2px solid var(--text-color);
+  outline: 0.1rem solid var(--text-color);
   transition: all 0.5s;
 }
 
@@ -117,7 +120,7 @@
   font-size: 1rem;
   font-weight: 550;
   padding: 0.4rem 0.7rem 0.4rem 0.7rem;
-  border-radius: 0.5rem;
+  border-radius: 0.35rem;
   color: var(--text-color);
   outline: 2px solid var(--text-color);
   transition: all 0.5s;
@@ -238,7 +241,7 @@
 
 @media (max-width: 500px) {
   .top-navbar {
-    padding: 0.7rem 2.1rem 0.7rem 2.1rem;
+    padding: 0.7rem 1.7rem 0.7rem 1.7rem;
   }
 
   .toggle-sidebar-menu-active {
@@ -247,27 +250,27 @@
   }
 
   .logo {
-    font-size: 1.2rem;
+    font-size: 1.35rem;
   }
 
   .authentication-div .login-button {
     position: relative;
-    font-size: 1.2rem;
+    font-size: 0.85rem;
     padding: 0.3rem 0.6rem 0.3rem 0.6rem;
   }
 
   .top-navbar-list {
-    gap: 0.5rem;
+    gap: 0.65rem;
   }
 
   .top-navbar-list-item .top-navbar-item-link {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
 }
 
 @media (max-width: 390px) {
   .top-navbar {
-    padding: 0.7rem 2rem 0.7rem 2rem;
+    padding: 0.5rem 1.7rem 0.5rem 1.7rem;
   }
 
   .toggle-sidebar-menu-active {
@@ -281,12 +284,12 @@
 
   .authentication-div .login-button {
     position: relative;
-    font-size: 1rem;
+    font-size: 0.8rem;
     padding: 0.3rem 0.5rem 0.3rem 0.5rem;
   }
 
   .top-navbar-list {
-    gap: 0.4rem;
+    gap: 0.5rem;
   }
 
   .top-navbar-list-item .top-navbar-item-link {

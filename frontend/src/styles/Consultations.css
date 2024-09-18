@@ -269,6 +269,10 @@
   .basic-consultation-info {
     font-size: 0.8rem;
   }
+
+  .consultations-container {
+    padding: 0.5rem 1.4rem 1rem 1.4rem;
+  }
 }
 
 @media (min-width: 900px) {

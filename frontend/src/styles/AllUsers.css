@@ -17,6 +17,10 @@
   margin-bottom: 0.5rem;
 } */
 
+/* .user-list-div {
+  background-color: var(--element-background-color);
+} */
+
 .no-users-data {
   margin-top: 1rem;
   text-align: center;
@@ -57,6 +61,10 @@
   align-items: center;
 }
 
+.user-info-items > a {
+  text-decoration: none;
+}
+
 .user-info-item-id {
   border-left: 1px solid #666e75;
 }
@@ -77,37 +85,6 @@
   border-radius: 0.3rem;
   color: #ffffff;
   background-color: #0077ef;
-}
-
-@media (max-width: 460px) {
-  .edit-btn {
-    font-size: 0.7rem;
-    width: 100%;
-  }
-}
-
-@media (max-width: 580px) {
-  .user-info-items {
-    font-size: 0.5rem;
-  }
-
-  .student-info-items {
-    font-size: 0.5rem;
-  }
-
-  .edit-btn {
-    width: 100%;
-  }
-}
-
-@media (max-width: 760px) {
-  .user-info-items {
-    font-size: 0.8rem;
-  }
-
-  .student-info-items {
-    font-size: 0.8rem;
-  }
 }
 
 .update-user-container {
@@ -194,7 +171,7 @@
 
 /* AdminCourse.jsx */
 .create-course-container {
-  padding: 0.5rem 2.45rem 0.5rem 2rem;
+  padding: 0.5rem 2.1rem 0.5rem 2rem;
 }
 
 .create-course-form-container {
@@ -436,10 +413,56 @@
   align-items: center;
 }
 
+.student-info-items > a {
+  text-decoration: none;
+}
+
 .student-info-item-id {
   border-left: 1px solid #666e75;
 }
 
 .student-list-header {
   font-weight: 700;
+}
+
+@media (max-width: 460px) {
+  .edit-btn {
+    font-size: 0.7rem;
+    width: 100%;
+  }
+  .create-course-container {
+    padding: 0.5rem 1rem 0.5rem 1rem;
+  }
+
+  .all-users-container {
+    padding: 0.5rem 1.5rem 0.5rem 1.4rem;
+  }
+}
+
+@media (max-width: 580px) {
+  .user-info-items {
+    font-size: 0.5rem;
+  }
+
+  .student-info-items {
+    font-size: 0.5rem;
+  }
+
+  .edit-btn {
+    width: 100%;
+  }
+
+  .create-course-container {
+    padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+  }
+}
+
+@media (max-width: 760px) {
+  .user-info-items {
+    font-size: 0.8rem;
+  }
+
+  .student-info-items {
+    font-size: 0.8rem;
+  }
 }

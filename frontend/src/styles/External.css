@@ -39,6 +39,7 @@
   padding: 0.45rem 0.5rem 0.45rem 0.5rem;
   border-radius: 0.4rem;
   border: 0.1rem solid #d2d2d6;
+  background-color: var(--element-background-color);
 }
 
 .selectSemester:focus {
@@ -142,6 +143,7 @@
   padding: 0.45rem 0.5rem 0.45rem 0.5rem;
   border-radius: 0.4rem;
   border: 0.1rem solid #d2d2d6;
+  background-color: var(--element-background-color);
 }
 
 .selectPaymentSemester:focus,
@@ -432,6 +434,63 @@
   background-color: #0077ef;
 }
 
+/* Contact.jsx */
+.contact-container {
+  padding: 0.5rem 2.1rem 0.5rem 2.1rem;
+}
+
+.contact-inner-container {
+  margin: auto;
+  width: 100%;
+  background-color: var(--element-background-color);
+  /* background-color: red; */
+}
+
+.contact-inner-inner-container {
+  padding: 1rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.contact-info-holder {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  /* background-color: yellow; */
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
+    0 2px 6px 2px rgba(60, 64, 67, 0.15);
+  border-radius: 0.35rem;
+}
+
+.contact-det {
+  display: flex;
+  justify-content: space-between;
+}
+
+.att-key {
+  /* display: flex; */
+  width: 20%;
+}
+
+.contact-info-holder span {
+  font-size: 0.85rem;
+}
+
+.contact-info-title {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-weight: 550;
+  color: #008080;
+  color: #2a4172;
+  color: #2f4f4f;
+  color: #dc143c;
+}
+
+.contact-info-holder a {
+  text-decoration: none;
+}
+
 /* Payment (Admin)  */
 .payslip-container {
   padding: 0.5rem 2.1rem 0.5rem 2.1rem;
@@ -463,6 +522,22 @@
   .gradeSheetIndividual-gradeSheet-container {
     width: 70%;
   }
+
+  .contact-inner-container {
+    width: 80%;
+  }
+
+  .contact-inner-inner-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 580px) {
+  .contact-det {
+    /* background-color: red; */
+    display: flex;
+    justify-content: start;
+  }
 }
 
 @media (max-width: 460px) {
@@ -485,5 +560,34 @@
 
   .gradeSheet-list-header {
     font-size: 0.6rem;
+  }
+
+  .contact-container {
+    padding: 0.5rem 1.35rem 0.5rem 1.35rem;
+  }
+
+  .contact-info-holder {
+    font-size: 0.85rem;
+  }
+
+  .contact-info-title {
+    font-size: 1rem;
+  }
+
+  .gradeSheet-container {
+    padding: 0.5rem 1.3rem 0.5rem 1.3rem;
+  }
+
+  .gradeSheetIndividual-inner-container {
+    padding: 0 1.3rem 0.5rem 1.3rem;
+  }
+
+  .finance-container {
+    padding: 1rem 1.3rem 0.5rem 1.3rem;
+  }
+
+  .home-inner-container {
+    padding: 0.5rem 1.35rem 0.5rem 1.3rem;
+    /* background-color: red; */
   }
 }

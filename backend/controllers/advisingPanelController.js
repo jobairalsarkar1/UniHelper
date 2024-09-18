@@ -1,9 +1,11 @@
 const GradeSheet = require("../models/GradeSheet");
 const AdvisingPanel = require("../models/AdvisingPanel");
+const Section = require("../models/Section");
+const { checkTimeClash } = require("../middleware/advisingHandler");
 
 const createAdvisingSlot = async (req, res) => {
   const { advisingSlot, creditRangeStart, creditRangeEnd, semester } = req.body;
-  console.log(req.body);
+  // console.log(req.body);
   try {
     const gradeSheets = await GradeSheet.find({
       creditCompleted: { $gte: creditRangeStart, $lte: creditRangeEnd },
@@ -23,7 +25,10 @@ const createAdvisingSlot = async (req, res) => {
         semester,
       });
 
-      if (existingPanel) {
+      if (existingPanel && existingPanel.advisingStatus === "pending") {
+        existingPanel.advisingSlot = advisingSlot;
+        existingPanel.updatedAt = Date.now();
+        await existingPanel.save();
         continue;
       }
 
@@ -61,7 +66,7 @@ const getPendingAdvisingPanels = async (req, res) => {
 
 const approveAdvising = async (req, res) => {
   const { panelId } = req.params;
-  console.log(panelId);
+  // console.log(panelId);
   try {
     const panel = await AdvisingPanel.findById(panelId);
     if (panel) {
@@ -76,8 +81,90 @@ const approveAdvising = async (req, res) => {
   }
 };
 
+const getMyAdvisingPanel = async (req, res) => {
+  const { studentId } = req.params;
+  try {
+    const myAdvisingPanel = await AdvisingPanel.findOne({ student: studentId })
+      .populate({ path: "student", model: "User", select: "name ID" })
+      .populate({
+        path: "departmentId",
+        model: "Department",
+        select: "name details",
+      })
+      .populate({
+        path: "selectedSections",
+        populate: [
+          {
+            path: "course",
+            model: "Course",
+            select: "name courseCode",
+          },
+          { path: "faculty", model: "User", select: "name" },
+        ],
+      });
+    if (!myAdvisingPanel) {
+      return res
+        .status(404)
+        .json({ message: "No advising panel scheduled for you." });
+    }
+    res.status(200).json(myAdvisingPanel);
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong." });
+  }
+};
+
+const addCourseSection = async (req, res) => {
+  const { advisingPanelId, sectionId } = req.body;
+  // console.log(req.body);
+  try {
+    const advisingPanelToAdd = await AdvisingPanel.findById(
+      advisingPanelId
+    ).populate("selectedSections");
+    // console.log("1st setp");
+    if (!advisingPanelToAdd)
+      return res.status(404).json({ message: "Advising panel not found." });
+
+    // console.log("2st setp", advisingPanelToAdd.selectedSections.length);
+    const newSection = await Section.findById(sectionId);
+    if (!newSection)
+      return res.status(404).json({ message: "Section not found." });
+    // console.log(newSection);
+    const haveClash = checkTimeClash(
+      advisingPanelToAdd.selectedSections,
+      newSection
+    );
+    // console.log("3st setp", haveClash.toString());
+    if (haveClash)
+      return res
+        .status(400)
+        .json({ message: "Ops!!! you have clash, can't add course" });
+    advisingPanelToAdd.selectedSections.push(newSection._id);
+    await advisingPanelToAdd.save();
+    res.status(200).json({ message: "Course added successfully." });
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong." });
+  }
+};
+
+const dropCourseSection = async (req, res) => {
+  const { advisingPanelId, sectionId } = req.body;
+  try {
+    const advisingPanel = await AdvisingPanel.findById(advisingPanelId);
+    advisingPanel.selectedSections = advisingPanel.selectedSections.filter(
+      (section) => section.toString() !== sectionId
+    );
+    await advisingPanel.save();
+    res.status(200).json({ message: "Course section dropped." });
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong." });
+  }
+};
+
 module.exports = {
   createAdvisingSlot,
   getPendingAdvisingPanels,
   approveAdvising,
+  getMyAdvisingPanel,
+  addCourseSection,
+  dropCourseSection,
 };

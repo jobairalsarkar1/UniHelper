@@ -2,18 +2,22 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import { Schedule, SearchThings } from "../components";
 import { dayFull, decorateFaculty, timeConverter } from "../utils";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCancel, faCross, faXmark } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import "../styles/Advising.css";
 
 const AdvisingPannel = () => {
   const { userOne } = useContext(AuthContext);
   const [sections, setSections] = useState([]);
+  const [myAdvisingPanel, setMyAdvisingPanel] = useState([]);
   const [selectedCourses, setSelectedCourses] = useState([]);
   const [searchedResults, setSearchedResults] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [searchTimeout, setSearchTimeout] = useState(null);
   const [sectionDetails, setSectionDetails] = useState(null);
   const [isEligible, setIsEligible] = useState(false);
+  const [haveClash, setHaveClash] = useState(false);
 
   useEffect(() => {
     const fetchSections = async () => {
@@ -36,44 +40,128 @@ const AdvisingPannel = () => {
     fetchSections();
   }, []);
 
+  useEffect(() => {
+    const fetchMyPanel = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axios.get(
+          `/api/advising-panels/get-my-advisingpanel/${userOne._id}`,
+          { headers: { "x-auth-token": token } }
+        );
+        if (response.status === 200) {
+          setMyAdvisingPanel(response.data);
+          setSelectedCourses(response.data.selectedSections);
+          checkEligibility(response.data.advisingSlot);
+        }
+      } catch (error) {
+        alert(error.message);
+        console.error(error?.message);
+      }
+    };
+    fetchMyPanel();
+  }, [userOne._id]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (myAdvisingPanel.advisingSlot) {
+        checkEligibility(myAdvisingPanel.advisingSlot);
+      }
+    }, 60000);
+
+    return () => clearInterval(interval);
+  }, [myAdvisingPanel]);
+
+  const checkEligibility = (advisingSlot) => {
+    const currentTime = new Date();
+    const advisingSlotDate = new Date(advisingSlot);
+    const advisingSlotEnd = new Date(
+      advisingSlotDate.getTime() + 60 * 60 * 1000
+    );
+
+    if (currentTime >= advisingSlotDate && currentTime <= advisingSlotEnd) {
+      setIsEligible(true);
+    } else {
+      setIsEligible(false);
+    }
+  };
+
   const handleSearchChange = (e) => {
     clearTimeout(searchTimeout);
     setSearchText(e.target.value);
     setSearchTimeout(
       setTimeout(() => {
-        const searchedResults = sections.filter((item) =>
-          item.course.courseCode
-            .toLowerCase()
-            .includes(searchText.toLowerCase())
+        const searchedResults = sections.filter(
+          (item) =>
+            item.course.courseCode
+              .toLowerCase()
+              .includes(searchText.toLowerCase()) &&
+            !selectedCourses.some((selected) => selected._id === item._id)
         );
         setSearchedResults(searchedResults);
       }, 500)
     );
   };
 
-  const addCourse = (sectionId) => {
-    const selectedSection = sections.find(
-      (section) => section._id === sectionId
-    );
-    if (selectedSection) {
-      setSelectedCourses((prevSection) => [...prevSection, selectedSection]);
-      setSearchedResults((prevSections) =>
-        prevSections.filter((section) => section._id !== sectionId)
+  const addCourse = async (sectionId) => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.post(
+        "/api/advising-panels/add-course-section",
+        { advisingPanelId: myAdvisingPanel._id, sectionId },
+        { headers: { "x-auth-token": token } }
       );
-      // setSections(sections.filter((section) => section._id !== sectionId));
+      if (response.status === 200) {
+        // setHaveClash(false);
+        const addedSection = sections.find(
+          (section) => section._id === sectionId
+        );
+        if (addedSection) {
+          setSelectedCourses((prevSections) => [...prevSections, addedSection]);
+          setSearchedResults((prevSections) =>
+            prevSections.filter((section) => section._id !== sectionId)
+          );
+        }
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        setHaveClash(true);
+      } else {
+        alert("Error Block" + error.message);
+        console.error(error.message);
+      }
     }
   };
 
-  const dropCourse = (sectionId) => {
-    const selectedSection = sections.find(
-      (section) => section._id === sectionId
-    );
-    if (selectedSection) {
-      setSearchedResults((prevSection) => [...prevSection, selectedSection]);
-      // setSections((prevSection) => [...prevSection, selectedSection]);
-      setSelectedCourses((prevSections) =>
-        prevSections.filter((section) => section._id !== sectionId)
+  const dropCourse = async (sectionId) => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.post(
+        "/api/advising-panels/drop-course-section",
+        { advisingPanelId: myAdvisingPanel._id, sectionId },
+        { headers: { "x-auth-token": token } }
       );
+      if (response.status === 200) {
+        const droppedSection = selectedCourses.find(
+          (section) => section._id === sectionId
+        );
+        if (droppedSection) {
+          setSelectedCourses((prevSections) =>
+            prevSections.filter((section) => section._id !== sectionId)
+          );
+          if (
+            droppedSection.course.courseCode
+              .toLowerCase()
+              .includes(searchText.toLowerCase())
+          ) {
+            setSearchedResults((prevSections) => [
+              ...prevSections,
+              droppedSection,
+            ]);
+          }
+        }
+      }
+    } catch (error) {
+      console.error(error.message);
     }
   };
 
@@ -85,28 +173,56 @@ const AdvisingPannel = () => {
   };
 
   return (
-    <div className="advising-pannel-container">
+    <div className={`advising-pannel-container ${haveClash ? "blur" : ""}`}>
+      {/* <div className="advising-pannel-container"> */}
+      {haveClash && (
+        <div
+          className={
+            haveClash ? "haveClash-container active" : "haveClash-container"
+          }
+        >
+          <div className="clash-cancel-button">
+            <FontAwesomeIcon
+              icon={faXmark}
+              className="fa-Xmark-btn"
+              onClick={() => setHaveClash(false)}
+            />
+          </div>
+          <div className="clash-text-holder">
+            <span className="clash-text">Ops!!! This one have a clash...</span>
+          </div>
+        </div>
+      )}
       <div className="advising-pannel-inner-container">
         {isEligible ? (
           <>
             <div className="advising-pannel-student-info">
               <div className="advising-pannel-first-info advising-pannel-name-semester">
                 <p>
-                  Name: <span>{userOne.name}</span>
+                  Name:{" "}
+                  <span>
+                    {userOne.name === myAdvisingPanel.student.name &&
+                      userOne.name}
+                  </span>
                 </p>
                 <p>
-                  ID: <span>{userOne.ID}</span>
+                  ID:{" "}
+                  <span>
+                    {userOne.ID === myAdvisingPanel.student.ID && userOne.ID}
+                  </span>
                 </p>
                 <p>
-                  Semester: <span>Spring2024</span>
+                  Semester: <span>{myAdvisingPanel.semester}</span>
                 </p>
               </div>
               <div className="advising-pannel-first-info advising-pannel-attempted-credit">
                 <p>
-                  Attempted Credit: <span>84</span>
+                  Attempted Credit:{" "}
+                  <span>{myAdvisingPanel.completedCredits}</span>
                 </p>
                 <p>
-                  Completed Credit: <span>84</span>
+                  Completed Credit:{" "}
+                  <span>{myAdvisingPanel.completedCredits}</span>
                 </p>
               </div>
               <div className="advising-pannel-first-info advising-pannel-name-semester">
@@ -169,19 +285,14 @@ const AdvisingPannel = () => {
                   <p>Selected Courses:</p>
 
                   <ul className="advising-pannel-courses">
-                    {selectedCourses?.map((section) => (
-                      <li
-                        key={section._id}
-                        className="advising-pannel-course"
-                        // onClick={() => handleDetailsClick(section._id)}
-                      >
+                    {selectedCourses.map((section) => (
+                      <li key={section._id} className="advising-pannel-course">
                         <span className="advising-course-info">
                           {`${section.course.courseCode}-${
                             section.faculty
                               ? decorateFaculty(section.faculty.name)
                               : "TBA"
                           }[${section.sectionNumber}]-[${section.classRoom}]`}
-                          {/* CSE470-TBA[07]-[10A09C] */}
                         </span>
                         <button
                           type="button"

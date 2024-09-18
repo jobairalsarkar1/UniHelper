@@ -58,7 +58,9 @@ const Profile = () => {
             )} */}
             <div className="profile-row">
               <span className="profile-label">Email</span>
-              <span className="profile-value">: {userOne.email}</span>
+              <span className="profile-value">
+                : <a href={`mailto:${userOne.email}`}>{userOne.email}</a>
+              </span>
             </div>
           </div>
           <div className="profile-picture-container">

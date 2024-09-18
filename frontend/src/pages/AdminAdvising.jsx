@@ -32,7 +32,7 @@ const AdminAdvising = () => {
       }
     };
     fetchAdvisingPanel();
-  }, [approval]);
+  }, [success, approval]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
