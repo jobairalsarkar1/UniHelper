@@ -4,8 +4,9 @@ const timeToMinutes = (time) => {
 };
 
 const checkTimeClash = (selectedSections, newSection) => {
+  const clashingSections = [];
   if (selectedSections.length === 0) {
-    return false;
+    return clashingSections;
   }
   const newStart = timeToMinutes(newSection.schedule.startTime);
   const newEnd = timeToMinutes(newSection.schedule.endTime);
@@ -17,34 +18,40 @@ const checkTimeClash = (selectedSections, newSection) => {
     : null;
 
   for (const section of selectedSections) {
-    const sectionStart = timeToMinutes(section.schedule.startTime);
-    const sectionEnd = timeToMinutes(section.schedule.endTime);
-    const sectionLabStart = section.lab?.startTimeL
-      ? timeToMinutes(section.lab.startTimeL)
-      : null;
-    const sectionLabEnd = section.lab?.endTimeL
-      ? timeToMinutes(section.lab.endTimeL)
-      : null;
-    if (newStart < sectionEnd && newEnd > sectionStart) {
-      return true;
-    }
+    const commonDays = newSection.schedule.days.filter((day) =>
+      section.schedule.days.includes(day)
+    );
 
-    if (newStart < sectionLabEnd && newEnd > sectionLabStart) {
-      return true;
-    }
+    if (commonDays.length > 0) {
+      const sectionStart = timeToMinutes(section.schedule.startTime);
+      const sectionEnd = timeToMinutes(section.schedule.endTime);
+      const sectionLabStart = section.lab?.startTimeL
+        ? timeToMinutes(section.lab.startTimeL)
+        : null;
+      const sectionLabEnd = section.lab?.endTimeL
+        ? timeToMinutes(section.lab.endTimeL)
+        : null;
+      if (newStart < sectionEnd && newEnd > sectionStart) {
+        return clashingSections.push(section);
+      }
 
-    if (
-      newLabStart &&
-      newLabEnd &&
-      sectionLabStart &&
-      sectionLabEnd &&
-      newLabStart < sectionLabEnd &&
-      newLabEnd > sectionLabStart
-    ) {
-      continue;
+      if (newStart < sectionLabEnd && newEnd > sectionLabStart) {
+        return clashingSections.push(section);
+      }
+
+      if (
+        newLabStart &&
+        newLabEnd &&
+        sectionLabStart &&
+        sectionLabEnd &&
+        newLabStart < sectionLabEnd &&
+        newLabEnd > sectionLabStart
+      ) {
+        continue;
+      }
     }
   }
-  return false;
+  return clashingSections;
 };
 
 module.exports = { checkTimeClash };
