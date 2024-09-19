@@ -125,19 +125,37 @@ const addCourseSection = async (req, res) => {
       return res.status(404).json({ message: "Advising panel not found." });
 
     // console.log("2st setp", advisingPanelToAdd.selectedSections.length);
-    const newSection = await Section.findById(sectionId);
+    const newSection = await Section.findById(sectionId).populate("course");
     if (!newSection)
       return res.status(404).json({ message: "Section not found." });
     // console.log(newSection);
-    const haveClash = checkTimeClash(
-      advisingPanelToAdd.selectedSections,
-      newSection
+
+    const courseAlreadyAdded = advisingPanelToAdd.selectedSections.some(
+      (section) => String(section.course) === String(newSection.course._id)
     );
-    // console.log("3st setp", haveClash.toString());
-    if (haveClash)
+
+    if (courseAlreadyAdded) {
       return res
         .status(400)
-        .json({ message: "Ops!!! you have clash, can't add course" });
+        .json({ message: `${newSection.course.courseCode} is already added.` });
+    }
+
+    const selectedSections = await Section.find({
+      _id: { $in: advisingPanelToAdd.selectedSections },
+    }).populate({
+      path: "course",
+      model: "Course",
+      select: "courseCode schedule lab",
+    });
+
+    const clashingSections = checkTimeClash(selectedSections, newSection);
+    // console.log("3st setp", clashingSections.toString());
+    if (clashingSections.length > 0) {
+      return res.status(400).json({
+        message: "Ops!! This one have clash with: ",
+        clashingSections: clashingSections,
+      });
+    }
     advisingPanelToAdd.selectedSections.push(newSection._id);
     await advisingPanelToAdd.save();
     res.status(200).json({ message: "Course added successfully." });

@@ -30,13 +30,13 @@
   left: 30%;
   padding: 1rem;
   width: 40%;
-  height: 140px;
+  height: auto;
   box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
     0 2px 6px 2px rgba(60, 64, 67, 0.15);
   border-radius: 0.5rem;
   background-color: var(--element-background-color);
   z-index: 10;
-  text-align: center;
+  text-align: start;
 }
 
 .clash-cancel-button {
@@ -54,19 +54,32 @@
   padding: 0.05rem;
   height: 80px;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
+  flex-direction: column;
   /* background-color: red; */
 }
 
 .clash-text {
   color: red;
   font-weight: 550;
-  font-size: 1.1rem;
-  display: inline-block;
+  font-size: 0.9rem;
+  /* display: inline-block;
   word-wrap: break-word;
   white-space: normal;
-  max-width: 100%;
+  max-width: 100%; */
+}
+
+.clash-text-div {
+  margin-top: 0.5rem;
+}
+
+.clash-text-div > li {
+  font-size: 0.75rem;
+  font-weight: 520;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
 }
 
 .advising-pannel-student-info {
@@ -642,10 +655,10 @@
     top: 17%;
     left: 25%;
     width: 50%;
-    height: 140px;
+    /* height: 140px; */
   }
 
   .clash-text {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
   }
 }

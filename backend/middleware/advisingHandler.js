@@ -31,13 +31,16 @@ const checkTimeClash = (selectedSections, newSection) => {
       const sectionLabEnd = section.lab?.endTimeL
         ? timeToMinutes(section.lab.endTimeL)
         : null;
-      if (newStart < sectionEnd && newEnd > sectionStart) {
-        return clashingSections.push(section);
+      if (
+        (newStart < sectionEnd && newEnd > sectionStart) ||
+        (newStart < sectionLabEnd && newEnd > sectionLabStart)
+      ) {
+        clashingSections.push(section);
       }
 
-      if (newStart < sectionLabEnd && newEnd > sectionLabStart) {
-        return clashingSections.push(section);
-      }
+      // if (newStart < sectionLabEnd && newEnd > sectionLabStart) {
+      //   return clashingSections.push(section);
+      // }
 
       if (
         newLabStart &&

@@ -3,7 +3,7 @@ import { AuthContext } from "../contexts/AuthContext";
 import { Schedule, SearchThings } from "../components";
 import { dayFull, decorateFaculty, timeConverter } from "../utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCancel, faCross, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import "../styles/Advising.css";
 
@@ -18,6 +18,7 @@ const AdvisingPannel = () => {
   const [sectionDetails, setSectionDetails] = useState(null);
   const [isEligible, setIsEligible] = useState(false);
   const [haveClash, setHaveClash] = useState(false);
+  const [clashingSections, setClashingSections] = useState([]);
 
   useEffect(() => {
     const fetchSections = async () => {
@@ -124,6 +125,8 @@ const AdvisingPannel = () => {
       }
     } catch (error) {
       if (error.response && error.response.status === 400) {
+        setClashingSections(error.response.data);
+        console.log(error.response.data.clashingSections);
         setHaveClash(true);
       } else {
         alert("Error Block" + error.message);
@@ -189,7 +192,21 @@ const AdvisingPannel = () => {
             />
           </div>
           <div className="clash-text-holder">
-            <span className="clash-text">Ops!!! This one have a clash...</span>
+            <span className="clash-text">{clashingSections.message}</span>
+            <div className="clash-text-div">
+              {clashingSections.clashingSections?.length > 0 && (
+                <>
+                  {clashingSections.clashingSections?.map((clash) => (
+                    <li key={clash._id}>
+                      <span>{clash.course.courseCode}</span>
+                      <span>{`${timeConverter(
+                        clash.schedule.startTime
+                      )}-${timeConverter(clash.schedule.endTime)}`}</span>
+                    </li>
+                  ))}
+                </>
+              )}
+            </div>
           </div>
         </div>
       )}
