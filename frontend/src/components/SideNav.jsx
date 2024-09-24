@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import "../styles/SideNav.css";
 import { Link } from "react-router-dom";
 import {
@@ -121,7 +121,7 @@ const SideNav = ({ sidebarOpen, toggleSidebar }) => {
               </li>
               <li className="side-navbar-list-item sidenav-item-hover">
                 <Link
-                  to="/payslip"
+                  to="/finance"
                   className="side-navbar-item-link"
                   onClick={() => toggleSidebar()}
                 >
@@ -251,16 +251,6 @@ const SideNav = ({ sidebarOpen, toggleSidebar }) => {
                       onClick={() => toggleSidebar()}
                     >
                       Course Details
-                      <FontAwesomeIcon icon={faArrowRight} />
-                    </Link>
-                  </li>
-                  <li className="side-navbar-inner-list-item">
-                    <Link
-                      to="/class-schedule"
-                      className="side-navbar-inner-item-link"
-                      onClick={() => toggleSidebar()}
-                    >
-                      Class Schedule
                       <FontAwesomeIcon icon={faArrowRight} />
                     </Link>
                   </li>
@@ -465,21 +455,11 @@ const SideNav = ({ sidebarOpen, toggleSidebar }) => {
                   </li>
                   <li className="side-navbar-inner-list-item">
                     <Link
-                      to="/class-schedule"
-                      className="side-navbar-inner-item-link"
-                      onClick={() => toggleSidebar()}
-                    >
-                      Class Schedule
-                      <FontAwesomeIcon icon={faArrowRight} />
-                    </Link>
-                  </li>
-                  <li className="side-navbar-inner-list-item">
-                    <Link
                       to="/advised-courses"
                       className="side-navbar-inner-item-link"
                       onClick={() => toggleSidebar()}
                     >
-                      Advised Courses
+                      Sections
                       <FontAwesomeIcon icon={faArrowRight} />
                     </Link>
                   </li>
@@ -504,6 +484,47 @@ const SideNav = ({ sidebarOpen, toggleSidebar }) => {
                   Consultation
                   <FontAwesomeIcon icon={faArrowRight} />
                 </Link>
+              </li>
+              <li
+                className="side-navbar-list-item"
+                onClick={() => {
+                  expand.facilities == false
+                    ? setExpand({
+                        ...expand,
+                        users: false,
+                        account: false,
+                        advising: false,
+                        facilities: true,
+                      })
+                    : setExpand({ ...expand, facilities: false });
+                }}
+              >
+                <span>
+                  Facilities
+                  {expand.facilities == true ? (
+                    <FontAwesomeIcon icon={faMinus} />
+                  ) : (
+                    <FontAwesomeIcon icon={faPlus} />
+                  )}
+                </span>
+                <ul
+                  className={
+                    expand.facilities
+                      ? "side-navbar-inner-list active"
+                      : "side-navbar-inner-list"
+                  }
+                >
+                  <li className="side-navbar-inner-list-item">
+                    <Link
+                      to="/medical-help"
+                      className="side-navbar-inner-item-link"
+                      onClick={() => toggleSidebar()}
+                    >
+                      Medical Help
+                      <FontAwesomeIcon icon={faArrowRight} />
+                    </Link>
+                  </li>
+                </ul>
               </li>
             </>
           )}

@@ -13,6 +13,7 @@ router.get(
 );
 router.delete(
   "/delete-classroom/:classroomId",
+  auth,
   ClassroomController.deleteClassroom
 );
 router.post(
@@ -21,7 +22,11 @@ router.post(
   auth,
   ClassroomController.createPost
 );
-
+router.delete(
+  "/posts/delete-post/:postId",
+  auth,
+  ClassroomController.deletePost
+);
 router.get("/posts/:classroomId", auth, ClassroomController.getClassroomPosts);
 router.post("/posts/make-comment", auth, ClassroomController.makeComment);
 

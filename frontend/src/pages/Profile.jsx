@@ -1,10 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
-import { Loader } from "../components";
+import { Loader, Schedule } from "../components";
+import axios from "axios";
 import "../styles/Account.css";
 
 const Profile = () => {
   const { userOne } = useContext(AuthContext);
+  const [selectedCourses, setSelectedCourses] = useState([]);
+  const [teachersSections, setTeachersSections] = useState([]);
   // const [profileImage, setProfileImage] = useState(null);
 
   // useEffect(() => {
@@ -16,6 +19,43 @@ const Profile = () => {
   // if (!userOne) {
   //   return <div>Loading...</div>;
   // }
+
+  useEffect(() => {
+    const fetchMyPanel = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axios.get(
+          `/api/advising-panels/get-my-advisingpanel/${userOne._id}`,
+          { headers: { "x-auth-token": token } }
+        );
+        if (response.status === 200) {
+          setSelectedCourses(response.data.selectedSections);
+        }
+      } catch (error) {
+        // alert(error.message);
+        console.error(error.response?.data?.message);
+      }
+    };
+    fetchMyPanel();
+  }, [userOne._id]);
+
+  useEffect(() => {
+    const fetchTeachersSections = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axios.get(
+          `/api/advising-panels/me-teacher-sections/${userOne._id}`,
+          { headers: { "x-auth-token": token } }
+        );
+        if (response.status === 200) {
+          setTeachersSections(response.data);
+        }
+      } catch (error) {
+        console.error(error.response?.data?.message);
+      }
+    };
+    fetchTeachersSections();
+  }, [userOne._id]);
 
   return (
     <div className="profile-container">
@@ -73,6 +113,23 @@ const Profile = () => {
                 <div className="profile-picture-alternative">
                   {userOne.name[0]}
                 </div>
+              </>
+            )}
+          </div>
+        </div>
+        <div
+          style={{ marginTop: "1rem", backgroundColor: "#ffffff" }}
+          className="schedule-holder-holder"
+        >
+          <span>Schedule</span>
+          <div className="schedule-holder">
+            {userOne.status === "student" ? (
+              <>
+                <Schedule selectedSections={selectedCourses} />
+              </>
+            ) : (
+              <>
+                <Schedule selectedSections={teachersSections} />
               </>
             )}
           </div>

@@ -2,12 +2,16 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFileDownload } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEllipsisVertical,
+  faFileDownload,
+} from "@fortawesome/free-solid-svg-icons";
 import { formatDate, saveFile } from "../utils";
 import axios from "axios";
 
 const ClassroomIndividual = () => {
   const { classroomId } = useParams();
+  const { userOne } = useContext(AuthContext);
   const [classroomInfo, setClassroomInfo] = useState(null);
   const [formData, setFormData] = useState({ content: "", files: [] });
   const [posts, setPosts] = useState([]);
@@ -18,7 +22,11 @@ const ClassroomIndividual = () => {
   const [ok, setOk] = useState("");
   const [posting, setPosting] = useState(false);
   const fileInputRef = useRef(null);
-  const { userOne } = useContext(AuthContext);
+  const [postMenu, setPostMenu] = useState({});
+  const [navigationState, setNavigationState] = useState({
+    workspace: true,
+    members: false,
+  });
 
   useEffect(() => {
     const fetchClassroomInfo = async () => {
@@ -154,11 +162,32 @@ const ClassroomIndividual = () => {
     }
   };
 
+  const handlePostDelete = async (postId) => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.delete(
+        `/api/classrooms/posts/delete-post/${postId}`,
+        { data: { userId: userOne._id }, headers: { "x-auth-token": token } }
+      );
+      if (response.status === 200) {
+        setPosts((prevPosts) =>
+          prevPosts.filter((post) => post._id !== postId)
+        );
+      }
+    } catch (error) {
+      console.error(error.response?.data?.message);
+    }
+  };
+
   const handleCommentChange = (e, postId) => {
     setPostComments((prevComments) => ({
       ...prevComments,
       [postId]: e.target.value,
     }));
+  };
+
+  const togglePostMenu = (postId) => {
+    setPostMenu((prev) => ({ ...prev, [postId]: !prev[postId] }));
   };
 
   const toggleComments = (postId) => {
@@ -168,20 +197,6 @@ const ClassroomIndividual = () => {
     }));
   };
 
-  // const toggleComments = () => {
-  //   setIsCommentsVisible(!isCommentsVisible);
-  // };
-
-  // useEffect(() => {
-  //   const commentsContainer = commentsRef.current;
-  //   if (isCommentsVisible) {
-  //     commentsContainer.style.maxHeight = commentsContainer.scrollHeight + "px";
-  //   } else {
-  //     commentsContainer.style.maxHeight = "0";
-  //   }
-  // }, [isCommentsVisible]);
-
-  console.log(posts);
   return (
     <div className="classroomIndividual-container">
       <div className="classroomIndividual-inner-container">
@@ -216,65 +231,91 @@ const ClassroomIndividual = () => {
         <div className="classroomIndividual-navbar-container">
           <ul className="classroomIndividual-navbar">
             <li className="classroomIndividual-navbar-items">
-              <Link to="#" className="classroomIndividual-item-link">
+              <Link
+                to="#"
+                className={`classroomIndividual-item-link ${
+                  navigationState.workspace ? "active" : ""
+                }`}
+                onClick={() =>
+                  setNavigationState({
+                    ...navigationState,
+                    workspace: true,
+                    members: false,
+                  })
+                }
+              >
                 WorkSpace
               </Link>
             </li>
             <li className="classroomIndividual-navbar-items">
-              <Link to="#" className="classroomIndividual-item-link">
+              <Link
+                to="#"
+                className={`classroomIndividual-item-link ${
+                  navigationState.members ? "active" : ""
+                }`}
+                onClick={() =>
+                  setNavigationState({
+                    ...navigationState,
+                    workspace: false,
+                    members: true,
+                  })
+                }
+              >
                 Members
               </Link>
             </li>
           </ul>
         </div>
-        <div className="classroomIndividual-create-post-container">
-          <form
-            onSubmit={handleSubmit}
-            className="classroomIndividual-create-post-form"
-          >
-            <textarea
-              name="content"
-              id="content"
-              className="content"
-              value={formData.content}
-              onChange={handleChange}
-              placeholder="Make an announcment"
-            />
-            <div className="file-input-cancel-post">
-              <input
-                ref={fileInputRef}
-                type="file"
-                name="files"
-                multiple
-                onChange={handleFileChange}
-              />
-              <div className="cancel-post-btn">
-                <button
-                  onClick={refreshForm}
-                  type="button"
-                  className="cancel-btn"
-                >
-                  Cancel
-                </button>
-                <button type="submit" className="post-btn">
-                  {posting ? "Posting.." : "Post"}
-                </button>
-              </div>
+        {navigationState.workspace && (
+          <>
+            <div className="classroomIndividual-create-post-container">
+              <form
+                onSubmit={handleSubmit}
+                className="classroomIndividual-create-post-form"
+              >
+                <textarea
+                  name="content"
+                  id="content"
+                  className="content"
+                  value={formData.content}
+                  onChange={handleChange}
+                  placeholder="Make an announcment"
+                />
+                <div className="file-input-cancel-post">
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    name="files"
+                    multiple
+                    onChange={handleFileChange}
+                  />
+                  <div className="cancel-post-btn">
+                    <button
+                      onClick={refreshForm}
+                      type="button"
+                      className="cancel-btn"
+                    >
+                      Cancel
+                    </button>
+                    <button type="submit" className="post-btn">
+                      {posting ? "Posting.." : "Post"}
+                    </button>
+                  </div>
+                </div>
+                {error && (
+                  <p className="create-post-status" style={{ color: "red" }}>
+                    {error}
+                  </p>
+                )}
+                {success && (
+                  <p className="create-post-status" style={{ color: "green" }}>
+                    {success}
+                  </p>
+                )}
+              </form>
             </div>
-            {error && (
-              <p className="create-post-status" style={{ color: "red" }}>
-                {error}
-              </p>
-            )}
-            {success && (
-              <p className="create-post-status" style={{ color: "green" }}>
-                {success}
-              </p>
-            )}
-          </form>
-        </div>
-        <div className="classroomIndividual-posts-container">
-          {/* <div className="classroomIndividual-post">
+            <div className="classroomIndividual-posts-container">
+              {/* <div className="classroomIndividual-post">
             <div className="classroomIndividual-post-owner-info">
               <div className="classroomIndividual-owner-img">
                 <p>A</p>
@@ -337,120 +378,151 @@ const ClassroomIndividual = () => {
               </form>
             </div>
           </div> */}
-          {posts?.map((post) => (
-            <div key={post._id} className="classroomIndividual-post">
-              <div className="classroomIndividual-post-owner-info">
-                <div className="classroomIndividual-owner-img">
-                  {post.author.profileImage ? (
-                    <img
-                      src={post.author.profileImage}
-                      alt="Profile"
-                      className="post-owner-profileimg"
-                    />
-                  ) : (
-                    <p>{post.author.name[0]}</p>
-                  )}
-                </div>
-                <div className="classroomIndividual-owner-info">
-                  <span className="owner-name">{post.author.name}</span>
-                  <span className="date-posted">
-                    {formatDate(post.createdAt)}
-                  </span>
-                </div>
-              </div>
-              <div className="classroomIndividual-post-content">
-                <p>{post.content}</p>
-              </div>
-              <div className="classroomIndividual-post-files">
-                {post.files?.map((file, index) => (
-                  <div key={index} className="individual-file">
-                    <span>{`Download/File/${index}`}</span>
-                    <FontAwesomeIcon
-                      icon={faFileDownload}
-                      className="download-file-btn"
-                      onClick={() => saveFile(file)}
-                    />
-                    {/* <button className="download-file-btn">
-                    </button> */}
+              {posts?.map((post) => (
+                <div key={post._id} className="classroomIndividual-post">
+                  <div className="classroomIndividual-post-owner-info">
+                    <div className="classIndividual-post-actions">
+                      <FontAwesomeIcon
+                        icon={faEllipsisVertical}
+                        className="classIndividual-post-action-bar"
+                        onClick={() => togglePostMenu(post._id)}
+                      />
+                      <div
+                        className={
+                          postMenu[post._id]
+                            ? "classroomIndividual-delete-post"
+                            : "classroomIndividual-delete-post not-active"
+                        }
+                      >
+                        <button
+                          type="button"
+                          className="classroomIndividual-post-delete-btn"
+                          onClick={() => handlePostDelete(post._id)}
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                    <div className="classroomIndividual-owner-img">
+                      {post.author.profileImage ? (
+                        <img
+                          src={post.author.profileImage}
+                          alt="Profile"
+                          className="post-owner-profileimg"
+                        />
+                      ) : (
+                        <p>{post.author.name[0]}</p>
+                      )}
+                    </div>
+                    <div className="classroomIndividual-owner-info">
+                      <span className="owner-name">{post.author.name}</span>
+                      <span className="date-posted">
+                        {formatDate(post.createdAt)}
+                      </span>
+                    </div>
                   </div>
-                ))}
-              </div>
-              <div className="classroomIndividual-post-comments-div">
-                <button
-                  className="posts-total-comments-btn"
-                  onClick={() => toggleComments(post._id)}
-                >
-                  {commentsVisible[post._id]
-                    ? "Hide Comments"
-                    : `${post.comments.length} Comments`}
-                </button>
-                <div
-                  className={
-                    commentsVisible[post._id]
-                      ? "comments-container active"
-                      : "comments-container"
-                  }
-                >
-                  {post?.comments.map((comment, index) => (
-                    <div
-                      key={index}
-                      className="classroomIndividual-post-comment"
+                  <div className="classroomIndividual-post-content">
+                    <p>{post.content}</p>
+                  </div>
+                  <div className="classroomIndividual-post-files">
+                    {post.files?.map((file, index) => (
+                      <div key={index} className="individual-file">
+                        <span>{`Download/File/${index}`}</span>
+                        <FontAwesomeIcon
+                          icon={faFileDownload}
+                          className="download-file-btn"
+                          onClick={() => saveFile(file)}
+                        />
+                        {/* <button className="download-file-btn">
+                    </button> */}
+                      </div>
+                    ))}
+                  </div>
+                  <div className="classroomIndividual-post-comments-div">
+                    <button
+                      className="posts-total-comments-btn"
+                      onClick={() => toggleComments(post._id)}
                     >
-                      <div className="post-comment-owner-img-div">
-                        {comment.author.profileImage ? (
-                          <img
-                            src={comment.author.profileImage}
-                            alt="profile"
-                            className="comment-owner-profile-img"
-                          />
-                        ) : (
-                          <div className="post-comment-owner-img">
-                            {comment.author.name[0]}
+                      {commentsVisible[post._id]
+                        ? "Hide Comments"
+                        : `${post.comments.length} Comments`}
+                    </button>
+                    <div
+                      className={
+                        commentsVisible[post._id]
+                          ? "comments-container active"
+                          : "comments-container"
+                      }
+                    >
+                      {post?.comments.map((comment, index) => (
+                        <div
+                          key={index}
+                          className="classroomIndividual-post-comment"
+                        >
+                          <div className="post-comment-owner-img-div">
+                            {comment.author.profileImage ? (
+                              <img
+                                src={comment.author.profileImage}
+                                alt="profile"
+                                className="comment-owner-profile-img"
+                              />
+                            ) : (
+                              <div className="post-comment-owner-img">
+                                {comment.author.name[0]}
+                              </div>
+                            )}
                           </div>
-                        )}
-                      </div>
-                      <div className="post-comment-details">
-                        <span className="comment-owner-name">
-                          {comment.author.name}{" "}
-                          <small>{formatDate(comment.createdAt)}</small>
-                        </span>
-                        <p>{comment.content}</p>
-                      </div>
+                          <div className="post-comment-details">
+                            <span className="comment-owner-name">
+                              {comment.author.name}{" "}
+                              <small>{formatDate(comment.createdAt)}</small>
+                            </span>
+                            <p>{comment.content}</p>
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                  ))}
+                    <form
+                      onSubmit={(e) => handleCommentSubmit(e, post._id)}
+                      className="classroomIndividual-make-comment"
+                    >
+                      {userOne.profileImage ? (
+                        <img
+                          className="current-commentor"
+                          src={userOne.profileImage}
+                          alt="Profile"
+                        />
+                      ) : (
+                        <div className="current-commentor">
+                          <span>{userOne.name[0]}</span>
+                        </div>
+                      )}
+                      <input
+                        type="text"
+                        id="comment"
+                        name="comment"
+                        className="comment"
+                        placeholder="Add a comment...."
+                        value={postComments[post._id]}
+                        onChange={(e) => handleCommentChange(e, post._id)}
+                      />
+                      <button type="submit" className="make-comment-btn">
+                        Comment
+                      </button>
+                    </form>
+                  </div>
                 </div>
-                <form
-                  onSubmit={(e) => handleCommentSubmit(e, post._id)}
-                  className="classroomIndividual-make-comment"
-                >
-                  {userOne.profileImage ? (
-                    <img
-                      className="current-commentor"
-                      src={userOne.profileImage}
-                      alt="Profile"
-                    />
-                  ) : (
-                    <div className="current-commentor">
-                      <span>{userOne.name[0]}</span>
-                    </div>
-                  )}
-                  <input
-                    type="text"
-                    id="comment"
-                    name="comment"
-                    className="comment"
-                    placeholder="Add a comment...."
-                    value={postComments[post._id]}
-                    onChange={(e) => handleCommentChange(e, post._id)}
-                  />
-                  <button type="submit" className="make-comment-btn">
-                    Comment
-                  </button>
-                </form>
-              </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </>
+        )}
+        {navigationState.members && (
+          <>
+            <div className="classroomIndividual-members-container">
+              <span>Welcome to Members</span>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

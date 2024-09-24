@@ -1,6 +1,8 @@
 const GradeSheet = require("../models/GradeSheet");
 const AdvisingPanel = require("../models/AdvisingPanel");
 const Section = require("../models/Section");
+const Semester = require("../models/Semester");
+const User = require("../models/User");
 const { checkTimeClash } = require("../middleware/advisingHandler");
 
 const createAdvisingSlot = async (req, res) => {
@@ -44,6 +46,16 @@ const createAdvisingSlot = async (req, res) => {
         await newAdvisingPanel.save();
       }
     }
+    // console.log("Ok1");
+    // console.log(advisingSlot);
+    // await Semester.findOneAndUpdate(
+    //   { semesterName: semester },
+    //   {
+    //     $addToSet: { SemesterAdvisingSlots: advisingSlot },
+    //   },
+    //   { new: true }
+    // );
+    // console.log("Ok2");
     // console.log("loop pass");
     res.status(201).json({ message: "Advising pannels created successfully." });
   } catch (error) {
@@ -178,6 +190,65 @@ const dropCourseSection = async (req, res) => {
   }
 };
 
+const createSemester = async (req, res) => {
+  const { semesterName } = req.body;
+  try {
+    const semester = await Semester.findOne({ semesterName });
+    if (semester) {
+      return res.status(404).json({ message: "Semester already exists." });
+    }
+    const newSemester = new Semester({ semesterName });
+    await newSemester.save();
+    res.status(201).json({ message: "Semester created successfully." });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to create semester." });
+  }
+};
+
+const teacherSections = async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const teacher = await User.findById(userId);
+    if (!teacher || teacher.status !== "teacher") {
+      return res
+        .status(403)
+        .json({ message: "Access denied. you are not a teacher" });
+    }
+    const sections = await Section.find({ faculty: userId })
+      .populate({
+        path: "course",
+        select: "name courseCode",
+      })
+      .populate({ path: "students", select: "name email ID" })
+      .populate({ path: "faculty", select: "name" });
+
+    // const formattedSections = sections.map((section) => ({
+    //   schedule: section.schedule,
+    //   lab: section.lab,
+    //   _id: section._id,
+    //   course: {
+    //     _id: section.course._id,
+    //     courseCode: section.course.courseCode,
+    //   },
+    //   sectionNumber: section.sectionNumber,
+    //   classRoom: section.classRoom,
+    //   seat: section.seat,
+    //   faculty: section.faculty ? section.faculty._id : null,
+    //   students: section.students.map((student) => ({
+    //     _id: student._id,
+    //     name: student.name,
+    //     email: student.email,
+    //     ID: student.ID,
+    //   })),
+    //   createdAt: section.createdAt,
+    //   updatedAt: section.updatedAt,
+    // }));
+    return res.status(200).json(sections);
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong." });
+  }
+};
+
 module.exports = {
   createAdvisingSlot,
   getPendingAdvisingPanels,
@@ -185,4 +256,6 @@ module.exports = {
   getMyAdvisingPanel,
   addCourseSection,
   dropCourseSection,
+  createSemester,
+  teacherSections,
 };

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
@@ -93,9 +93,10 @@ const Classroom = () => {
   };
 
   const handleDelete = async (classroomId) => {
+    const token = localStorage.getItem("token");
     const response = await axios.delete(
       `/api/classrooms/delete-classroom/${classroomId}`,
-      { data: { userId: userOne._id } }
+      { data: { userId: userOne._id }, headers: { "x-auth-token": token } }
     );
 
     if (response.status === 200) {

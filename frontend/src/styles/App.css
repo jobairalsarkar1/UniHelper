@@ -4,7 +4,14 @@
   --text-color: hsl(244, 44%, 14%);
   --external-color: hsl(240, 100%, 90%);
   --color-blue-1: #007bff;
+  /* --element-background-color: #000000;
+  --text-color: #ffffff;
+  --external-color: #11171f; */
 }
+
+/* html {
+  color-scheme: light dark;
+} */
 
 * {
   margin: 0;

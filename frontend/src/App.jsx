@@ -28,6 +28,8 @@ import {
   NotFound,
   AdvisedCourses,
   AllStudents,
+  Scholarship,
+  MedicalHelp,
 } from "./components";
 import {
   Home,
@@ -49,6 +51,7 @@ import {
   Finance,
   GradeSheetIndividual,
   AdminAdvising,
+  Facilities,
 } from "./pages";
 import "./styles/App.css";
 
@@ -146,14 +149,14 @@ const App = () => {
                     </PrivateRoute>
                   }
                 />
-                <Route
+                {/* <Route
                   path="/payslip"
                   element={
                     <PrivateRoute>
                       <AllStudents />
                     </PrivateRoute>
                   }
-                />
+                /> */}
                 <Route
                   path="/course-sequence"
                   element={
@@ -242,6 +245,23 @@ const App = () => {
                     </PrivateRoute>
                   }
                 />
+                <Route
+                  path="/scholarship"
+                  element={
+                    <PrivateRoute>
+                      <Scholarship />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/medical-help"
+                  element={
+                    <PrivateRoute>
+                      <MedicalHelp />
+                    </PrivateRoute>
+                  }
+                />
+
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </div>

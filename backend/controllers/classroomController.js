@@ -50,6 +50,13 @@ const deleteClassroom = async (req, res) => {
         .json({ message: "You are not authorized to delete this classroom. " });
     }
 
+    const posts = await Post.find({ classroom: classroomId });
+    for (const post of posts) {
+      await Comment.deleteMany({ post: post._id });
+    }
+
+    await Post.deleteMany({ classroom: classroomId });
+
     await Classroom.findByIdAndDelete(classroomId);
     res.status(200).json({ message: "Classroom deleted successfully." });
   } catch (error) {
@@ -114,6 +121,35 @@ const createPost = async (req, res) => {
   }
 };
 
+const deletePost = async (req, res) => {
+  console.log("Well Well Well");
+  const { postId } = req.params;
+  const userId = req.body.userId;
+  console.log(postId, userId);
+  try {
+    const post = await Post.findById(postId);
+    if (!post) {
+      return res.status(404).json({ message: "Post do not exist." });
+    }
+    const classroom = await Classroom.findById(post.classroom);
+    if (!classroom || post.author.toString() !== userId) {
+      return res
+        .status(404)
+        .json({ message: "You are not authorized to delete the post." });
+    }
+    await Comment.deleteMany({ post: postId });
+    await Classroom.findByIdAndUpdate(
+      post.classroom,
+      { $pull: { posts: postId } },
+      { new: true, useFindAndModify: false }
+    );
+    await Post.findByIdAndDelete(postId);
+    res.status(200).json({ message: "Post deleted successfully." });
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong." });
+  }
+};
+
 const getClassroomPosts = async (req, res) => {
   const { classroomId } = req.params;
   try {
@@ -125,19 +161,6 @@ const getClassroomPosts = async (req, res) => {
         },
       })
       .populate("author");
-    // const posts = await Post.find({ classroom: classroomId })
-    //   .populate({
-    //     path: "comments",
-    //     model: "Comment",
-    //     select: "content author createdAt",
-    //     populate: {
-    //       path: "author",
-    //       model: "User",
-    //       select: "name profileImage",
-    //     },
-    //   })
-    //   .populate("author", "name profileImage");
-    // console.log(posts);
     res.status(200).json(posts);
   } catch (error) {
     res.status(500).json({ message: "Failed to fetch Posts" });
@@ -174,6 +197,7 @@ module.exports = {
   deleteClassroom,
   getClassroomInfo,
   createPost,
+  deletePost,
   getClassroomPosts,
   makeComment,
 };

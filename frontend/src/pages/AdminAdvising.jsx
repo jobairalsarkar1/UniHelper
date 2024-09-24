@@ -14,6 +14,8 @@ const AdminAdvising = () => {
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
   const [approval, setApproval] = useState(false);
+  const [actualSemester, setActualSemester] = useState("");
+  const [semesterCreated, setSemesterCreated] = useState("");
   const { advisingSlot, creditRangeStart, creditRangeEnd, semester } = formData;
 
   useEffect(() => {
@@ -53,7 +55,8 @@ const AdminAdvising = () => {
       const token = localStorage.getItem("token");
       const response = await axios.post(
         "/api/advising-panels/create-advising-slot",
-        data
+        data,
+        { headers: { "x-auth-token": token } }
       );
       if (response.status === 201) {
         setSuccess(response.data.message);
@@ -91,9 +94,53 @@ const AdminAdvising = () => {
     }
   };
 
+  const handleSemesterCreation = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.post(
+        "/api/advising-panels/create-actual-semester",
+        { semesterName: actualSemester },
+        { headers: { "x-auth-token": token } }
+      );
+      if (response.status === 201) {
+        setSemesterCreated(response.data.message);
+      }
+    } catch (error) {
+      setSemesterCreated(error.response?.data?.message);
+      // console.error(error.response?.data?.message);
+    } finally {
+      setTimeout(() => setSemesterCreated(""), 1000);
+      setTimeout(() => setActualSemester(""), 1000);
+    }
+  };
+
   return (
     <div className="adminAdvising-container">
       <div className="adminAdvising-inner-container">
+        {/* <div className="gradeSheetIndividual-create-semester-form">
+          <input
+            type="text"
+            name="semester"
+            value={actualSemester}
+            onChange={(e) => setActualSemester(e.target.value)}
+            placeholder="Semester.."
+            className="gradeSheetIndividual-semester-input"
+            required
+          />
+          <button
+            type="button"
+            className="gradeSheetIndividual-create-gradesheet-btn custom-bg-4"
+            onClick={handleSemesterCreation}
+          >
+            Create
+          </button>
+          {semesterCreated && (
+            <p style={{ fontSize: "0.75rem" }}>{semesterCreated}</p>
+          )}
+        </div> */}
+        {/* <div className="adminAdvising-create-semester">
+          <span>Create Semester</span>
+        </div> */}
         <div className="adminAdvising-create-slot-container">
           <span className="create-slot-title">Create Slot</span>
           <div className="adminAdvising-slot-items">

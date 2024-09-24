@@ -52,11 +52,14 @@ const AdvisingPannel = () => {
         if (response.status === 200) {
           setMyAdvisingPanel(response.data);
           setSelectedCourses(response.data.selectedSections);
-          checkEligibility(response.data.advisingSlot);
+          checkEligibility(
+            response.data.advisingSlot,
+            response.data.advisingStatus
+          );
         }
       } catch (error) {
-        alert(error.message);
-        console.error(error?.message);
+        // alert(error.message);
+        console.error(error.response?.data?.message);
       }
     };
     fetchMyPanel();
@@ -72,14 +75,18 @@ const AdvisingPannel = () => {
     return () => clearInterval(interval);
   }, [myAdvisingPanel]);
 
-  const checkEligibility = (advisingSlot) => {
+  const checkEligibility = (advisingSlot, advisingStatus) => {
     const currentTime = new Date();
     const advisingSlotDate = new Date(advisingSlot);
     const advisingSlotEnd = new Date(
       advisingSlotDate.getTime() + 60 * 60 * 1000
     );
 
-    if (currentTime >= advisingSlotDate && currentTime <= advisingSlotEnd) {
+    if (
+      currentTime >= advisingSlotDate &&
+      currentTime <= advisingSlotEnd &&
+      advisingStatus === "pending"
+    ) {
       setIsEligible(true);
     } else {
       setIsEligible(false);
@@ -413,7 +420,7 @@ const AdvisingPannel = () => {
             <div className="advising-pannel-semester-routine">
               <span>Class Schedule:</span>
               <div className="advising-pannel-class-schedule">
-                <Schedule />
+                <Schedule selectedSections={selectedCourses} />
               </div>
             </div>
           </>

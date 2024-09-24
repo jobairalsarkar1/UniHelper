@@ -216,7 +216,9 @@
   transition: background-color 0.3s;
 }
 
-.gradeSheetIndividual-create-gradesheet-btn:hover {
+.gradeSheetIndividual-create-gradesheet-btn:hover,
+.gradeSheetIndividual-create-gradesheet-btn:focus {
+  outline-color: transparent;
   background-color: #27a542;
 }
 
@@ -323,8 +325,10 @@
   cursor: pointer;
 }
 
-.gradeSheetIndividual-course-grade-btn:hover {
-  background-color: #0d69c5;
+.gradeSheetIndividual-course-grade-btn:hover,
+.gradeSheetIndividual-course-grade-btn:focus {
+  outline-color: transparent;
+  background-color: #0973dd;
 }
 
 .semesters-container-title {
@@ -352,6 +356,10 @@
   /* color: #585858; */
 }
 
+.gradeSheetIndividual-gradeSheet-basic-info > span {
+  font-size: 0.8rem;
+}
+
 .all-gradeSheet-title {
   font-size: 1.1rem;
   font-weight: 550;
@@ -362,7 +370,7 @@
   margin-bottom: 0;
   list-style-type: none;
   display: grid;
-  grid-template-columns: 27% 24% 24% 25%;
+  grid-template-columns: 20% 32% 16% 16% 16%;
   border-top: 1px solid #666e75;
   color: var(--element-background-color);
   background-color: #37363d;
@@ -373,7 +381,7 @@
   margin-bottom: 0;
   list-style-type: none;
   display: grid;
-  grid-template-columns: 27% 24% 24% 25%;
+  grid-template-columns: 20% 32% 16% 16% 16%;
 }
 
 .gradeSheet-info-list-inner-total {
@@ -381,14 +389,15 @@
   font-size: 0.8rem;
   font-weight: 550;
   display: grid;
-  grid-template-columns: 27% 24% 24% 25%;
+  grid-template-columns: 52% 16% 16% 16%;
   background-color: #b5ecc4;
 }
 
 .gradeSheet-info-items-inner {
-  word-break: break-all;
+  word-break: break-word;
   overflow-wrap: break-word;
   white-space: normal;
+  hyphens: auto;
   font-size: 0.8rem;
   padding: 0.5rem 0.5rem 0.5rem 0.5rem;
   border-bottom: 1px solid #666e75;
@@ -407,9 +416,10 @@
 }
 
 .gradeSheet-info-items {
-  word-break: break-all;
+  word-break: break-word;
   overflow-wrap: break-word;
   white-space: normal;
+  hyphens: auto;
   display: grid;
   padding: 0.5rem 0.5rem 0.5rem 0.5rem;
   border-bottom: 1px solid #666e75;
@@ -422,16 +432,44 @@
   border-left: 1px solid #666e75;
 }
 
+.gradeSheet-info-item-id-inner {
+  border-left: 1px solid #666e75;
+}
+
 .gradeSheet-list-header {
   font-weight: 600;
   font-size: 0.76rem;
 }
 
 .final-result {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 550;
   color: var(--element-background-color);
   background-color: #0077ef;
+}
+
+.print-gradeSheet-btn-container {
+  margin-top: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+.print-gradeSheet-btn {
+  padding: 0.5rem 1.5rem;
+  font-weight: 550;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.4rem;
+  color: var(--element-background-color);
+  background-color: #0077ef;
+  border: none;
+  cursor: pointer;
+}
+
+.print-gradeSheet-btn:focus,
+.print-gradeSheet-btn:hover {
+  background-color: #0973dd;
+  outline-color: transparent;
 }
 
 /* Contact.jsx */
@@ -498,6 +536,35 @@
 
 /* AllStudents.jsx */
 
+/* ScholarShip.jsx */
+.scholarship-container {
+  padding: 0.5rem 2.1rem 0.5rem 2.1rem;
+}
+
+.scholarship-inner-container {
+  padding: 1rem;
+  text-align: center;
+  background-color: var(--element-background-color);
+}
+
+/* MedicalHelp.jsx */
+.medicalHelp-container {
+  padding: 0.5rem 2.1rem 0.5rem 2.1rem;
+}
+
+.medicalHelp-inner-container {
+  padding: 1rem;
+  text-align: center;
+  background-color: var(--element-background-color);
+}
+
+.scholarship-inner-container > span,
+.medicalHelp-inner-container > span {
+  font-size: 1.3rem;
+  font-weight: 550;
+  color: #008080;
+}
+
 @media (min-width: 1024px) {
   .finance-inner-container {
     width: 60%;
@@ -559,7 +626,7 @@
   }
 
   .gradeSheet-list-header {
-    font-size: 0.6rem;
+    font-size: 0.7rem;
   }
 
   .contact-container {
@@ -589,5 +656,18 @@
   .home-inner-container {
     padding: 0.5rem 1.35rem 0.5rem 1.3rem;
     /* background-color: red; */
+  }
+
+  .gradeSheet-info-items {
+    font-size: 0.65rem;
+  }
+
+  .scholarship-container {
+    padding: 0.5rem 1.35rem 0.5rem 1.35rem;
+  }
+
+  /* MedicalHelp.jsx */
+  .medicalHelp-container {
+    padding: 0.5rem 1.35rem 0.5rem 1.35rem;
   }
 }

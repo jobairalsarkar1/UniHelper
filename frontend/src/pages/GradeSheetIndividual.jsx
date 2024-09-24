@@ -30,7 +30,7 @@ const GradeSheetIndividual = () => {
           setGradeSheet(response.data);
         }
       } catch (error) {
-        console.error(error.message);
+        console.error(error.response?.data?.message);
         // alert(error.message);
       }
     };
@@ -295,16 +295,19 @@ const GradeSheetIndividual = () => {
             <div className="gradeSheetIndividual-gradeSheet-container">
               <div className="gradeSheetIndividual-gradeSheet-basic-info">
                 <span>
-                  Name: <strong>{gradeSheet.student.name}</strong>
+                  Name: <strong>{gradeSheet?.student.name}</strong>
                 </span>
                 <span>
-                  ID: <strong>{gradeSheet.student.ID}</strong>
+                  ID: <strong>{gradeSheet?.student.ID}</strong>
                 </span>
               </div>
               <div className="gradeSheetIndividual-actual-gradeSheet">
                 <ul className="gradeSheet-info-list">
                   <li className="gradeSheet-list-header gradeSheet-info-items gradeSheet-info-item-id">
                     Code
+                  </li>
+                  <li className="gradeSheet-list-header gradeSheet-info-items gradeSheet-info-item-id">
+                    Course Title
                   </li>
                   <li className="gradeSheet-list-header gradeSheet-info-items">
                     Grade
@@ -316,7 +319,7 @@ const GradeSheetIndividual = () => {
                     CGPA
                   </li>
                 </ul>
-                {gradeSheet.semesters?.map((semester) => (
+                {gradeSheet?.semesters?.map((semester) => (
                   <>
                     <div key={semester._id}>
                       <li className="gradeSheet-info-items-inner semester-name-holder">
@@ -328,39 +331,29 @@ const GradeSheetIndividual = () => {
                             key={course._id}
                             className="gradeSheet-info-list-inner"
                           >
-                            {/* <li className="gradeSheet-info-items-inner">
-                              Semester: {semester.semester}
-                            </li> */}
-                            <li className="gradeSheet-info-items-inner gradeSheet-info-item-id">
+                            <li className="gradeSheet-info-items-inner gradeSheet-info-items gradeSheet-info-item-id">
                               {course.course.courseCode}
                             </li>
-                            <li className="gradeSheet-info-items-inner">
+                            <li className="gradeSheet-info-items-inner gradeSheet-info-items">
+                              {course.course.name}
+                            </li>
+                            <li className="gradeSheet-info-items-inner gradeSheet-info-items">
                               {course.grade}
                             </li>
-                            <li className="gradeSheet-info-items-inner">
+                            <li className="gradeSheet-info-items-inner gradeSheet-info-items">
                               {course.course.credit}
                             </li>
-                            <li className="gradeSheet-info-items-inner">
+                            <li className="gradeSheet-info-items-inner gradeSheet-info-items">
                               {course.cgpa}
                             </li>
                           </ul>
                         </>
                       ))}
-                      {/* <ul className="gradeSheet-info-list-inner">
-                        <li className="gradeSheet-info-items-inner">
-                          Semester: {semester.semester}
-                        </li>
-                        <li className="gradeSheet-info-items-inner gradeSheet-info-item-id">
-                          Code
-                        </li>
-                        <li className="gradeSheet-info-items-inner">Grade</li>
-                        <li className="gradeSheet-info-items-inner">Credit</li>
-                        <li className="gradeSheet-info-items-inner">GPA</li>
-                      </ul> */}
                       <ul className="gradeSheet-info-list-inner-total">
                         <li className="gradeSheet-info-items gradeSheet-info-item-id">
                           Semester Total
                         </li>
+                        <li className="gradeSheet-info-items">Grade</li>
                         <li className="gradeSheet-info-items">Grade</li>
                         <li className="gradeSheet-info-items">
                           {semester.courses.length * 3}
@@ -374,14 +367,15 @@ const GradeSheetIndividual = () => {
                 ))}
                 <ul className="gradeSheet-info-list-inner-total final-result">
                   <li className="gradeSheet-info-items gradeSheet-info-item-id">
-                    Semester Total
+                    Cumulative
                   </li>
                   <li className="gradeSheet-info-items">Grade</li>
+                  <li className="gradeSheet-info-items">Grade</li>
                   <li className="gradeSheet-info-items">
-                    {gradeSheet.creditCompleted}
+                    {gradeSheet?.creditCompleted}
                   </li>
                   <li className="gradeSheet-info-items">
-                    {gradeSheet.totalCGPA}
+                    {gradeSheet?.totalCGPA}
                   </li>
                 </ul>
               </div>

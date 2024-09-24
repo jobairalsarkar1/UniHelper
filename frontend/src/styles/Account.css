@@ -33,9 +33,10 @@
 
 .profile-value {
   font-weight: 550;
+  word-break: break-word;
+  overflow-wrap: break-word;
   white-space: normal;
-  word-break: break-all;
-  overflow-wrap: anywhere;
+  hyphens: auto;
 }
 
 .profile-value > a {
@@ -79,7 +80,7 @@
   .profile-info {
     gap: 0rem;
     font-size: 0.6rem;
-    word-break: break-all;
+    word-break: break-word;
   }
   /* .profile-label {
     width: 60px;

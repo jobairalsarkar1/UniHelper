@@ -133,6 +133,7 @@ const Consultations = () => {
         fetchConsultations();
       }
     } catch (error) {
+      console.error(error.response?.data?.message);
       alert("Failed to Reject Request");
     } finally {
       setTimeout(() => setRejectionReason(""), 2000);

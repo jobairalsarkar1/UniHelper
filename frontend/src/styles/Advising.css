@@ -312,9 +312,10 @@
 }
 
 .seatStatus-info-items {
-  word-break: break-all;
+  word-break: break-word;
   overflow-wrap: break-word;
   white-space: normal;
+  hyphens: auto;
   display: grid;
   font-size: 0.8rem;
   padding: 0.5rem 0.5rem 0.5rem 0.5rem;
@@ -343,7 +344,7 @@
 
 /* AdvisedCourses.jsx */
 .advised-courses-inner-container {
-  padding: 0.5rem 2.1rem 0.5rem 2.1rem;
+  padding: 0 2.1rem 0.5rem 2.1rem;
 }
 
 .advised-courses-list {
@@ -355,12 +356,13 @@
 }
 
 .advised-courses-title {
-  font-size: 1.1rem;
+  text-decoration: underline;
+  font-size: 1rem;
   font-weight: 550;
 }
 
 .advised-courses-info-list {
-  margin-top: 0.2rem;
+  margin-top: 0.4rem;
   margin-bottom: 0;
   list-style-type: none;
   display: grid;
@@ -373,13 +375,14 @@
   margin-bottom: 0;
   list-style-type: none;
   display: grid;
-  grid-template-columns: 15% 25% 30% 15% 15%;
+  grid-template-columns: 15% 20% 30% 20% 15%;
 }
 
 .advised-courses-info-items {
-  word-break: break-all;
+  word-break: break-word;
   overflow-wrap: break-word;
   white-space: normal;
+  hyphens: auto;
   display: grid;
   font-size: 0.8rem;
   padding: 0.5rem 0.5rem 0.5rem 0.5rem;
@@ -394,6 +397,10 @@
 }
 
 .advised-courses-list-header {
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  hyphens: auto;
   font-size: 0.8rem;
   font-weight: 550;
 }
@@ -409,6 +416,7 @@
 } */
 
 .adminAdvising-create-slot-container {
+  margin-top: 1.5rem;
   padding: 0.9rem 1rem;
   border-radius: 0.4rem;
   display: flex;
@@ -479,6 +487,13 @@
   border: transparent;
   color: var(--element-background-color);
   background-color: #007eff;
+}
+
+.create-advising-slot-btn:focus,
+.create-advising-slot-btn:hover {
+  /* border: none; */
+  outline: none;
+  background-color: #0b78e4;
 }
 
 .adminAdvising-available-slots-container {
@@ -648,7 +663,7 @@
   }
 
   .advised-courses-inner-container {
-    padding: 0.5rem 1.4rem 0.5rem 1.35rem;
+    padding: 0 1.35rem 0.5rem 1.35rem;
   }
 
   .haveClash-container {
@@ -660,5 +675,13 @@
 
   .clash-text {
     font-size: 0.8rem;
+  }
+
+  .advised-courses-info-list-inner > li {
+    font-size: 0.7rem;
+  }
+
+  .advised-courses-list-header {
+    font-size: 0.76rem;
   }
 }

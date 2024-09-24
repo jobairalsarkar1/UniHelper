@@ -25,7 +25,7 @@ const UserList = ({ users, title }) => {
                 <a href={`mailto:${user.email}`}>{user.email}</a>
               </li>
               <li className="user-info-items">
-                {user.status ? user.status : "N/A"}
+                {user.status ? user.status[0].toUpperCase() : "N/A"}
               </li>
               <li className="user-info-items">
                 <Link to={`/user/${user._id}`} className="edit-btn">

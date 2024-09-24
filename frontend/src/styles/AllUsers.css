@@ -50,9 +50,10 @@
 }
 
 .user-info-items {
-  word-break: break-all;
+  word-break: break-word;
   overflow-wrap: break-word;
   white-space: normal;
+  hyphens: 0;
   display: grid;
   padding: 0.5rem 0.5rem 0.5rem 0.5rem;
   border-bottom: 1px solid #666e75;
@@ -135,7 +136,7 @@
 .form-select-option {
   width: 100%;
   font-size: 0.8rem;
-  padding: 0.8rem 0.5rem 0.8rem 0.5rem;
+  padding: 0.6rem 0.5rem 0.6rem 0.5rem;
   border-radius: 0.5rem;
   border: 0.1rem solid #dadce0;
 }
@@ -154,7 +155,7 @@
 .userinfo-update-btn {
   width: 100%;
   margin-top: 0.5rem;
-  padding: 0.8rem 1.5rem 0.8rem 1.5rem;
+  padding: 0.6rem 1.5rem 0.6rem 1.5rem;
   border-radius: 0.5rem;
   font-size: 1rem;
   font-weight: 550;
@@ -165,7 +166,9 @@
   cursor: pointer;
 }
 
-.userinfo-update-btn:hover {
+.userinfo-update-btn:hover,
+.userinfo-update-btn:focus {
+  outline-color: transparent;
   background-color: #0072e4;
 }
 
@@ -402,9 +405,10 @@
 }
 
 .student-info-items {
-  word-break: break-all;
+  word-break: break-word;
   overflow-wrap: break-word;
   white-space: normal;
+  hyphens: auto;
   display: grid;
   padding: 0.5rem 0.5rem 0.5rem 0.5rem;
   border-bottom: 1px solid #666e75;

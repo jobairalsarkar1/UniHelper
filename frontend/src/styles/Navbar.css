@@ -173,7 +173,7 @@
 }
 
 .loggedin-user-name {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 550;
 }
 
@@ -224,7 +224,7 @@
 
 .loggedin-item-link {
   padding: 0.3rem 0.5rem 0.3rem 0.8rem;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 550;
   text-decoration: none;
   color: #000000;

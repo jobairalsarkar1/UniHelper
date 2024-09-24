@@ -14,6 +14,8 @@ import AdvisedCourses from "./AdvisedCourses";
 import Loader from "./Loader";
 import MultiSelect from "./MultiSelect";
 import AllStudents from "./AllStudents";
+import Scholarship from "./Scholarship";
+import MedicalHelp from "./MedicalHelp";
 
 export {
   PrivateRoute,
@@ -32,4 +34,6 @@ export {
   Loader,
   MultiSelect,
   AllStudents,
+  Scholarship,
+  MedicalHelp,
 };
