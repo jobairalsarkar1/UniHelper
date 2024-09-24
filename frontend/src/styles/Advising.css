@@ -275,12 +275,15 @@
 }
 
 .advising-pannel-not-eligible > span {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: 550;
   display: inline-block;
   word-wrap: break-word;
   white-space: normal;
   max-width: 100%;
+  color: transparent;
+  background: linear-gradient(120deg, red, blue);
+  background-clip: text;
 }
 
 /* SeatStatus.jsx Component */

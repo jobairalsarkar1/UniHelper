@@ -69,7 +69,10 @@ const deleteClassroom = async (req, res) => {
 const getClassroomInfo = async (req, res) => {
   const { classroomId } = req.params;
   try {
-    const classroom = await Classroom.findById(classroomId);
+    const classroom = await Classroom.findById(classroomId).populate({
+      path: "users",
+      select: "name email ID status profileImage",
+    });
     if (!classroom) {
       return res.status(404).json({ message: "Classroom do not exists." });
     }
@@ -191,6 +194,23 @@ const makeComment = async (req, res) => {
   }
 };
 
+const addClassroomMembers = async (req, res) => {
+  const { classroomId } = req.params;
+  const { members } = req.body;
+  try {
+    const classroom = await Classroom.findByIdAndUpdate(
+      classroomId,
+      {
+        $addToSet: { users: { $each: members } },
+      },
+      { new: true }
+    ).populate("users", "name email ID profileImage");
+    res.status(200).json(classroom);
+  } catch (error) {
+    res.status(500).json({ message: "Error adding members." });
+  }
+};
+
 module.exports = {
   createClassroom,
   getClassrooms,
@@ -200,4 +220,5 @@ module.exports = {
   deletePost,
   getClassroomPosts,
   makeComment,
+  addClassroomMembers,
 };

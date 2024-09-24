@@ -149,6 +149,103 @@
   align-items: center;
 }
 
+/* ClassroomMembers.jsx */
+.classroomMembers-add-members-form {
+  padding: 1rem;
+  border-radius: 0.35rem;
+  background-color: var(--element-background-color);
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
+    0 2px 6px 2px rgba(60, 64, 67, 0.15);
+}
+
+.classroomMembers-add-members-btn {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  width: 100%;
+  font-weight: 550;
+  border-radius: 0.35rem;
+  color: #ffffff;
+  background-color: #007bff;
+  border: none;
+  cursor: pointer;
+}
+
+.classroomMembers-add-members-btn:hover {
+  background-color: #0971e1;
+}
+
+.classroomMembers-members-container {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: var(--element-background-color);
+}
+
+.members-list-title {
+  font-size: 1rem;
+  font-weight: 550;
+}
+
+.classroomMembers-members-list {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.classroomMembers-member {
+  padding: 0.4rem 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* background-color: red; */
+}
+
+.classroomMembers-member:hover {
+  background-color: #edeff2;
+}
+
+.classroomMembers-remove-member-btn {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
+  font-weight: 550;
+  border-radius: 0.35rem;
+  color: #ffffff;
+  background-color: #ff0627;
+  border: none;
+  cursor: pointer;
+}
+
+.classroomMembers-remove-member-btn:hover {
+  background-color: #d90521;
+}
+
+.classroomMember-profile-image-alt,
+.classroomMember-profile-image {
+  width: 30px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+}
+
+.classroomMember-profile-image-alt {
+  font-weight: 550;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  background-color: #606365;
+}
+
+.classroomMembers-member-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.member-name {
+  font-size: 0.9rem;
+  font-weight: 520;
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);

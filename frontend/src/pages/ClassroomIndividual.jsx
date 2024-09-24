@@ -8,6 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { formatDate, saveFile } from "../utils";
 import axios from "axios";
+import { ClassroomMembers } from "../components";
 
 const ClassroomIndividual = () => {
   const { classroomId } = useParams();
@@ -23,6 +24,7 @@ const ClassroomIndividual = () => {
   const [posting, setPosting] = useState(false);
   const fileInputRef = useRef(null);
   const [postMenu, setPostMenu] = useState({});
+  const [classroomMembers, setClassroomMembers] = useState([]);
   const [navigationState, setNavigationState] = useState({
     workspace: true,
     members: false,
@@ -38,6 +40,7 @@ const ClassroomIndividual = () => {
         );
         if (response.data) {
           setClassroomInfo(response.data);
+          setClassroomMembers(response.data.users);
         }
       } catch (error) {
         console.error(error);
@@ -315,94 +318,36 @@ const ClassroomIndividual = () => {
               </form>
             </div>
             <div className="classroomIndividual-posts-container">
-              {/* <div className="classroomIndividual-post">
-            <div className="classroomIndividual-post-owner-info">
-              <div className="classroomIndividual-owner-img">
-                <p>A</p>
-              </div>
-              <div className="classroomIndividual-owner-info">
-                <span className="owner-name">Jobair Al Sarkar</span>
-                <span className="date-posted">10/05/2024</span>
-              </div>
-            </div>
-            <div className="classroomIndividual-post-content">
-              <p>Hello, Good People How are you doing.</p>
-            </div>
-            <div className="classroomIndividual-post-comments-div">
-              <button
-                className="posts-total-comments-btn"
-                onClick={toggleComments}
-              >
-                {isCommentsVisible ? "Hide Comments" : "9 Comments"}
-              </button>
-              <div
-                ref={commentsRef}
-                className={
-                  isCommentsVisible
-                    ? "comments-container active"
-                    : "comments-container"
-                }
-              >
-                <div className="classroomIndividual-post-comment">
-                  <div className="post-comment-owner-img">A</div>
-                  <div className="post-comment-details">
-                    <span className="comment-owner-name">
-                      Ayesha Rahman <small>10/01/2024</small>
-                    </span>
-                    <p>That was a Nice one.</p>
-                  </div>
-                </div>
-              </div>
-              <form className="classroomIndividual-make-comment">
-                {userOne.profileImage ? (
-                  <img
-                    className="current-commentor"
-                    src={userOne.profileImage}
-                    alt="Profile"
-                  />
-                ) : (
-                  <div className="current-commentor">
-                    <span>A</span>
-                  </div>
-                )}
-                <input
-                  type="text"
-                  id="comment"
-                  name="comment"
-                  className="comment"
-                  placeholder="Add a comment"
-                />
-                <button type="button" className="make-comment-btn">
-                  Comment
-                </button>
-              </form>
-            </div>
-          </div> */}
               {posts?.map((post) => (
                 <div key={post._id} className="classroomIndividual-post">
                   <div className="classroomIndividual-post-owner-info">
-                    <div className="classIndividual-post-actions">
-                      <FontAwesomeIcon
-                        icon={faEllipsisVertical}
-                        className="classIndividual-post-action-bar"
-                        onClick={() => togglePostMenu(post._id)}
-                      />
-                      <div
-                        className={
-                          postMenu[post._id]
-                            ? "classroomIndividual-delete-post"
-                            : "classroomIndividual-delete-post not-active"
-                        }
-                      >
-                        <button
-                          type="button"
-                          className="classroomIndividual-post-delete-btn"
-                          onClick={() => handlePostDelete(post._id)}
-                        >
-                          Delete
-                        </button>
-                      </div>
-                    </div>
+                    {post.author._id === userOne._id && (
+                      <>
+                        <div className="classIndividual-post-actions">
+                          <FontAwesomeIcon
+                            icon={faEllipsisVertical}
+                            className="classIndividual-post-action-bar"
+                            onClick={() => togglePostMenu(post._id)}
+                          />
+                          <div
+                            className={
+                              postMenu[post._id]
+                                ? "classroomIndividual-delete-post"
+                                : "classroomIndividual-delete-post not-active"
+                            }
+                          >
+                            <button
+                              type="button"
+                              className="classroomIndividual-post-delete-btn"
+                              onClick={() => handlePostDelete(post._id)}
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        </div>
+                      </>
+                    )}
+
                     <div className="classroomIndividual-owner-img">
                       {post.author.profileImage ? (
                         <img
@@ -519,7 +464,11 @@ const ClassroomIndividual = () => {
         {navigationState.members && (
           <>
             <div className="classroomIndividual-members-container">
-              <span>Welcome to Members</span>
+              <ClassroomMembers
+                classroomId={classroomId}
+                classroomMembers={classroomMembers}
+                setClassroomMembers={setClassroomMembers}
+              />
             </div>
           </>
         )}

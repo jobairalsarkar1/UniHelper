@@ -16,6 +16,7 @@ import MultiSelect from "./MultiSelect";
 import AllStudents from "./AllStudents";
 import Scholarship from "./Scholarship";
 import MedicalHelp from "./MedicalHelp";
+import ClassroomMembers from "./ClassroomMembers";
 
 export {
   PrivateRoute,
@@ -36,4 +37,5 @@ export {
   AllStudents,
   Scholarship,
   MedicalHelp,
+  ClassroomMembers,
 };

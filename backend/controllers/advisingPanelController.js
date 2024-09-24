@@ -219,7 +219,10 @@ const teacherSections = async (req, res) => {
         path: "course",
         select: "name courseCode",
       })
-      .populate({ path: "students", select: "name email ID" })
+      .populate({
+        path: "students",
+        select: "name email ID status profileImage",
+      })
       .populate({ path: "faculty", select: "name" });
 
     // const formattedSections = sections.map((section) => ({

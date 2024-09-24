@@ -401,12 +401,12 @@
 }
 
 .classroomIndividual-members-container {
-  padding: 1rem;
+  /* padding: 1rem; */
   margin-top: 0.8rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  background-color: var(--element-background-color);
+  /* background-color: var(--element-background-color); */
 }
 
 .classroomIndividual-posts-container {

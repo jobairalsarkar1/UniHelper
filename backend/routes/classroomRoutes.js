@@ -29,5 +29,10 @@ router.delete(
 );
 router.get("/posts/:classroomId", auth, ClassroomController.getClassroomPosts);
 router.post("/posts/make-comment", auth, ClassroomController.makeComment);
+router.put(
+  "/add-members/:classroomId",
+  auth,
+  ClassroomController.addClassroomMembers
+);
 
 module.exports = router;

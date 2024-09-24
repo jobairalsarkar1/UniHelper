@@ -563,6 +563,9 @@
   font-size: 1.3rem;
   font-weight: 550;
   color: #008080;
+  color: transparent;
+  background: linear-gradient(120deg, red, blue);
+  background-clip: text;
 }
 
 @media (min-width: 1024px) {
