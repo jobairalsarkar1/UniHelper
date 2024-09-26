@@ -14,7 +14,7 @@
   gap: 0.5rem;
   grid-template-columns: 60% auto;
   border-radius: 0.35rem;
-  border: 0.1rem solid #dadce0;
+  border: 0.095rem solid #dadce0;
   background-color: var(--element-background-color);
 }
 
@@ -28,7 +28,15 @@
 
 .profile-row {
   display: grid;
-  grid-template-columns: 40% auto;
+  gap: 0.5rem;
+  grid-template-columns: 35% auto;
+  /* background-color: green; */
+}
+
+.profile-label {
+  display: flex;
+  justify-content: space-between;
+  /* background-color: #ffffff; */
 }
 
 .profile-value {
@@ -53,7 +61,7 @@
   width: 100px;
   height: 100px;
   object-fit: cover;
-  border-radius: 0.5rem;
+  border-radius: 0.7rem;
   border: 0.1rem solid #dadce0;
   pointer-events: none;
 }

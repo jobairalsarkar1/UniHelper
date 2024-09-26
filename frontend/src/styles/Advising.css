@@ -289,6 +289,7 @@
 /* SeatStatus.jsx Component */
 .seatStatus-inner-container {
   padding: 0.5rem 2.1rem 0.5rem 2.1rem;
+  height: calc(100dvh - 3rem);
 }
 
 .seatStatus-title {
@@ -418,8 +419,12 @@
   background-color: red;
 } */
 
+.gradeSheetIndividual-create-semester-form {
+  margin: auto;
+}
+
 .adminAdvising-create-slot-container {
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   padding: 0.9rem 1rem;
   border-radius: 0.4rem;
   display: flex;
@@ -503,8 +508,9 @@
   margin-top: 1.5rem;
   padding: 1rem;
   width: 100%;
-  border-radius: 0.35rem;
+  border-radius: 0.5rem;
   background-color: var(--element-background-color);
+  border: 0.1rem solid #dadce0;
 }
 
 .adminAdvising-slot-toApprove {
@@ -562,6 +568,11 @@
     margin: auto;
     max-width: 70%;
   } */
+
+  .gradeSheetIndividual-create-semester-form {
+    margin-bottom: 1rem;
+    width: 50%;
+  }
 
   .adminAdvising-create-slot-container {
     margin: auto;
@@ -662,7 +673,7 @@
   }
 
   .seatStatus-inner-container {
-    padding: 0.5rem 1.4rem 0.5rem 1.35rem;
+    padding: 0.5rem 1.5rem 0.5rem 1.35rem;
   }
 
   .advised-courses-inner-container {

@@ -310,10 +310,10 @@ const GradeSheetIndividual = () => {
                     Course Title
                   </li>
                   <li className="gradeSheet-list-header gradeSheet-info-items">
-                    Grade
+                    Credit
                   </li>
                   <li className="gradeSheet-list-header gradeSheet-info-items">
-                    Credit
+                    Grade
                   </li>
                   <li className="gradeSheet-list-header gradeSheet-info-items">
                     CGPA
@@ -331,17 +331,17 @@ const GradeSheetIndividual = () => {
                             key={course._id}
                             className="gradeSheet-info-list-inner"
                           >
-                            <li className="gradeSheet-info-items-inner gradeSheet-info-items gradeSheet-info-item-id">
+                            <li className="gradeSheet-info-items-inner gradeSheet-info-items gradeSheet-info-item-id-inner">
                               {course.course.courseCode}
                             </li>
                             <li className="gradeSheet-info-items-inner gradeSheet-info-items">
                               {course.course.name}
                             </li>
                             <li className="gradeSheet-info-items-inner gradeSheet-info-items">
-                              {course.grade}
+                              {course.course.credit}
                             </li>
                             <li className="gradeSheet-info-items-inner gradeSheet-info-items">
-                              {course.course.credit}
+                              {course.grade}
                             </li>
                             <li className="gradeSheet-info-items-inner gradeSheet-info-items">
                               {course.cgpa}
@@ -353,8 +353,10 @@ const GradeSheetIndividual = () => {
                         <li className="gradeSheet-info-items gradeSheet-info-item-id">
                           Semester Total
                         </li>
-                        <li className="gradeSheet-info-items">Grade</li>
-                        <li className="gradeSheet-info-items">Grade</li>
+                        {/* <li className="gradeSheet-info-items">Grade</li> */}
+                        <li className="gradeSheet-info-items">
+                          {semester.courses.length * 3}
+                        </li>
                         <li className="gradeSheet-info-items">
                           {semester.courses.length * 3}
                         </li>
@@ -370,7 +372,7 @@ const GradeSheetIndividual = () => {
                     Cumulative
                   </li>
                   <li className="gradeSheet-info-items">Grade</li>
-                  <li className="gradeSheet-info-items">Grade</li>
+                  {/* <li className="gradeSheet-info-items">Grade</li> */}
                   <li className="gradeSheet-info-items">
                     {gradeSheet?.creditCompleted}
                   </li>

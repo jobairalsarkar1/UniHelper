@@ -1,17 +1,25 @@
-import { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
-import { FormInput } from "../components";
+import { Footer, FormInput } from "../components";
 import Vector from "../assets/Vector.jpg";
 import "../styles/Authentication.css";
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
-  const { login } = useContext(AuthContext);
+  const { login, isLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const { email, password } = formData;
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      const redirectTo = location.state?.from?.pathname || "/profile";
+      navigate(redirectTo);
+    }
+  }, [isLoggedIn, navigate, location]);
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -30,33 +38,34 @@ const Login = () => {
 
   return (
     <div className="authentication-container">
-      <div className="login-container">
-        <div className="login-featuring-image">
-          <img src={Vector} alt="Loading.." className="login-feature-image" />
-        </div>
+      <div className="authentication-inner-container">
+        <div className="login-container">
+          <div className="login-featuring-image">
+            <img src={Vector} alt="Loading.." className="login-feature-image" />
+          </div>
 
-        <form onSubmit={onSubmit} className="login-form">
-          <span className="login-form-title">Sign In</span>
-          <FormInput
-            type="text"
-            name="email"
-            className="form-email-field"
-            value={email}
-            onChange={onChange}
-            placeholder="Enter Email"
-            required
-          />
-          <FormInput
-            type="password"
-            name="password"
-            className="form-password-field"
-            value={password}
-            onChange={onChange}
-            placeholder="Enter Password"
-            required
-          />
+          <form onSubmit={onSubmit} className="login-form">
+            <span className="login-form-title">Sign In</span>
+            <FormInput
+              type="text"
+              name="email"
+              className="form-email-field"
+              value={email}
+              onChange={onChange}
+              placeholder="Enter Email"
+              required
+            />
+            <FormInput
+              type="password"
+              name="password"
+              className="form-password-field"
+              value={password}
+              onChange={onChange}
+              placeholder="Enter Password"
+              required
+            />
 
-          {/* <input
+            {/* <input
             type="text"
             name="email"
             className="form-email-field"
@@ -65,7 +74,7 @@ const Login = () => {
             placeholder="Enter Email"
             required
           /> */}
-          {/* <input
+            {/* <input
             type="password"
             name="password"
             className="form-password-field"
@@ -74,28 +83,32 @@ const Login = () => {
             placeholder="Enter Password"
             required
           /> */}
-          {error && (
-            <p
-              style={{
-                color: "red",
-                fontSize: "0.8rem",
-                marginBottom: "0px",
-                paddingBottom: "0px",
-              }}
-            >
-              {error}
+            {error && (
+              <p
+                style={{
+                  color: "red",
+                  fontSize: "0.8rem",
+                  marginBottom: "0px",
+                  paddingBottom: "0px",
+                }}
+              >
+                {error}
+              </p>
+            )}
+            <button type="submit" className="form-login-button">
+              Login
+            </button>
+            <p className="forget-password-reminder">
+              Don't have an account?{" "}
+              <Link to="/register" className="register-link">
+                Register Now.
+              </Link>
             </p>
-          )}
-          <button type="submit" className="form-login-button">
-            Login
-          </button>
-          <p className="forget-password-reminder">
-            Don't have an account?{" "}
-            <Link to="/register" className="register-link">
-              Register Now.
-            </Link>
-          </p>
-        </form>
+          </form>
+        </div>
+      </div>
+      <div className="footer">
+        <Footer />
       </div>
     </div>
   );

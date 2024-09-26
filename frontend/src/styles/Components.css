@@ -59,6 +59,8 @@
 
 .schedule-holder-holder {
   padding: 1rem;
+  border-radius: 0.35rem;
+  border: 0.09rem solid #dadce0;
 }
 
 .schedule-holder-holder > span {
@@ -68,7 +70,7 @@
 
 .schedule-holder {
   padding-top: 0.3rem;
-  overflow-x: scroll;
+  /* overflow-x: scroll; */
 }
 
 .advising-pannel-class-schedule {
@@ -246,6 +248,67 @@
   font-weight: 520;
 }
 
+/* Footer.jsx */
+.footer-container {
+  color: #ffffff;
+  background-color: #1c2531;
+  /* background-color: transparent; */
+  /* padding: 1rem 1.1rem 1rem 1.1rem; */
+  box-sizing: border-box;
+  /* width: 100%; */
+  /* max-width: 100vw; */
+  overflow: hidden;
+}
+
+.footer-inner-container {
+  padding: 2rem 2.1rem 1.5rem 2.1rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-items {
+  list-style-type: none;
+  font-size: 0.7rem;
+  display: flex;
+  gap: 0.5rem;
+  /* row-gap: 0.5rem; */
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  /* width: 100%;
+  max-width: 100%; */
+}
+
+.footer-item {
+  margin-bottom: 0.6rem;
+}
+
+.footer-item-link {
+  text-decoration: none;
+  color: #cfcece;
+  white-space: nowrap;
+  padding: 0.2rem 0.5rem;
+  border-radius: 1rem;
+  border: 0.05rem solid #dadce0;
+  /* background-color: red; */
+  /* text-align: center; */
+}
+
+.footer-item-link:hover {
+  text-decoration: underline;
+}
+
+.liscence {
+  padding: 0.5rem 0 0.5rem 0;
+  font-size: 0.55rem;
+  text-align: center;
+  color: #cfcece;
+  border-top: 0.001rem solid #647290;
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -263,4 +326,12 @@
   .schedule-items-inner {
     font-size: 0.5rem;
   }
+
+  .schedule-holder {
+    overflow-x: scroll;
+  }
+
+  /* .footer-inner-container {
+    padding: 1.35rem 1.35rem;
+  } */
 }

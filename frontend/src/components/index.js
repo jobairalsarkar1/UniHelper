@@ -17,6 +17,7 @@ import AllStudents from "./AllStudents";
 import Scholarship from "./Scholarship";
 import MedicalHelp from "./MedicalHelp";
 import ClassroomMembers from "./ClassroomMembers";
+import Footer from "./Footer";
 
 export {
   PrivateRoute,
@@ -38,4 +39,5 @@ export {
   Scholarship,
   MedicalHelp,
   ClassroomMembers,
+  Footer,
 };

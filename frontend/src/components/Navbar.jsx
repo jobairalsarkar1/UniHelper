@@ -73,7 +73,7 @@ const Navbar = ({ toggleSidebar, setSidebarOpen }) => {
               {/* <img src={UniHelperLogo} alt="Logo" className="unihelper-logo" /> */}
             </Link>
           </div>
-          <ul className="top-navbar-list">
+          {/* <ul className="top-navbar-list">
             <li className="top-navbar-list-item">
               <Link to="/" className="top-navbar-item-link">
                 Home
@@ -84,7 +84,7 @@ const Navbar = ({ toggleSidebar, setSidebarOpen }) => {
                 Contact
               </Link>
             </li>
-          </ul>
+          </ul> */}
           <div className="authentication-div">
             {isLoggedIn ? (
               <div

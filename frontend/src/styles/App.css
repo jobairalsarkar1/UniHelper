@@ -30,14 +30,15 @@
 .content-body-container {
   width: 100%;
   background-color: var(--background-color);
+  background-color: var(--element-background-color);
   /* display: flex; */
   /* justify-content: center; */
   height: calc(100vh - 4rem);
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 }
 
 /* This one handles ScrollBard. */
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   display: block;
   width: 0.5em;
 }
@@ -52,4 +53,4 @@
   height: 5%;
   border-radius: 0.5rem;
   background-color: #d8d8d8;
-}
+} */

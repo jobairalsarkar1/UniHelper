@@ -273,8 +273,9 @@
   min-width: 100%;
   margin-top: 1rem;
   padding: 1rem;
-  border-radius: 0.3rem;
+  border-radius: 0.5rem;
   background-color: #ffffff;
+  border: 0.1rem solid #dadce0;
 }
 
 .active-courses h2 {

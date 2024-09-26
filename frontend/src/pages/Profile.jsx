@@ -63,24 +63,32 @@ const Profile = () => {
         <div className="profile-info-container">
           <div className="profile-info">
             <div className="profile-row">
-              <span className="profile-label">Name</span>
-              <span className="profile-value">: {`${userOne.name}`}</span>
+              <span className="profile-label">
+                Name <strong>:</strong>
+              </span>
+              <span className="profile-value">{`${userOne.name}`}</span>
             </div>
             <div className="profile-row">
-              <span className="profile-label">Status</span>
+              <span className="profile-label">
+                Status <strong>:</strong>
+              </span>
               <span className="profile-value">
-                : {userOne.status.toUpperCase()[0] + userOne.status.slice(1)}
+                {userOne.status.toUpperCase()[0] + userOne.status.slice(1)}
               </span>
             </div>
             {userOne.status === "student" && (
               <>
                 <div className="profile-row">
-                  <span className="profile-label">Student ID</span>
-                  <span className="profile-value">: {userOne.ID}</span>
+                  <span className="profile-label">
+                    Student ID <strong>:</strong>
+                  </span>
+                  <span className="profile-value">{userOne.ID}</span>
                 </div>
                 <div className="profile-row">
-                  <span className="profile-label">Department</span>
-                  <span className="profile-value">: CSE</span>
+                  <span className="profile-label">
+                    Department <strong>:</strong>
+                  </span>
+                  <span className="profile-value">CSE</span>
                 </div>
                 {/* <div className="profile-row">
                   <span className="profile-label">Email</span>
@@ -97,9 +105,11 @@ const Profile = () => {
               </>
             )} */}
             <div className="profile-row">
-              <span className="profile-label">Email</span>
+              <span className="profile-label">
+                Email <strong>:</strong>
+              </span>
               <span className="profile-value">
-                : <a href={`mailto:${userOne.email}`}>{userOne.email}</a>
+                <a href={`mailto:${userOne.email}`}>{userOne.email}</a>
               </span>
             </div>
           </div>

@@ -27,7 +27,7 @@ import {
   Consultations,
   NotFound,
   AdvisedCourses,
-  AllStudents,
+  // AllStudents,
   Scholarship,
   MedicalHelp,
 } from "./components";
@@ -51,7 +51,7 @@ import {
   Finance,
   GradeSheetIndividual,
   AdminAdvising,
-  Facilities,
+  // Facilities,
 } from "./pages";
 import "./styles/App.css";
 
@@ -73,7 +73,7 @@ const App = () => {
             <SideNav sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
             <div className="content-body-container">
               <Routes>
-                <Route path="/" element={<Home />} />
+                <Route path="/" element={<Login />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
@@ -189,22 +189,8 @@ const App = () => {
                     </PrivateRoute>
                   }
                 />
-                <Route
-                  path="/seat-status"
-                  element={
-                    <PrivateRoute>
-                      <SeatStatus />
-                    </PrivateRoute>
-                  }
-                />
-                <Route
-                  path="/courses-details"
-                  element={
-                    <PrivateRoute>
-                      <CourseDetails />
-                    </PrivateRoute>
-                  }
-                />
+                <Route path="/seat-status" element={<SeatStatus />} />
+                <Route path="/courses-details" element={<CourseDetails />} />
                 <Route
                   path="/advised-courses"
                   element={

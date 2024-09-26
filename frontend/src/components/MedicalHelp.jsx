@@ -5,7 +5,9 @@ const MedicalHelp = () => {
   return (
     <div className="medicalHelp-container">
       <div className="medicalHelp-inner-container">
-        <span>No service is available now.</span>
+        <div className="medicalHelp-content-container">
+          <span>No service is available now.</span>
+        </div>
       </div>
     </div>
   );

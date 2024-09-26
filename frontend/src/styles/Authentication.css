@@ -1,7 +1,11 @@
 .authentication-container {
+  position: relative;
+}
+
+.authentication-inner-container {
   padding: 0.5rem 2.1rem 0.5rem 2.1rem;
   background-color: var(--background-color);
-  height: calc(100dvh - 4.2rem);
+  height: calc(100dvh - 10.2rem);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,7 +62,7 @@
 
 .login-form .login-form-title {
   padding: 0.5rem 0 0.5rem 0;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 550;
   text-align: center;
 }
@@ -191,7 +195,7 @@
 
 .register-form .register-form-title {
   padding: 0.5rem 0 0.5rem 0;
-  font-size: 1.5em;
+  font-size: 1.3em;
   font-weight: 550;
   text-align: center;
 }
@@ -229,6 +233,10 @@
 
   .register-form {
     width: 100%;
+  }
+
+  .authentication-inner-container {
+    height: calc(100dvh - 8.1rem);
   }
 }
 

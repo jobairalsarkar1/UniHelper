@@ -1,7 +1,22 @@
 /* Home */
+.home-container {
+  position: relative;
+}
+
 .home-inner-container {
   padding: 0.5rem 2.1rem 0.5rem 2.1rem;
+  height: calc(100dvh - 10rem);
+  /* background-color: red; */
 }
+
+/* 
+.footer {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+} */
 
 /* Finance */
 .finance-container {
@@ -178,7 +193,7 @@
 }
 
 .gradeSheet-inner-container {
-  padding: 0.5rem;
+  padding: 0 0.5rem 0.5rem 0.5rem;
   background-color: var(--element-background-color);
 }
 
@@ -474,10 +489,11 @@
 
 /* Contact.jsx */
 .contact-container {
-  padding: 0.5rem 2.1rem 0.5rem 2.1rem;
+  position: relative;
 }
 
 .contact-inner-container {
+  padding: 0.5rem 2.1rem 0.5rem 2.1rem;
   margin: auto;
   width: 100%;
   background-color: var(--element-background-color);
@@ -485,7 +501,7 @@
 }
 
 .contact-inner-inner-container {
-  padding: 1rem;
+  /* padding: 0.5rem; */
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(1, 1fr);
@@ -549,17 +565,22 @@
 
 /* MedicalHelp.jsx */
 .medicalHelp-container {
-  padding: 0.5rem 2.1rem 0.5rem 2.1rem;
+  position: relative;
+  /* background-color: var(--element-background-color); */
 }
 
 .medicalHelp-inner-container {
-  padding: 1rem;
-  text-align: center;
-  background-color: var(--element-background-color);
+  padding: 0.5rem 2.1rem 0.5rem 2.1rem;
 }
 
-.scholarship-inner-container > span,
-.medicalHelp-inner-container > span {
+.medicalHelp-content-container {
+  padding: 1rem 1rem 1rem 1rem;
+  background-color: var(--element-background-color);
+  text-align: center;
+}
+
+.scholarship-content-container > span,
+.medicalHelp-content-container > span {
   font-size: 1.3rem;
   font-weight: 550;
   color: #008080;
@@ -632,7 +653,7 @@
     font-size: 0.7rem;
   }
 
-  .contact-container {
+  .contact-iiner-container {
     padding: 0.5rem 1.35rem 0.5rem 1.35rem;
   }
 

@@ -117,7 +117,7 @@ const AdminAdvising = () => {
   return (
     <div className="adminAdvising-container">
       <div className="adminAdvising-inner-container">
-        {/* <div className="gradeSheetIndividual-create-semester-form">
+        <div className="gradeSheetIndividual-create-semester-form">
           <input
             type="text"
             name="semester"
@@ -137,7 +137,7 @@ const AdminAdvising = () => {
           {semesterCreated && (
             <p style={{ fontSize: "0.75rem" }}>{semesterCreated}</p>
           )}
-        </div> */}
+        </div>
         {/* <div className="adminAdvising-create-semester">
           <span>Create Semester</span>
         </div> */}

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { SearchThings } from "../components";
+import { Footer, SearchThings } from "../components";
 import { timeConverter } from "../utils";
 import axios from "axios";
 import "../styles/Advising.css";
@@ -14,10 +14,8 @@ const SeatStatus = () => {
   useEffect(() => {
     const fetchSections = async () => {
       try {
-        const token = localStorage.getItem("token");
-        const response = await axios.get("/api/courses/get-sections", {
-          headers: { "x-auth-token": token },
-        });
+        // const token = localStorage.getItem("token");
+        const response = await axios.get("/api/courses/get-sections");
         if (response.data) {
           const validSections = response.data.filter(
             (item) =>
@@ -210,6 +208,9 @@ const SeatStatus = () => {
             </>
           )} */}
         </div>
+      </div>
+      <div className="footer">
+        <Footer />
       </div>
     </div>
   );

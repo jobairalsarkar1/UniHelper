@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/External.css";
+import { Footer } from "../components";
 
 const Contact = () => {
   return (
@@ -86,6 +87,9 @@ const Contact = () => {
           </div>
         </div>
         {/* <span>Contact</span> */}
+      </div>
+      <div className="footer">
+        <Footer />
       </div>
     </div>
   );

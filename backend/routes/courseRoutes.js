@@ -5,10 +5,10 @@ const CourseController = require("../controllers/courseController");
 
 // Define routes
 router.post("/create-course", auth, CourseController.createCourse);
-router.get("/get-courses", auth, CourseController.getCourses);
+router.get("/get-courses", CourseController.getCourses);
 router.delete("/delete-course/:id", auth, CourseController.deleteCourse);
 router.post("/create-section/:courseId", auth, CourseController.createSection);
-router.get("/get-sections", auth, CourseController.getAllSection);
+router.get("/get-sections", CourseController.getAllSection);
 router.get("/get-section/:sectionId", auth, CourseController.getSection);
 router.get("/get-course/:courseId", auth, CourseController.getCourse);
 router.delete(
