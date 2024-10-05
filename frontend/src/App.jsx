@@ -30,6 +30,8 @@ import {
   // AllStudents,
   Scholarship,
   MedicalHelp,
+  ForgetPassword,
+  ResetPassword,
 } from "./components";
 import {
   Home,
@@ -77,6 +79,11 @@ const App = () => {
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/forget-password" element={<ForgetPassword />} />
+                <Route
+                  path="/reset-password/:token"
+                  element={<ResetPassword />}
+                />
                 <Route
                   path="/profile"
                   element={

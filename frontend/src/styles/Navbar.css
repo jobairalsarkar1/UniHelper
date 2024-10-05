@@ -224,13 +224,15 @@
 
 .loggedin-item-link {
   padding: 0.3rem 0.5rem 0.3rem 0.8rem;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 550;
   text-decoration: none;
   color: #000000;
-  display: flex;
+  display: grid;
+  grid-template-columns: 10% auto;
   gap: 0.5rem;
   align-items: center;
+  /* justify-content: center; */
   /* background-color: red; */
 }
 

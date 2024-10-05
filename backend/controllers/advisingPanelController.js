@@ -3,6 +3,7 @@ const AdvisingPanel = require("../models/AdvisingPanel");
 const Section = require("../models/Section");
 const Semester = require("../models/Semester");
 const User = require("../models/User");
+const PaySlip = require("../models/PaySlip");
 const { checkTimeClash } = require("../middleware/advisingHandler");
 
 const createAdvisingSlot = async (req, res) => {
@@ -82,9 +83,20 @@ const approveAdvising = async (req, res) => {
   try {
     const panel = await AdvisingPanel.findById(panelId);
     if (panel) {
+      const paySlip = await PaySlip.findOne({
+        student: panel.student,
+        semester: panel.semester,
+      });
+      if (!paySlip) {
+        const newPaySlip = new PaySlip({
+          student: panel.student,
+          semester: panel.semester,
+        });
+        await newPaySlip.save();
+      }
       panel.advisingStatus = "approved";
       await panel.save();
-      res.status(200).json({ message: "Advising approved." });
+      res.status(200).json({ message: "Advising approved & PaySlip created." });
     } else {
       res.status(404).json({ message: "Panel not found." });
     }
@@ -252,6 +264,21 @@ const teacherSections = async (req, res) => {
   }
 };
 
+const paymentCheck = async (req, res) => {
+  const { student, semester } = req.query;
+  // console.log(req.query);
+  try {
+    const paymentStatus = await PaySlip.findOne({
+      student: student,
+      semester,
+    });
+    // console.log(paymentStatus);
+    res.status(200).json(paymentStatus);
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong." });
+  }
+};
+
 module.exports = {
   createAdvisingSlot,
   getPendingAdvisingPanels,
@@ -261,4 +288,5 @@ module.exports = {
   dropCourseSection,
   createSemester,
   teacherSections,
+  paymentCheck,
 };

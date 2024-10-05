@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "../styles/AllUsers.css";
+import Loader from "../components/Loader";
 
 const AdminDepartment = () => {
   const [name, setName] = useState("");
@@ -12,6 +13,7 @@ const AdminDepartment = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleCourseSelection = (courseId) => {
     setSelectedCourses((prevSelected) =>
@@ -77,6 +79,8 @@ const AdminDepartment = () => {
         setCourses(sortedCourses);
       })
       .catch((error) => alert(error.message));
+
+    setLoading(true);
     axios
       .get("/api/departments/get-departments", {
         headers: { "x-auth-token": token },
@@ -88,6 +92,7 @@ const AdminDepartment = () => {
         setDepartments(sortedDepartments);
       })
       .catch((error) => alert(error));
+    setLoading(false);
   }, [selectedCourses]);
 
   return (
@@ -180,31 +185,40 @@ const AdminDepartment = () => {
           <hr />
           {departments ? (
             <>
-              <div className="active-courses-list">
-                {/* <h2>Available Departments</h2> */}
-                {departments.map((department) => (
-                  <div key={department._id} className="active-course">
-                    <div className="course-info-inner">
-                      <p>
-                        Course Code:{" "}
-                        <Link
-                          to={`/admin-course/${department._id}`}
-                          className="course-code-inner"
-                        >
-                          {department.name}
-                        </Link>
-                      </p>
-                    </div>
-                    <button
-                      type="button"
-                      className="delete-course-btn"
-                      onClick={() => handleDelete(department._id)}
-                    >
-                      Delete
-                    </button>
+              {loading ? (
+                <>
+                  <div className="loader-container-actual">
+                    <Loader />
                   </div>
-                ))}
-              </div>
+                </>
+              ) : (
+                <>
+                  <div className="active-courses-list">
+                    {departments.map((department) => (
+                      <div key={department._id} className="active-course">
+                        <div className="course-info-inner">
+                          <p>
+                            Course Code:{" "}
+                            <Link
+                              to={`/admin-course/${department._id}`}
+                              className="course-code-inner"
+                            >
+                              {department.name}
+                            </Link>
+                          </p>
+                        </div>
+                        <button
+                          type="button"
+                          className="delete-course-btn"
+                          onClick={() => handleDelete(department._id)}
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </>
+              )}
             </>
           ) : (
             <>

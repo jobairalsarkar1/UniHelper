@@ -20,13 +20,21 @@
 
 /* Finance */
 .finance-container {
+  position: relative;
   display: flex;
   justify-content: center;
   padding: 1rem 2.1rem 0.5rem 2.1rem;
+  height: calc(100dvh - 4rem);
 }
 
 .finance-inner-container {
+  position: relative;
   width: 100%;
+}
+
+.finance-container.blur .finance-inner-container {
+  filter: blur(5px);
+  pointer-events: none;
 }
 
 .finance-payment-status {

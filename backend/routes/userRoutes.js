@@ -18,6 +18,8 @@ router.put(
   UserController.updateUserInfo
 );
 router.delete("/delete-user/:id", auth, UserController.deleteUser);
+router.post("/forget-password", UserController.forgetPassword);
+router.post("/reset-password/:token", UserController.resetPassword);
 // router.get("/:id", UserController.getUser);
 // router.put("/:id", UserController.updateUser);
 

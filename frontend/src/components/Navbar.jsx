@@ -142,12 +142,12 @@ const Navbar = ({ toggleSidebar, setSidebarOpen }) => {
                   </div>
                   <hr />
                   <Link to="/profile" className="loggedin-item-link">
-                    <FontAwesomeIcon icon={faUser} />
-                    Profile
+                    <FontAwesomeIcon icon={faUser} className="icon-x" />
+                    <span>Profile</span>
                   </Link>
                   <Link to="/dashboard" className="loggedin-item-link">
-                    <FontAwesomeIcon icon={faDashboard} />
-                    Dashboard
+                    <FontAwesomeIcon icon={faDashboard} className="icon-x" />
+                    <span>Dashboard</span>
                   </Link>
                   {/* <hr /> */}
                   <Link
@@ -155,8 +155,8 @@ const Navbar = ({ toggleSidebar, setSidebarOpen }) => {
                     className="loggedin-item-link"
                     onClick={handleLogout}
                   >
-                    <FontAwesomeIcon icon={faSignOut} />
-                    Sign Out
+                    <FontAwesomeIcon icon={faSignOut} className="icon-x" />
+                    <span>Sign Out</span>
                   </Link>
                 </div>
               </div>

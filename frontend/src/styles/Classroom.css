@@ -5,7 +5,7 @@
 
 .classroom-inner-container {
   padding: 1rem 2.1rem 0.5rem 2.1rem;
-  background-color: var(--background-color);
+  background-color: var(--element-background-color);
 }
 
 /* .classroom-create-class-container {
@@ -348,7 +348,7 @@
   min-height: 70px;
   padding: 0.6rem 0.8rem 0.5rem 0.8rem;
   box-sizing: border-box;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
   resize: vertical;
   /* resize: none; */
   border-radius: 0.5rem;

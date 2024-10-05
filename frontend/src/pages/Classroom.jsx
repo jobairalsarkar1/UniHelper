@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
+import { Loader } from "../components";
 import { AuthContext } from "../contexts/AuthContext";
 import { formatDate } from "../utils";
 import axios from "axios";
@@ -21,11 +22,13 @@ const Classroom = () => {
   // const [clicked, setClicked] = useState(false);
   // const dropDownRef = useRef(null);
   const [openDropdown, setOpenDropdown] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const { title, name, semester } = formData;
 
   useEffect(() => {
     const fetchClassrooms = async () => {
+      setLoading(true);
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get("/api/classrooms/get-classrooms", {
@@ -38,6 +41,8 @@ const Classroom = () => {
         setMyClassrooms(userClassrooms);
       } catch (error) {
         setError("Error Fetching Classrooms. Please try again..");
+      } finally {
+        setLoading(false);
       }
     };
     fetchClassrooms();
@@ -194,64 +199,78 @@ const Classroom = () => {
           </>
         )}
 
-        {myClassrooms.length > 0 ? (
+        {loading ? (
           <>
-            <div className="classroom-classes-container">
-              {myClassrooms.map((classroom) => (
-                <div key={classroom._id} className="classroom-individual-class">
-                  <div className="classroom-top-section">
-                    {/* <img src="" alt="Classroom Owner" /> */}
-                    <div className="classroom-owner-picture-alter">
-                      <p>{classroom.name[0]}</p>
-                    </div>
-                    <div className="classroom-vertical-menu-div">
-                      <FontAwesomeIcon
-                        icon={faEllipsisVertical}
-                        className="classroom-vertical-menu"
-                        onClick={() => handleDropdownClick(classroom._id)}
-                      />
-                      <div
-                        className={
-                          openDropdown === classroom._id
-                            ? "classroom-inner-option"
-                            : "classroom-inner-option-not-active"
-                        }
-                      >
-                        <Link to="#" className="classroom-inner-option-link">
-                          Unenroll
-                        </Link>
-                        {userOne.status === "teacher" && (
-                          <Link
-                            to="#"
-                            className="classroom-inner-option-link"
-                            onClick={() => handleDelete(classroom._id)}
+            <div className="loader-container-actual1">
+              <Loader />
+            </div>
+          </>
+        ) : (
+          <>
+            {myClassrooms.length > 0 ? (
+              <>
+                <div className="classroom-classes-container">
+                  {myClassrooms.map((classroom) => (
+                    <div
+                      key={classroom._id}
+                      className="classroom-individual-class"
+                    >
+                      <div className="classroom-top-section">
+                        {/* <img src="" alt="Classroom Owner" /> */}
+                        <div className="classroom-owner-picture-alter">
+                          <p>{classroom.name[0]}</p>
+                        </div>
+                        <div className="classroom-vertical-menu-div">
+                          <FontAwesomeIcon
+                            icon={faEllipsisVertical}
+                            className="classroom-vertical-menu"
+                            onClick={() => handleDropdownClick(classroom._id)}
+                          />
+                          <div
+                            className={
+                              openDropdown === classroom._id
+                                ? "classroom-inner-option"
+                                : "classroom-inner-option-not-active"
+                            }
                           >
-                            Delete
-                          </Link>
-                        )}
+                            <Link
+                              to="#"
+                              className="classroom-inner-option-link"
+                            >
+                              Unenroll
+                            </Link>
+                            {userOne.status === "teacher" && (
+                              <Link
+                                to="#"
+                                className="classroom-inner-option-link"
+                                onClick={() => handleDelete(classroom._id)}
+                              >
+                                Delete
+                              </Link>
+                            )}
+                          </div>
+                        </div>
                       </div>
+                      <Link
+                        to={`/classroom/${classroom._id}`}
+                        className="classroom-bottom-section"
+                      >
+                        <span className="classroom-couseCode">
+                          {classroom.title}
+                        </span>
+                        <span className="classroom-courseName">
+                          {classroom.name}
+                        </span>
+                        <span className="classroom-semester">
+                          {classroom.semester}
+                        </span>
+                        <span className="classroom-created">
+                          Created: {formatDate(classroom.createdAt)}
+                        </span>
+                      </Link>
                     </div>
-                  </div>
-                  <Link
-                    to={`/classroom/${classroom._id}`}
-                    className="classroom-bottom-section"
-                  >
-                    <span className="classroom-couseCode">
-                      {classroom.title}
-                    </span>
-                    <span className="classroom-courseName">
-                      {classroom.name}
-                    </span>
-                    <span className="classroom-semester">
-                      {classroom.semester}
-                    </span>
-                    <span className="classroom-created">
-                      Created: {formatDate(classroom.createdAt)}
-                    </span>
-                  </Link>
-                </div>
-              ))}
-              {/* <Link to="" className="classroom-individual-class">
+                  ))}
+                  {/* <Link to="" className="classroom-individual-class">
             <div className="classroom-top-section">
               <div className="classroom-owner-picture-alter">
                 <p>A</p>
@@ -285,24 +304,26 @@ const Classroom = () => {
               <span className="classroom-created">Created: 20/03/2024</span>
             </div>
           </Link> */}
-            </div>
-          </>
-        ) : (
-          <>
-            <div className="no-classroom-available-for-you">
-              {userOne.status === "teacher" ? (
-                <>
-                  {" "}
-                  <div className="text">Create Classroom</div>
-                </>
-              ) : (
-                <>
-                  {" "}
-                  <div className="text">No Classroom</div>
-                  <div className="text">is Assigned</div>
-                </>
-              )}
-            </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="no-classroom-available-for-you">
+                  {userOne.status === "teacher" ? (
+                    <>
+                      {" "}
+                      <div className="text">Create Classroom</div>
+                    </>
+                  ) : (
+                    <>
+                      {" "}
+                      <div className="text">No Classroom</div>
+                      <div className="text">is Assigned</div>
+                    </>
+                  )}
+                </div>
+              </>
+            )}
           </>
         )}
       </div>

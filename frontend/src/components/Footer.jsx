@@ -24,7 +24,11 @@ const Footer = () => {
         </ul>
         {/* <span>Footer</span> */}
       </div>
-      <div className="liscence">&#169; Developed by Jobair Al Sarkar</div>
+      <div className="liscence">
+        <a href="mailto:jobairalsarkar1@gmail.com">
+          &#169; Developed by Jobair Al Sarkar
+        </a>
+      </div>
     </div>
   );
 };

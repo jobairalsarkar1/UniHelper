@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Footer, SearchThings } from "../components";
 import { timeConverter } from "../utils";
+import { Loader } from "../components";
 import axios from "axios";
 import "../styles/Advising.css";
 import "../styles/Components.css";
@@ -10,9 +11,11 @@ const SeatStatus = () => {
   const [searchText, setSearchText] = useState("");
   const [searchedResults, setSearchedResults] = useState(null);
   const [searchTimeout, setSearchTimeout] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchSections = async () => {
+      setLoading(true);
       try {
         // const token = localStorage.getItem("token");
         const response = await axios.get("/api/courses/get-sections");
@@ -33,6 +36,8 @@ const SeatStatus = () => {
         }
       } catch (error) {
         alert("Error Fetching sections.");
+      } finally {
+        setLoading(false);
       }
     };
     fetchSections();
@@ -132,45 +137,57 @@ const SeatStatus = () => {
           ) : (
             <>
               {" "}
-              {sections?.length > 0 ? (
+              {loading ? (
                 <>
-                  {" "}
-                  {sections?.map((section, index) => (
-                    <ul
-                      key={section._id}
-                      className={
-                        index % 2
-                          ? "seatStatus-info-list-inner custom-bg-1"
-                          : "seatStatus-info-list-inner custom-bg-3"
-                      }
-                    >
-                      <li className="seatStatus-info-items seatStatus-info-item-id">
-                        {section.sectionNumber}
-                      </li>
-                      <li className="seatStatus-info-items">
-                        {section.course.courseCode}
-                      </li>
-                      <li className="seatStatus-info-items">
-                        {/* {section.schedule.days.join(", ").toUpperCase()}{" "} */}
-                        {`(${section.schedule.days.join(", ").toUpperCase()})`}{" "}
-                        {timeConverter(section.schedule.startTime)}-
-                        {timeConverter(section.schedule.endTime)}
-                      </li>
-                      <li className="seatStatus-info-items">
-                        {section.seat
-                          ? section.seat - section.students.length
-                          : "Null"}
-                      </li>
-                      <li className="seatStatus-info-items">
-                        {section.students.length}
-                      </li>
-                    </ul>
-                  ))}
+                  <div className="loader-container-actual1">
+                    <Loader />
+                  </div>
                 </>
               ) : (
                 <>
-                  {" "}
-                  <p className="no-course-found">No Courses Found</p>
+                  {sections?.length > 0 ? (
+                    <>
+                      {" "}
+                      {sections?.map((section, index) => (
+                        <ul
+                          key={section._id}
+                          className={
+                            index % 2
+                              ? "seatStatus-info-list-inner custom-bg-1"
+                              : "seatStatus-info-list-inner custom-bg-3"
+                          }
+                        >
+                          <li className="seatStatus-info-items seatStatus-info-item-id">
+                            {section.sectionNumber}
+                          </li>
+                          <li className="seatStatus-info-items">
+                            {section.course.courseCode}
+                          </li>
+                          <li className="seatStatus-info-items">
+                            {/* {section.schedule.days.join(", ").toUpperCase()}{" "} */}
+                            {`(${section.schedule.days
+                              .join(", ")
+                              .toUpperCase()})`}{" "}
+                            {timeConverter(section.schedule.startTime)}-
+                            {timeConverter(section.schedule.endTime)}
+                          </li>
+                          <li className="seatStatus-info-items">
+                            {section.seat
+                              ? section.seat - section.students.length
+                              : "Null"}
+                          </li>
+                          <li className="seatStatus-info-items">
+                            {section.students.length}
+                          </li>
+                        </ul>
+                      ))}
+                    </>
+                  ) : (
+                    <>
+                      {" "}
+                      <p className="no-course-found">No Courses Found</p>
+                    </>
+                  )}
                 </>
               )}
             </>

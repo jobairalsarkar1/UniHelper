@@ -104,6 +104,9 @@ const Login = () => {
                 Register Now.
               </Link>
             </p>
+            <Link to="/forget-password" className="forgot-password">
+              Forgot Password?
+            </Link>
           </form>
         </div>
       </div>

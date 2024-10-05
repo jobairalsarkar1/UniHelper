@@ -132,7 +132,7 @@ const AdvisedCourses = () => {
                   Room No
                 </li>
               </ul>
-              {teachersSections ? (
+              {teachersSections.length > 0 ? (
                 <>
                   {teachersSections.map((course) => (
                     <ul

@@ -18,6 +18,8 @@ import Scholarship from "./Scholarship";
 import MedicalHelp from "./MedicalHelp";
 import ClassroomMembers from "./ClassroomMembers";
 import Footer from "./Footer";
+import ForgetPassword from "./ForgetPassword";
+import ResetPassword from "./ResetPassword";
 
 export {
   PrivateRoute,
@@ -40,4 +42,6 @@ export {
   MedicalHelp,
   ClassroomMembers,
   Footer,
+  ForgetPassword,
+  ResetPassword,
 };

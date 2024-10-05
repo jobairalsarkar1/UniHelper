@@ -45,5 +45,6 @@ router.get(
   auth,
   AdvisingPanelController.teacherSections
 );
+router.get("/check-payment-status", auth, AdvisingPanelController.paymentCheck);
 
 module.exports = router;

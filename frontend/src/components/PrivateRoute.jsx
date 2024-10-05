@@ -9,7 +9,11 @@ const PrivateRoute = ({ children }) => {
 
   // console.log(loading);
   if (loading) {
-    return <Loader />;
+    return (
+      <div className="loader-container-actual1">
+        <Loader />
+      </div>
+    );
   }
   // return isLoggedIn ? children : <Navigate to="/login" />;
   return isLoggedIn ? (

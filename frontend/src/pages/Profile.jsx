@@ -8,6 +8,7 @@ const Profile = () => {
   const { userOne } = useContext(AuthContext);
   const [selectedCourses, setSelectedCourses] = useState([]);
   const [teachersSections, setTeachersSections] = useState([]);
+  const [loading, setLoading] = useState(false);
   // const [profileImage, setProfileImage] = useState(null);
 
   // useEffect(() => {
@@ -22,6 +23,7 @@ const Profile = () => {
 
   useEffect(() => {
     const fetchMyPanel = async () => {
+      setLoading(true);
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
@@ -35,6 +37,7 @@ const Profile = () => {
         // alert(error.message);
         console.error(error.response?.data?.message);
       }
+      setLoading(false);
     };
     fetchMyPanel();
   }, [userOne._id]);
@@ -60,43 +63,51 @@ const Profile = () => {
   return (
     <div className="profile-container">
       <div className="profile-inner-container">
-        <div className="profile-info-container">
-          <div className="profile-info">
-            <div className="profile-row">
-              <span className="profile-label">
-                Name <strong>:</strong>
-              </span>
-              <span className="profile-value">{`${userOne.name}`}</span>
+        {loading ? (
+          <>
+            <div className="loader-container-actual">
+              <Loader />
             </div>
-            <div className="profile-row">
-              <span className="profile-label">
-                Status <strong>:</strong>
-              </span>
-              <span className="profile-value">
-                {userOne.status.toUpperCase()[0] + userOne.status.slice(1)}
-              </span>
-            </div>
-            {userOne.status === "student" && (
-              <>
+          </>
+        ) : (
+          <>
+            <div className="profile-info-container">
+              <div className="profile-info">
                 <div className="profile-row">
                   <span className="profile-label">
-                    Student ID <strong>:</strong>
+                    Name <strong>:</strong>
                   </span>
-                  <span className="profile-value">{userOne.ID}</span>
+                  <span className="profile-value">{`${userOne.name}`}</span>
                 </div>
                 <div className="profile-row">
                   <span className="profile-label">
-                    Department <strong>:</strong>
+                    Status <strong>:</strong>
                   </span>
-                  <span className="profile-value">CSE</span>
+                  <span className="profile-value">
+                    {userOne.status.toUpperCase()[0] + userOne.status.slice(1)}
+                  </span>
                 </div>
-                {/* <div className="profile-row">
+                {userOne.status === "student" && (
+                  <>
+                    <div className="profile-row">
+                      <span className="profile-label">
+                        Student ID <strong>:</strong>
+                      </span>
+                      <span className="profile-value">{userOne.ID}</span>
+                    </div>
+                    <div className="profile-row">
+                      <span className="profile-label">
+                        Department <strong>:</strong>
+                      </span>
+                      <span className="profile-value">CSE</span>
+                    </div>
+                    {/* <div className="profile-row">
                   <span className="profile-label">Email</span>
                   <span className="profile-value">: {userOne.email}</span>
                 </div> */}
-              </>
-            )}
-            {/* {userOne.status === "admin" && (
+                  </>
+                )}
+                {/* {userOne.status === "admin" && (
               <>
                 <div className="profile-row">
                   <span className="profile-label">Email</span>
@@ -104,29 +115,32 @@ const Profile = () => {
                 </div>
               </>
             )} */}
-            <div className="profile-row">
-              <span className="profile-label">
-                Email <strong>:</strong>
-              </span>
-              <span className="profile-value">
-                <a href={`mailto:${userOne.email}`}>{userOne.email}</a>
-              </span>
-            </div>
-          </div>
-          <div className="profile-picture-container">
-            {userOne.profileImage ? (
-              <>
-                <img src={userOne.profileImage} alt="Profile Image" />
-              </>
-            ) : (
-              <>
-                <div className="profile-picture-alternative">
-                  {userOne.name[0]}
+                <div className="profile-row">
+                  <span className="profile-label">
+                    Email <strong>:</strong>
+                  </span>
+                  <span className="profile-value">
+                    <a href={`mailto:${userOne.email}`}>{userOne.email}</a>
+                  </span>
                 </div>
-              </>
-            )}
-          </div>
-        </div>
+              </div>
+              <div className="profile-picture-container">
+                {userOne.profileImage ? (
+                  <>
+                    <img src={userOne.profileImage} alt="Profile Image" />
+                  </>
+                ) : (
+                  <>
+                    <div className="profile-picture-alternative">
+                      {userOne.name[0]}
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
+          </>
+        )}
+
         <div
           style={{ marginTop: "1rem", backgroundColor: "#ffffff" }}
           className="schedule-holder-holder"

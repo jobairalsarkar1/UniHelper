@@ -36,6 +36,7 @@
   border: 0.1rem solid #abadae;
   border: 0.1rem solid #dadce0;
   outline: none;
+  background-color: #edeef0;
 }
 
 .searchField:focus {
@@ -123,15 +124,52 @@
   font-weight: 550;
 }
 
-.loader {
+/* Loader.jsx */
+/* .loader {
   width: 60px;
   height: 60px;
   border: 6px solid;
   border-color: rgb(168, 169, 170) rgba(168, 168, 170, 0.8)
-    rgba(168, 168, 170, 0.7) rgba(168, 168, 170, 0.6); /* Brighter front with faded tail */
+    rgba(168, 168, 170, 0.7) rgba(168, 168, 170, 0.6);
   border-radius: 50%;
   animation: spin 1s linear infinite;
-  position: relative; /* Infinite rotation */
+  position: relative;
+} */
+
+.loader-container {
+  font-size: 2.5rem;
+  font-weight: 550;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.loader-u {
+  display: inline-block;
+  animation: spinLeft 0.5s linear infinite;
+  color: transparent;
+  background: linear-gradient(120deg, red, blue);
+  background-clip: text;
+}
+
+.loader-h {
+  display: inline-block;
+  animation: spinRight 0.5s linear infinite;
+  color: transparent;
+  background: linear-gradient(120deg, red, blue);
+  background-clip: text;
+}
+
+.loader-container-actual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader-container-actual1 {
+  height: 70dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* MultiSelector */
@@ -244,8 +282,8 @@
 }
 
 .member-name {
-  font-size: 0.9rem;
-  font-weight: 520;
+  font-size: 0.8rem;
+  /* font-weight: 520; */
 }
 
 /* Footer.jsx */
@@ -288,11 +326,11 @@
 
 .footer-item-link {
   text-decoration: none;
-  color: #cfcece;
+  color: #c2c2c2;
   white-space: nowrap;
   padding: 0.2rem 0.5rem;
   border-radius: 1rem;
-  border: 0.05rem solid #dadce0;
+  border: 0.0000001rem solid #c2c2c2;
   /* background-color: red; */
   /* text-align: center; */
 }
@@ -309,12 +347,35 @@
   border-top: 0.001rem solid #647290;
 }
 
+.liscence > a {
+  text-decoration: none;
+  color: inherit;
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes spinLeft {
+  0% {
+    transform: rotate3d(0, 1, 0, 0deg);
+  }
+  100% {
+    transform: rotate3d(0, 1, 0, 360deg);
+  }
+}
+
+@keyframes spinRight {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
   }
 }
 

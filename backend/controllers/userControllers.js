@@ -5,6 +5,8 @@ const cloudinary = require("cloudinary").v2;
 const dotenv = require("dotenv");
 const path = require("path");
 const fs = require("fs");
+const crypto = require("crypto");
+const { sendResetPasswordMail } = require("../middleware/emailService");
 
 dotenv.config();
 
@@ -15,11 +17,16 @@ cloudinary.config({
 });
 
 const registerUser = async (req, res) => {
-  const { name, email, ID, password } = req.body;
+  let { name, email, ID, password } = req.body;
+  email = email.toLowerCase();
+  // console.log(email);
 
-  // if (password !== confirmPassword) {
-  //   return res.status(400).json({ message: "Passwords do not match" });
-  // }
+  if (password.length < 6 || password.length > 20) {
+    return res
+      .status(400)
+      .json({ message: "Password length must be at least of 6" });
+  }
+
   try {
     const userExists = await User.findOne({ email });
     const userExistsId = await User.findOne({ ID });
@@ -48,7 +55,8 @@ const registerUser = async (req, res) => {
 };
 
 const loginUser = async (req, res) => {
-  const { email, password } = req.body;
+  let { email, password } = req.body;
+  email = email.toLowerCase();
 
   try {
     const user = await User.findOne({ email });
@@ -170,6 +178,70 @@ const updateUserInfo = async (req, res) => {
   }
 };
 
+const forgetPassword = async (req, res) => {
+  const { email, ID } = req.body;
+  // console.log(req.body);
+  let user;
+  try {
+    user = await User.findOne({ email, ID });
+    // console.log(user);
+    if (!user) {
+      return res.status(404).json({ message: "User do not exist." });
+    }
+    const token = crypto.randomBytes(32).toString("hex");
+    user.resetPasswordToken = token;
+    user.resetPasswordTokenExpires = Date.now() + 3600000;
+    // console.log("Moment of truth.");
+    await user.save();
+    // console.log("momentof truth 2");
+    await sendResetPasswordMail(user.name, user.email, token);
+    // console.log("Well successfull.");
+    res.status(200).json({
+      message: "Check you mail a password reset link has been sent.",
+    });
+  } catch (error) {
+    if (user) {
+      user.resetPasswordToken = null;
+      user.resetPasswordTokenExpires = null;
+      await user.save();
+    }
+    res.status(500).json({ message: "Error sending mail" });
+  }
+};
+
+const resetPassword = async (req, res) => {
+  const { token } = req.params;
+  const { password, confirmPassword } = req.body;
+  console.log(req.params);
+  console.log("+++++++++++++++++++++++++++++");
+  console.log(req.body);
+  try {
+    const user = await User.findOne({
+      resetPasswordToken: token,
+      resetPasswordTokenExpires: { $gt: Date.now() },
+    });
+
+    if (!user) {
+      return res
+        .status(400)
+        .json({ message: "Token expired you may try again." });
+    }
+
+    if (password !== confirmPassword) {
+      return res.status(400).json({ message: "Password didn't match" });
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(password, salt);
+    user.resetPasswordToken = null;
+    user.resetPasswordTokenExpires = null;
+    await user.save();
+    res.status(200).json({ message: "Password updated successfully." });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to update password." });
+  }
+};
+
 module.exports = {
   registerUser,
   loginUser,
@@ -178,4 +250,6 @@ module.exports = {
   getAllUsers,
   deleteUser,
   updateUserInfo,
+  forgetPassword,
+  resetPassword,
 };
