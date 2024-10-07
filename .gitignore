@@ -21,7 +21,7 @@ backend/logs/
 Thumbs.db
 
 # Build output
-# frontend/dist/
+frontend/dist/
 
 # IDE-specific files
 .vscode/
