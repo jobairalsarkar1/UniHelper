@@ -32,6 +32,7 @@ const ResetPassword = () => {
     <div className="authProblem-container">
       <div className="authProblem-inner-container">
         <div className="forget-password-request-from">
+          <span className="forget-password-title">Reset Password</span>
           {error && (
             <>
               <div className="submition-response-message error-one">
@@ -44,7 +45,6 @@ const ResetPassword = () => {
               </div>
             </>
           )}
-          <span className="forget-password-title">Reset Password</span>
           <div className="forget-password-input">
             <label htmlFor="password">Password:</label>
             <input

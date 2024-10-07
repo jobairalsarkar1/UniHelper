@@ -4,6 +4,8 @@ import axios from "axios";
 import registerImage from "../assets/Vector.jpg";
 import "../styles/Authentication.css";
 import { Footer } from "../components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClose } from "@fortawesome/free-solid-svg-icons";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -15,7 +17,7 @@ const Register = () => {
   });
 
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState(false);
+  const [success, setSuccess] = useState("");
   const navigate = useNavigate();
 
   const { name, email, ID, password } = formData;
@@ -35,12 +37,12 @@ const Register = () => {
         password,
       });
       if (res.data) {
-        setSuccess(true);
+        setSuccess(res.data?.message);
         setTimeout(() => navigate("/login"), 2000);
       }
     } catch (err) {
       setError(err.response?.data?.message || "Something Went wrong.");
-      setTimeout(() => setError(""), 3000);
+      // setTimeout(() => setError(""), 3000);
     }
   };
 
@@ -58,6 +60,30 @@ const Register = () => {
 
           <form onSubmit={onSubmit} className="register-form">
             <span className="register-form-title">Sign Up</span>
+            {error && (
+              <>
+                <div className="submition-response-message error-one">
+                  <p>{error}</p>
+                  <FontAwesomeIcon
+                    icon={faClose}
+                    className="close-comment-icon"
+                    onClick={() => setError("")}
+                  />
+                </div>
+              </>
+            )}
+            {success && (
+              <>
+                <div className="submition-response-message sucess-one">
+                  <p>{success}</p>
+                  <FontAwesomeIcon
+                    icon={faClose}
+                    className="close-comment-icon"
+                    onClick={() => setSuccess("")}
+                  />
+                </div>
+              </>
+            )}
             <input
               type="text"
               className="form-name-field"
@@ -103,7 +129,7 @@ const Register = () => {
             placeholder="Confirm Password"
             required
           /> */}
-            {error && (
+            {/* {error && (
               <p
                 style={{
                   color: "red",
@@ -114,8 +140,8 @@ const Register = () => {
               >
                 {error}
               </p>
-            )}
-            {success && (
+            )} */}
+            {/* {success && (
               <p
                 style={{
                   color: "green",
@@ -126,7 +152,7 @@ const Register = () => {
               >
                 Registration was Successfull.
               </p>
-            )}
+            )} */}
             <button type="submit" className="form-login-button">
               Sign Up
             </button>

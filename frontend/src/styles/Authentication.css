@@ -71,7 +71,7 @@
 .form-password-field,
 .form-email-field,
 .form-name-field {
-  padding: 0.6rem 1rem 0.6rem 1rem;
+  padding: 0.6rem 0.8rem 0.6rem 0.8rem;
   border-radius: 0.5rem;
   /* border: none; */
   /* outline: none; */

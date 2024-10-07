@@ -11,7 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 // import ProfilePicture from "../assets/EditedC2.jpg";
-// import UniHelperLogo from "../assets/UniHelper.png";
+import Unihelper from "../assets/Unihelper.svg";
 import "../styles/Navbar.css";
 
 const Navbar = ({ toggleSidebar, setSidebarOpen }) => {
@@ -70,7 +70,7 @@ const Navbar = ({ toggleSidebar, setSidebarOpen }) => {
 
             <Link to="/" className="logo">
               UH
-              {/* <img src={UniHelperLogo} alt="Logo" className="unihelper-logo" /> */}
+              {/* <img src={Unihelper} alt="logo" className="unihelper-logo" /> */}
             </Link>
           </div>
           {/* <ul className="top-navbar-list">

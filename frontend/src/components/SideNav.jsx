@@ -119,7 +119,7 @@ const SideNav = ({ sidebarOpen, toggleSidebar }) => {
                   <FontAwesomeIcon icon={faArrowRight} />
                 </Link>
               </li>
-              <li className="side-navbar-list-item sidenav-item-hover">
+              {/* <li className="side-navbar-list-item sidenav-item-hover">
                 <Link
                   to="/finance"
                   className="side-navbar-item-link"
@@ -128,7 +128,7 @@ const SideNav = ({ sidebarOpen, toggleSidebar }) => {
                   PaySlip
                   <FontAwesomeIcon icon={faArrowRight} />
                 </Link>
-              </li>
+              </li> */}
             </>
           )}
 

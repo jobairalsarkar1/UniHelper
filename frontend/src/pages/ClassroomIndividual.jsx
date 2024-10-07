@@ -57,7 +57,10 @@ const ClassroomIndividual = () => {
           `/api/classrooms/posts/${classroomId}`,
           { headers: { "x-auth-token": token } }
         );
-        setPosts(response.data);
+        const sortedPost = response.data.sort(
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+        );
+        setPosts(sortedPost);
       } catch (error) {
         alert("Error Fetching Posts");
       }
@@ -372,11 +375,14 @@ const ClassroomIndividual = () => {
                   <div className="classroomIndividual-post-files">
                     {post.files?.map((file, index) => (
                       <div key={index} className="individual-file">
-                        <span>{`Download/File/${index}`}</span>
+                        {/* <span>{`Download/File/${index}`}</span> */}
+                        <span>{post.originalFileNames[index]}</span>
                         <FontAwesomeIcon
                           icon={faFileDownload}
                           className="download-file-btn"
-                          onClick={() => saveFile(file)}
+                          onClick={() =>
+                            saveFile(file, post.originalFileNames[index])
+                          }
                         />
                         {/* <button className="download-file-btn">
                     </button> */}

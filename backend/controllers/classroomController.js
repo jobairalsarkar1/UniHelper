@@ -89,8 +89,10 @@ const createPost = async (req, res) => {
   try {
     const { author, classroomId, content } = req.body;
     const fileUrls = [];
+    let originalFileNames = [];
     if (req.files && req.files.length > 0) {
       for (const file of req.files) {
+        // console.log("you file:", file);
         const result = await new Promise((resolve, reject) => {
           cloudinary.uploader
             .upload_stream({ resource_type: "auto" }, (error, result) => {
@@ -101,18 +103,27 @@ const createPost = async (req, res) => {
             })
             .end(file.buffer);
         });
+        // console.log("Result:", result);
         fileUrls.push(result.secure_url);
+        // console.log(file.originalname, "ooooooooooooooo");
+        originalFileNames.push(file.originalname);
       }
     }
+
+    // console.log("dangerzone1 +++++++++++++++++++++++++");
 
     const newPost = await Post({
       author,
       classroom: classroomId,
       content,
       files: fileUrls,
+      originalFileNames,
     });
 
+    // console.log("NewPost:   _______________", newPost);
+
     await newPost.save();
+    // console.log("?????????????????????????????????????");
     await Classroom.findByIdAndUpdate(
       classroomId,
       { $push: { posts: newPost._id } },

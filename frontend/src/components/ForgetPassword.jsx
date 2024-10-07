@@ -31,6 +31,7 @@ const ForgetPassword = () => {
     <div className="authProblem-container">
       <div className="authProblem-inner-container">
         <div className="forget-password-request-from">
+          <span className="forget-password-title">Forgot Password!!!</span>
           {message && (
             <>
               <div className="submition-response-message sucess-one">
@@ -55,7 +56,6 @@ const ForgetPassword = () => {
               </div>
             </>
           )}
-          <span className="forget-password-title">Forgot Password!!!</span>
           <div className="forget-password-input">
             <label htmlFor="email">Enter Email:</label>
             <input

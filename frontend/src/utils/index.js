@@ -81,9 +81,14 @@ export const addTime = (time, minutesToAdd) => {
   return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 };
 
-export function saveFile(fileUrl) {
-  FileSaver.saveAs(fileUrl);
-  // const fileName = fileUrl.subString(fileUrl.lastIndexOf("/") + 1);
+export function showFileName(urll) {
+  const url = new URL(urll);
+  const fileName = url.pathname.split("/").pop();
+  return decodeURIComponent(fileName);
+}
+
+export function saveFile(fileUrl, fileName) {
+  FileSaver.saveAs(fileUrl, fileName);
 }
 
 export function generatePdf(elementSelector, pdfFileName) {

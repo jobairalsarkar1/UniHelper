@@ -14,7 +14,8 @@ const PostSchema = new mongoose.Schema(
       required: true,
     },
     content: { type: String, required: true },
-    files: [String], // Array of file URLs
+    files: [String],
+    originalFileNames: [String],
     comments: [
       {
         type: mongoose.Schema.Types.ObjectId,

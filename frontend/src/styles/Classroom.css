@@ -297,7 +297,9 @@
   display: flex;
   justify-content: center;
   border: 0.1rem solid #dadce0;
+  /* border: 0.0625rem solid #dadce0; */
   background-color: var(--element-background-color);
+  /* background-color: #ffffff; */
 }
 
 .classroomIndividual-navbar {
@@ -421,7 +423,8 @@
   display: flex;
   flex-direction: column;
   border-radius: 0.5rem;
-  border: 0.1rem solid #dadce0;
+  /* border: 0.1rem solid #dadce0; */
+  border: 0.0625rem solid #dadce0;
   background-color: var(--element-background-color);
 }
 
@@ -534,7 +537,7 @@
 }
 
 .individual-file {
-  padding: 0.2rem 0.35rem 0.2rem 0.5rem;
+  padding: 0.3rem 0.35rem 0.3rem 0.5rem;
   font-size: 0.7rem;
   font-weight: 550;
   display: flex;
@@ -542,7 +545,7 @@
   justify-content: center;
   gap: 0.5rem;
   border-radius: 0.35rem;
-  border: 0.005rem solid #6a6a6a;
+  border: 0.005rem solid #afaeae;
 }
 
 .download-file-btn {
@@ -555,7 +558,8 @@
 .classroomIndividual-post-comments-div {
   margin-top: 0.5rem;
   padding: 0.2rem 0 0 0;
-  border-top: 0.1rem solid #dadce0;
+  /* border-top: 0.1rem solid #dadce0; */
+  border-top: 0.0625rem solid #dadce0;
 }
 
 .posts-total-comments-btn {
@@ -627,7 +631,8 @@
   display: flex;
   justify-content: space-between;
   gap: 0.5rem;
-  border-top: 0.1rem solid #dadce0;
+  /* border-top: 0.1rem solid #dadce0; */
+  border-top: 0.0625rem solid #dadce0;
 }
 
 .current-commentor {
@@ -647,6 +652,7 @@
   padding: 0.5rem 1rem 0.5rem 1rem;
   border-radius: 0.5rem;
   border: 0.1rem solid #dadce0;
+  /* border: 0.0625rem solid #dadce0; */
   /* background-color: var(--element-background-color); */
 }
 

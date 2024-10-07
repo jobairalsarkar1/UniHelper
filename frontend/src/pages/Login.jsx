@@ -3,7 +3,10 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import { Footer, FormInput } from "../components";
 import Vector from "../assets/Vector.jpg";
+import Unihelper from "../assets/Unihelper.svg";
 import "../styles/Authentication.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClose } from "@fortawesome/free-solid-svg-icons";
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -32,7 +35,7 @@ const Login = () => {
       navigate("/profile");
     } catch (err) {
       setError(err.message);
-      setTimeout(() => setError(""), 2000);
+      // setTimeout(() => setError(""), 2000);
     }
   };
 
@@ -46,6 +49,18 @@ const Login = () => {
 
           <form onSubmit={onSubmit} className="login-form">
             <span className="login-form-title">Sign In</span>
+            {error && (
+              <>
+                <div className="submition-response-message error-one">
+                  <p>{error}</p>
+                  <FontAwesomeIcon
+                    icon={faClose}
+                    className="close-comment-icon"
+                    onClick={() => setError("")}
+                  />
+                </div>
+              </>
+            )}
             <FormInput
               type="text"
               name="email"
@@ -83,7 +98,7 @@ const Login = () => {
             placeholder="Enter Password"
             required
           /> */}
-            {error && (
+            {/* {error && (
               <p
                 style={{
                   color: "red",
@@ -94,7 +109,7 @@ const Login = () => {
               >
                 {error}
               </p>
-            )}
+            )} */}
             <button type="submit" className="form-login-button">
               Login
             </button>

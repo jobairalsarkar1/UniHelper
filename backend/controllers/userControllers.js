@@ -78,7 +78,7 @@ const loginUser = async (req, res) => {
     }
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
+      expiresIn: "7d",
     });
 
     res.json({
@@ -212,9 +212,9 @@ const forgetPassword = async (req, res) => {
 const resetPassword = async (req, res) => {
   const { token } = req.params;
   const { password, confirmPassword } = req.body;
-  console.log(req.params);
-  console.log("+++++++++++++++++++++++++++++");
-  console.log(req.body);
+  // console.log(req.params);
+  // console.log("+++++++++++++++++++++++++++++");
+  // console.log(req.body);
   try {
     const user = await User.findOne({
       resetPasswordToken: token,
