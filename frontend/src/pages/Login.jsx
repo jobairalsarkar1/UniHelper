@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import { Footer, FormInput } from "../components";
 import Vector from "../assets/Vector.jpg";
-import Unihelper from "../assets/Unihelper.svg";
+// import Unihelper from "../assets/Unihelper.svg";
 import "../styles/Authentication.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";

@@ -12,7 +12,7 @@ const CourseSequence = () => {
     const fetchCourses = async () => {
       const token = localStorage.getItem("token");
       await axios
-        .get("/api/courses/get-courses", { headers: { "x-auth-token": token } })
+        .get("https://unihelper.onrender.com/api/courses/get-courses", { headers: { "x-auth-token": token } })
         .then((response) => {
           const sortedCourses = response.data.sort((a, b) =>
             a.courseCode.localeCompare(b.courseCode)
@@ -30,7 +30,7 @@ const CourseSequence = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          `/api/grade-sheets/get-gradesheet/${userOne._id}`,
+          `https://unihelper.onrender.com/api/grade-sheets/get-gradesheet/${userOne._id}`,
           { headers: { "x-auth-token": token } }
         );
         if (response.status === 200) {

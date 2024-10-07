@@ -30,7 +30,7 @@ const Register = () => {
     e.preventDefault();
     setError("");
     try {
-      const res = await axios.post("/api/users/register", {
+      const res = await axios.post("https://unihelper.onrender.com/api/users/register", {
         name,
         email,
         ID,

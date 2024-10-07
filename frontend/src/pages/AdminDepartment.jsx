@@ -28,7 +28,7 @@ const AdminDepartment = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "/api/departments/create-department",
+        "https://unihelper.onrender.com/api/departments/create-department",
         {
           name,
           details,
@@ -55,7 +55,7 @@ const AdminDepartment = () => {
   const handleDelete = async (deptId) => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.delete(`/api/departments/${deptId}`, {
+      const response = await axios.delete(`https://unihelper.onrender.com/api/departments/${deptId}`, {
         headers: { "x-auth-token": token },
       });
       if (response.data) {
@@ -71,7 +71,7 @@ const AdminDepartment = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     axios
-      .get("/api/courses/get-courses", { headers: { "x-auth-token": token } })
+      .get("https://unihelper.onrender.com/api/courses/get-courses", { headers: { "x-auth-token": token } })
       .then((response) => {
         const sortedCourses = response.data.sort((a, b) =>
           a.courseCode.localeCompare(b.courseCode)
@@ -82,7 +82,7 @@ const AdminDepartment = () => {
 
     setLoading(true);
     axios
-      .get("/api/departments/get-departments", {
+      .get("https://unihelper.onrender.com/api/departments/get-departments", {
         headers: { "x-auth-token": token },
       })
       .then((response) => {

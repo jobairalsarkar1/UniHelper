@@ -18,7 +18,9 @@ const SeatStatus = () => {
       setLoading(true);
       try {
         // const token = localStorage.getItem("token");
-        const response = await axios.get("/api/courses/get-sections");
+        const response = await axios.get(
+          "https://unihelper.onrender.com/api/courses/get-sections"
+        );
         if (response.data) {
           const validSections = response.data.filter(
             (item) =>

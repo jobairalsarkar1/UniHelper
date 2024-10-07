@@ -27,7 +27,7 @@ const Profile = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          `/api/advising-panels/get-my-advisingpanel/${userOne._id}`,
+          `https://unihelper.onrender.com/api/advising-panels/get-my-advisingpanel/${userOne._id}`,
           { headers: { "x-auth-token": token } }
         );
         if (response.status === 200) {
@@ -47,7 +47,7 @@ const Profile = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          `/api/advising-panels/me-teacher-sections/${userOne._id}`,
+          `https://unihelper.onrender.com/api/advising-panels/me-teacher-sections/${userOne._id}`,
           { headers: { "x-auth-token": token } }
         );
         if (response.status === 200) {

@@ -29,7 +29,7 @@ const NewUsers = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     axios
-      .get("/api/users/all-users", {
+      .get("https://unihelper.onrender.com/api/users/all-users", {
         headers: { "x-auth-token": token },
       })
       .then((response) => {
@@ -39,7 +39,7 @@ const NewUsers = () => {
 
     // const fetchUsers = async () => {
     //   try {
-    //     const response = await axios.get("/api/users/all-users");
+    //     const response = await axios.get("https://unihelper.onrender.com/api/users/all-users");
     //     setNewUsers(response.data.filter((user) => user.status === null));
     //     console.log(response);
     //     console.log("Success");
