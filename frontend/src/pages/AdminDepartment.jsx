@@ -28,7 +28,7 @@ const AdminDepartment = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "http://localhost:5000/api/departments/create-department",
+        "https://unihelper.onrender.com/api/departments/create-department",
         {
           name,
           details,
@@ -56,7 +56,7 @@ const AdminDepartment = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.delete(
-        `http://localhost:5000/api/departments/${deptId}`,
+        `https://unihelper.onrender.com/api/departments/${deptId}`,
         {
           headers: { "x-auth-token": token },
         }
@@ -74,7 +74,7 @@ const AdminDepartment = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     axios
-      .get("http://localhost:5000/api/courses/get-courses", {
+      .get("https://unihelper.onrender.com/api/courses/get-courses", {
         headers: { "x-auth-token": token },
       })
       .then((response) => {
@@ -87,7 +87,7 @@ const AdminDepartment = () => {
 
     setLoading(true);
     axios
-      .get("http://localhost:5000/api/departments/get-departments", {
+      .get("https://unihelper.onrender.com/api/departments/get-departments", {
         headers: { "x-auth-token": token },
       })
       .then((response) => {

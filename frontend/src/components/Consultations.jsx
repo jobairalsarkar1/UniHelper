@@ -1,5 +1,5 @@
 import { useCallback, useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import { convertUTCToLocal } from "../utils";
 import axios from "axios";
@@ -27,7 +27,7 @@ const Consultations = () => {
   const fetchConsultations = useCallback(async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get("http://localhost:5000/api/consultations/get-consultations", {
+      const response = await axios.get("https://unihelper.onrender.com/api/consultations/get-consultations", {
         headers: { "x-auth-token": token },
       });
       if (response.data && response.data.length > 0) {
@@ -64,7 +64,7 @@ const Consultations = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     axios
-      .get("http://localhost:5000/api/users/all-users", { headers: { "x-auth-token": token } })
+      .get("https://unihelper.onrender.com/api/users/all-users", { headers: { "x-auth-token": token } })
       .then((response) => {
         setFaculties(response.data.filter((user) => user.status === "teacher"));
       })
@@ -80,7 +80,7 @@ const Consultations = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "http://localhost:5000/api/consultations/make-request",
+        "https://unihelper.onrender.com/api/consultations/make-request",
         {
           student: userOne._id,
           teacher,
@@ -107,7 +107,7 @@ const Consultations = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.put(
-        "http://localhost:5000/api/consultations/approve-conulstation",
+        "https://unihelper.onrender.com/api/consultations/approve-conulstation",
         {
           consultationId: requestId,
           status: "Approved",
@@ -125,7 +125,7 @@ const Consultations = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.put(
-        "http://localhost:5000/api/consultations/reject-consultation",
+        "https://unihelper.onrender.com/api/consultations/reject-consultation",
         { consultationId: requestId, status: "Rejected", rejectionReason },
         { headers: { "x-auth-token": token } }
       );

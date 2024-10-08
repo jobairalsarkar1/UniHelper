@@ -20,7 +20,7 @@ const EditSection = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          "http://localhost:5000/api/users/all-users",
+          "https://unihelper.onrender.com/api/users/all-users",
           {
             headers: { "x-auth-token": token },
           }
@@ -44,7 +44,7 @@ const EditSection = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          `http://localhost:5000/api/courses/get-section/${sectionId}`,
+          `https://unihelper.onrender.com/api/courses/get-section/${sectionId}`,
           { headers: { "x-auth-token": token } }
         );
 
@@ -64,7 +64,7 @@ const EditSection = () => {
     try {
       const token = localStorage.getItem("token");
       await axios.put(
-        `http://localhost:5000/api/courses/${sectionId}/add-members`,
+        `https://unihelper.onrender.com/api/courses/${sectionId}/add-members`,
         {
           faculty: selectedFaculty,
           students: sectionMembers.map((student) => student._id),
@@ -90,7 +90,7 @@ const EditSection = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.delete(
-        `http://localhost:5000/api/courses/${sectionId}/remove/${userId}`,
+        `https://unihelper.onrender.com/api/courses/${sectionId}/remove/${userId}`,
         {
           headers: { "x-auth-token": token },
         }

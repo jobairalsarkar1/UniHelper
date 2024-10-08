@@ -17,7 +17,7 @@ const GradeSheet = () => {
     const fetchStudents = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get("http://localhost:5000/api/users/all-users", {
+        const response = await axios.get("https://unihelper.onrender.com/api/users/all-users", {
           headers: { "x-auth-token": token },
         });
         setStudents(response.data.filter((user) => user.status === "student"));
@@ -33,7 +33,7 @@ const GradeSheet = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          `http://localhost:5000/api/grade-sheets/get-gradesheet/${userOne._id}`,
+          `https://unihelper.onrender.com/api/grade-sheets/get-gradesheet/${userOne._id}`,
           { headers: { "x-auth-token": token } }
         );
         if (response.status === 200) {

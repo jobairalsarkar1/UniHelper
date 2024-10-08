@@ -23,7 +23,7 @@ const AdminAdvising = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          "http://localhost:5000/api/advising-panels/get-pending-advising-panels",
+          "https://unihelper.onrender.com/api/advising-panels/get-pending-advising-panels",
           { headers: { "x-auth-token": token } }
         );
         if (response.status === 200) {
@@ -54,7 +54,7 @@ const AdminAdvising = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "http://localhost:5000/api/advising-panels/create-advising-slot",
+        "https://unihelper.onrender.com/api/advising-panels/create-advising-slot",
         data,
         { headers: { "x-auth-token": token } }
       );
@@ -82,7 +82,7 @@ const AdminAdvising = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.put(
-        `http://localhost:5000/api/advising-panels/approve-advising/${panelId}`,
+        `https://unihelper.onrender.com/api/advising-panels/approve-advising/${panelId}`,
         {},
         { headers: { "x-auth-token": token } }
       );
@@ -98,7 +98,7 @@ const AdminAdvising = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "http://localhost:5000/api/advising-panels/create-actual-semester",
+        "https://unihelper.onrender.com/api/advising-panels/create-actual-semester",
         { semesterName: actualSemester },
         { headers: { "x-auth-token": token } }
       );

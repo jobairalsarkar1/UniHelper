@@ -31,7 +31,7 @@ const AdminCourses = () => {
       const newCourse = { name, courseCode, credit, description };
       setCourses((prevCourses) => [...prevCourses, newCourse]);
       const response = await axios.post(
-        "http://localhost:5000/api/courses/create-course",
+        "https://unihelper.onrender.com/api/courses/create-course",
         newCourse,
         { headers: { "x-auth-token": token } }
       );
@@ -69,7 +69,7 @@ const AdminCourses = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.delete(
-        `http://localhost:5000/api/courses/delete-course/${courseId}`,
+        `https://unihelper.onrender.com/api/courses/delete-course/${courseId}`,
         { headers: { "x-auth-token": token } }
       );
       if (response.data) {
@@ -87,7 +87,7 @@ const AdminCourses = () => {
   const fetchCourses = async () => {
     const token = localStorage.getItem("token");
     try {
-      const response = await axios.get("http://localhost:5000/api/courses/get-courses", {
+      const response = await axios.get("https://unihelper.onrender.com/api/courses/get-courses", {
         headers: { "x-auth-token": token },
       });
       const sortedCourses = response.data.sort((a, b) =>
@@ -103,7 +103,7 @@ const AdminCourses = () => {
     fetchCourses();
     // const token = localStorage.getItem("token");
     // axios
-    //   .get("http://localhost:5000/api/courses/get-courses", { headers: { "x-auth-token": token } })
+    //   .get("https://unihelper.onrender.com/api/courses/get-courses", { headers: { "x-auth-token": token } })
     //   .then((response) => {
     //     const sortedCourses = response.data.sort((a, b) =>
     //       a.courseCode.localeCompare(b.courseCode)

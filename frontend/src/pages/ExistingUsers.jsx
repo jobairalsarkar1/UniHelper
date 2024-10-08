@@ -11,7 +11,7 @@ const ExistingUsers = () => {
     const fetchUsers = async () => {
       const token = localStorage.getItem("token");
       await axios
-        .get("http://localhost:5000/api/users/all-users", {
+        .get("https://unihelper.onrender.com/api/users/all-users", {
           headers: { "x-auth-token": token },
         })
         .then((response) => {
