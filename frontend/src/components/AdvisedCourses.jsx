@@ -13,7 +13,7 @@ const AdvisedCourses = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          `/api/advising-panels/get-my-advisingpanel/${userOne._id}`,
+          `http://localhost:5000/api/advising-panels/get-my-advisingpanel/${userOne._id}`,
           { headers: { "x-auth-token": token } }
         );
         if (response.status === 200) {
@@ -35,7 +35,7 @@ const AdvisedCourses = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          `/api/advising-panels/me-teacher-sections/${userOne._id}`,
+          `http://localhost:5000/api/advising-panels/me-teacher-sections/${userOne._id}`,
           { headers: { "x-auth-token": token } }
         );
         if (response.status === 200) {

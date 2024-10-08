@@ -14,7 +14,7 @@ const ResetPassword = () => {
   const resetPasswordHandler = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`/api/users/reset-password/${token}`, {
+      const response = await axios.post(`http://localhost:5000/api/users/reset-password/${token}`, {
         password,
         confirmPassword,
       });

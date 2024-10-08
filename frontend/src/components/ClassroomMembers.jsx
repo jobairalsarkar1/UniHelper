@@ -19,7 +19,7 @@ const ClassroomMembers = ({
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          `/api/advising-panels/me-teacher-sections/${userOne._id}`,
+          `http://localhost:5000/api/advising-panels/me-teacher-sections/${userOne._id}`,
           { headers: { "x-auth-token": token } }
         );
         if (response.status === 200) {
@@ -53,7 +53,7 @@ const ClassroomMembers = ({
     try {
       const token = localStorage.getItem("token");
       const response = await axios.put(
-        `/api/classrooms/add-members/${classroomId}`,
+        `http://localhost:5000/api/classrooms/add-members/${classroomId}`,
         { members: selectedStudents.map((student) => student._id) },
         { headers: { "x-auth-token": token } }
       );

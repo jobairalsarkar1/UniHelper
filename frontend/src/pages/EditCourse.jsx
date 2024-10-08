@@ -50,7 +50,7 @@ const EditCourse = () => {
         const token = localStorage.getItem("token");
 
         const response = await axios.get(
-          `/api/courses/get-course/${courseId}`,
+          `http://localhost:5000/api/courses/get-course/${courseId}`,
           { headers: { "x-auth-token": token } }
         );
         setSections(response.data.sections);
@@ -84,7 +84,7 @@ const EditCourse = () => {
             }
           : null;
       const response = await axios.post(
-        `/api/courses/create-section/${courseId}`,
+        `http://localhost:5000/api/courses/create-section/${courseId}`,
         {
           sectionNumber,
           schedule: { days, startTime, endTime },
@@ -125,7 +125,7 @@ const EditCourse = () => {
       const token = localStorage.getItem("token");
 
       const response = await axios.delete(
-        `/api/courses/delete-section/${sectionId}`,
+        `http://localhost:5000/api/courses/delete-section/${sectionId}`,
         { headers: { "x-auth-token": token } }
       );
       if (response.data) {

@@ -11,7 +11,9 @@ const ExistingUsers = () => {
     const fetchUsers = async () => {
       const token = localStorage.getItem("token");
       await axios
-        .get("/api/users/all-users", { headers: { "x-auth-token": token } })
+        .get("http://localhost:5000/api/users/all-users", {
+          headers: { "x-auth-token": token },
+        })
         .then((response) => {
           setTeacher(response.data.filter((user) => user.status === "teacher"));
           setStudent(response.data.filter((user) => user.status === "student"));

@@ -31,7 +31,7 @@ const Classroom = () => {
       setLoading(true);
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get("/api/classrooms/get-classrooms", {
+        const response = await axios.get("http://localhost:5000/api/classrooms/get-classrooms", {
           headers: { "x-auth-token": token },
         });
         // setClassrooms(response.data);
@@ -63,7 +63,7 @@ const Classroom = () => {
       setSuccess("");
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "/api/classrooms/create-classroom",
+        "http://localhost:5000/api/classrooms/create-classroom",
         {
           title,
           name,
@@ -100,7 +100,7 @@ const Classroom = () => {
   const handleDelete = async (classroomId) => {
     const token = localStorage.getItem("token");
     const response = await axios.delete(
-      `/api/classrooms/delete-classroom/${classroomId}`,
+      `http://localhost:5000/api/classrooms/delete-classroom/${classroomId}`,
       { data: { userId: userOne._id }, headers: { "x-auth-token": token } }
     );
 

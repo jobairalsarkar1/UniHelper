@@ -28,7 +28,7 @@ const UpdateUserInfo = () => {
     const fetchUserData = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get(`/api/users/user/${userId}`, {
+        const response = await axios.get(`http://localhost:5000/api/users/user/${userId}`, {
           headers: { "x-auth-token": token },
         });
         setFormData(response.data);
@@ -40,7 +40,7 @@ const UpdateUserInfo = () => {
     const fetchDepartments = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get("/api/departments/get-departments", {
+        const response = await axios.get("http://localhost:5000/api/departments/get-departments", {
           headers: { "x-auth-token": token },
         });
         setDepartments(response.data);
@@ -82,7 +82,7 @@ const UpdateUserInfo = () => {
     console.log("Processing.....");
     try {
       const token = localStorage.getItem("token");
-      await axios.put(`/api/users/update/${userId}`, data, {
+      await axios.put(`http://localhost:5000/api/users/update/${userId}`, data, {
         headers: {
           "Content-Type": "multipart/form-data",
           "x-auth-token": token,

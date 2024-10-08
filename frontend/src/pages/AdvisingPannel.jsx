@@ -24,7 +24,7 @@ const AdvisingPannel = () => {
     const fetchSections = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get("/api/courses/get-sections", {
+        const response = await axios.get("http://localhost:5000/api/courses/get-sections", {
           headers: { "x-auth-token": token },
         });
 
@@ -46,7 +46,7 @@ const AdvisingPannel = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          `/api/advising-panels/get-my-advisingpanel/${userOne._id}`,
+          `http://localhost:5000/api/advising-panels/get-my-advisingpanel/${userOne._id}`,
           { headers: { "x-auth-token": token } }
         );
         if (response.status === 200) {
@@ -114,7 +114,7 @@ const AdvisingPannel = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "/api/advising-panels/add-course-section",
+        "http://localhost:5000/api/advising-panels/add-course-section",
         { advisingPanelId: myAdvisingPanel._id, sectionId },
         { headers: { "x-auth-token": token } }
       );
@@ -146,7 +146,7 @@ const AdvisingPannel = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "/api/advising-panels/drop-course-section",
+        "http://localhost:5000/api/advising-panels/drop-course-section",
         { advisingPanelId: myAdvisingPanel._id, sectionId },
         { headers: { "x-auth-token": token } }
       );

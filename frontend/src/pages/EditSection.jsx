@@ -19,9 +19,12 @@ const EditSection = () => {
     const fetchUsers = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get("/api/users/all-users", {
-          headers: { "x-auth-token": token },
-        });
+        const response = await axios.get(
+          "http://localhost:5000/api/users/all-users",
+          {
+            headers: { "x-auth-token": token },
+          }
+        );
         if (response.data) {
           //   setUsers(response.data);
           setStudents(
@@ -41,7 +44,7 @@ const EditSection = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          `/api/courses/get-section/${sectionId}`,
+          `http://localhost:5000/api/courses/get-section/${sectionId}`,
           { headers: { "x-auth-token": token } }
         );
 
@@ -61,7 +64,7 @@ const EditSection = () => {
     try {
       const token = localStorage.getItem("token");
       await axios.put(
-        `/api/courses/${sectionId}/add-members`,
+        `http://localhost:5000/api/courses/${sectionId}/add-members`,
         {
           faculty: selectedFaculty,
           students: sectionMembers.map((student) => student._id),
@@ -87,7 +90,7 @@ const EditSection = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.delete(
-        `/api/courses/${sectionId}/remove/${userId}`,
+        `http://localhost:5000/api/courses/${sectionId}/remove/${userId}`,
         {
           headers: { "x-auth-token": token },
         }

@@ -33,7 +33,7 @@ const CourseDetails = () => {
     setLoading(true);
     const token = localStorage.getItem("token");
     axios
-      .get("/api/courses/get-courses", { headers: { "x-auth-token": token } })
+      .get("http://localhost:5000/api/courses/get-courses", { headers: { "x-auth-token": token } })
       .then((response) => {
         const sortedCourses = response.data.sort((a, b) =>
           a.courseCode.localeCompare(b.courseCode)

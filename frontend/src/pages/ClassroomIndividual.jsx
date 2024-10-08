@@ -35,7 +35,7 @@ const ClassroomIndividual = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          `/api/classrooms/get-classroomInfo/${classroomId}`,
+          `http://localhost:5000/api/classrooms/get-classroomInfo/${classroomId}`,
           { headers: { "x-auth-token": token } }
         );
         if (response.data) {
@@ -54,7 +54,7 @@ const ClassroomIndividual = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          `/api/classrooms/posts/${classroomId}`,
+          `http://localhost:5000/api/classrooms/posts/${classroomId}`,
           { headers: { "x-auth-token": token } }
         );
         const sortedPost = response.data.sort(
@@ -99,7 +99,7 @@ const ClassroomIndividual = () => {
       const token = localStorage.getItem("token");
       setPosting(true);
       const response = await axios.post(
-        "/api/classrooms/create-post",
+        "http://localhost:5000/api/classrooms/create-post",
         formDatas,
         {
           headers: {
@@ -136,7 +136,7 @@ const ClassroomIndividual = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "/api/classrooms/posts/make-comment",
+        "http://localhost:5000/api/classrooms/posts/make-comment",
         {
           author: userOne._id,
           post: postId,
@@ -172,7 +172,7 @@ const ClassroomIndividual = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.delete(
-        `/api/classrooms/posts/delete-post/${postId}`,
+        `http://localhost:5000/api/classrooms/posts/delete-post/${postId}`,
         { data: { userId: userOne._id }, headers: { "x-auth-token": token } }
       );
       if (response.status === 200) {

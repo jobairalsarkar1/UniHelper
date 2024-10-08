@@ -10,14 +10,16 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    
     const checkLogin = async () => {
       const token = localStorage.getItem("token");
       if (token) {
         try {
-          const res = await axios.get("/api/users/profile", {
-            headers: { "x-auth-token": token },
-          });
+          const res = await axios.get(
+            "http://localhost:5000/api/users/profile",
+            {
+              headers: { "x-auth-token": token },
+            }
+          );
           setIsLoggedIn(true);
           setUserOne(res.data);
           setTokens(token);
@@ -34,13 +36,19 @@ const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const res = await axios.post("/api/users/login", { email, password });
+      const res = await axios.post("http://localhost:5000/api/users/login", {
+        email,
+        password,
+      });
       localStorage.setItem("token", res.data.token);
       setTokens(res.data.token);
 
-      const userProfile = await axios.get("/api/users/profile", {
-        headers: { "x-auth-token": res.data.token },
-      });
+      const userProfile = await axios.get(
+        "http://localhost:5000/api/users/profile",
+        {
+          headers: { "x-auth-token": res.data.token },
+        }
+      );
       setIsLoggedIn(true);
       setUserOne(userProfile.data);
       // setUserOne(res.data.user);

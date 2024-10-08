@@ -23,7 +23,7 @@ const GradeSheetIndividual = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          `/api/grade-sheets/get-gradesheet/${studentId}`,
+          `http://localhost:5000/api/grade-sheets/get-gradesheet/${studentId}`,
           { headers: { "x-auth-token": token } }
         );
         if (response.status === 200) {
@@ -42,7 +42,7 @@ const GradeSheetIndividual = () => {
     const fetchCourses = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get("/api/courses/get-courses", {
+        const response = await axios.get("http://localhost:5000/api/courses/get-courses", {
           headers: { "x-auth-token": token },
         });
         if (response.status === 200) {
@@ -59,7 +59,7 @@ const GradeSheetIndividual = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        `/api/grade-sheets/create-gradesheet/${studentId}`,
+        `http://localhost:5000/api/grade-sheets/create-gradesheet/${studentId}`,
         {},
         { headers: { "x-auth-token": token } }
       );
@@ -75,7 +75,7 @@ const GradeSheetIndividual = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.put(
-        `/api/grade-sheets/add-semester/${studentId}`,
+        `http://localhost:5000/api/grade-sheets/add-semester/${studentId}`,
         {
           semester,
         },
@@ -104,7 +104,7 @@ const GradeSheetIndividual = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.put(
-        `/api/grade-sheets/add-courseGrade/${studentId}`,
+        `http://localhost:5000/api/grade-sheets/add-courseGrade/${studentId}`,
         { semester, courseId: course, grade, cgpa },
         { headers: { "x-auth-token": token } }
       );

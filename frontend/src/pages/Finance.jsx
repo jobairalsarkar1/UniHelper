@@ -23,7 +23,7 @@ const Finance = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `/api/advising-panels/check-payment-status`,
+        `http://localhost:5000/api/advising-panels/check-payment-status`,
         {
           headers: { "x-auth-token": token },
           params: { student: userOne._id, semester: semester },
