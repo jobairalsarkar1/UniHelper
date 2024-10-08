@@ -518,6 +518,7 @@
   padding: 0.5rem 2.1rem 0.5rem 2.1rem;
   margin: auto;
   width: 100%;
+  height: calc(100dvh - 3rem);
   background-color: var(--element-background-color);
   /* background-color: red; */
 }
