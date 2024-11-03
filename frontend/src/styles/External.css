@@ -198,11 +198,25 @@
 /* GradeSheet.jsx */
 .gradeSheet-container {
   padding: 0.5rem 2.1rem 0.5rem 2.1rem;
+  width: 100%;
+}
+
+.gradSheet-student-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: red; */
 }
 
 .gradeSheet-inner-container {
   padding: 0 0.5rem 0.5rem 0.5rem;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: center; */
+  /* align-items: center; */
   background-color: var(--element-background-color);
+  /* background-color: red; */
 }
 
 /* GradeSheetIndividual.jsx */
@@ -504,6 +518,7 @@
   padding: 0.5rem 2.1rem 0.5rem 2.1rem;
   margin: auto;
   width: 100%;
+  height: calc(100dvh - 3rem);
   background-color: var(--element-background-color);
   /* background-color: red; */
 }

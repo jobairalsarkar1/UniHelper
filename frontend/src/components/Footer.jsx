@@ -1,4 +1,5 @@
 // import React from "react";
+import { Link } from "react-router-dom";
 import "../styles/Components.css";
 
 const Footer = () => {
@@ -7,27 +8,27 @@ const Footer = () => {
       <div className="footer-inner-container">
         <ul className="footer-items">
           <li className="footer-item">
-            <a href="/courses-details" className="footer-item-link">
+            <Link to="/courses-details" className="footer-item-link">
               Courses Details
-            </a>
+            </Link>
           </li>
           <li className="footer-item">
-            <a href="/seat-status" className="footer-item-link">
+            <Link to="/seat-status" className="footer-item-link">
               Seat Status
-            </a>
+            </Link>
           </li>
           <li className="footer-item">
-            <a href="/contact" className="footer-item-link">
+            <Link to="/contact" className="footer-item-link">
               Contact
-            </a>
+            </Link>
           </li>
         </ul>
         {/* <span>Footer</span> */}
       </div>
       <div className="liscence">
-        <a href="mailto:jobairalsarkar1@gmail.com">
+        <Link to="mailto:jobairalsarkar1@gmail.com">
           &#169; Developed by Jobair Al Sarkar
-        </a>
+        </Link>
       </div>
     </div>
   );

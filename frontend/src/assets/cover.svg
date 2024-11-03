@@ -1,8 +1,8 @@
 <svg
   xmlns="http://www.w3.org/2000/svg"
-  width="200"
-  height="100"
-  viewBox="0 0 200 100"
+  width="800"
+  height="200"
+  viewBox="0 0 800 200"
 >
   <defs>
     <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -10,11 +10,12 @@
       <stop offset="100%" style="stop-color: #FF00FF; stop-opacity: 1" />
     </linearGradient>
   </defs>
+  <rect width="800" height="200" fill="#FFFFFF" />
   <text
     x="50%"
-    y="70"
+    y="140"
     font-family="Arial"
-    font-size="70"
+    font-size="120"
     font-weight="bold"
     fill="url(#gradient)"
     text-anchor="middle"

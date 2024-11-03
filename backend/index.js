@@ -12,6 +12,7 @@ const classroomRoutes = require("./routes/classroomRoutes");
 const consultationRoutes = require("./routes/consultationRoutes");
 const advisingPanelRoutes = require("./routes/advisingPanelRoutes");
 const gradeSheetRoutes = require("./routes/gradeSheetRoutes");
+const path = require("path");
 
 // Load Environment variables
 dotenv.config();
@@ -48,6 +49,14 @@ app.use("/api/classrooms", classroomRoutes);
 app.use("/api/consultations", consultationRoutes);
 app.use("/api/advising-panels", advisingPanelRoutes);
 app.use("/api/grade-sheets", gradeSheetRoutes);
+
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, "../frontend/build")));
+
+// Catch-all handler to return index.html for any non-API routes
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
+});
 
 // Start the Server
 const PORT = process.env.PORT || 5000;

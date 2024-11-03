@@ -46,10 +46,9 @@
   justify-content: center;
   /* color: #701313; */
   color: transparent;
-  background: linear-gradient(120deg, blue, red);
+  background: linear-gradient(120deg, #00ffff, #ff00ff);
   background-clip: text;
 }
-
 
 .top-navbar-list {
   list-style-type: none;
