@@ -2,7 +2,7 @@
 
 # UniHelper
 
-[unihelper.com](https://unihelper-1.onrender.com/)
+[unihelper.com](https://uni-helper-five.vercel.app/)
 
 ## University Student's Management System.
 
