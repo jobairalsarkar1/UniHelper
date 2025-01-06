@@ -141,7 +141,7 @@ const Profile = () => {
           </>
         )}
 
-        <div
+       {/* <div
           style={{ marginTop: "1rem", backgroundColor: "#ffffff" }}
           className="schedule-holder-holder"
         >
@@ -157,7 +157,28 @@ const Profile = () => {
               </>
             )}
           </div>
-        </div>
+        </div> */}
+        {userOne.status !== "admin" && (
+          <>
+            <div
+              style={{ marginTop: "1rem", backgroundColor: "#ffffff" }}
+              className="schedule-holder-holder"
+            >
+              <span>Schedule</span>
+              <div className="schedule-holder">
+                {userOne.status === "student" ? (
+                  <>
+                    <Schedule selectedSections={selectedCourses} />
+                  </>
+                ) : (
+                  <>
+                    <Schedule selectedSections={teachersSections} />
+                  </>
+                )}
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
