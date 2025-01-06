@@ -36,7 +36,7 @@ const sendResetPasswordMail = async (userName, email, token) => {
   );
   const template = fs.readFileSync(templatePath, "utf-8");
   // console.log(template);
-  const resetLink = `http://192.168.1.113:5173/reset-password/${token}`;
+  const resetLink = `https://uni-helper-five.vercel.app/reset-password/${token}`;
   const emailHtml = template
     .replace("{{resetLink}}", resetLink)
     .replace("{{userName}}", userName);
