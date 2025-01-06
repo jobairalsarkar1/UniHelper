@@ -76,7 +76,7 @@ const AdvisedCourses = () => {
               </ul>
               {advisedCourses ? (
                 <>
-                  {advisedCourses.map((course) => (
+                  {advisedCourses?.map((course) => (
                     <ul
                       key={course._id}
                       className="advised-courses-info-list-inner"
@@ -132,9 +132,9 @@ const AdvisedCourses = () => {
                   Room No
                 </li>
               </ul>
-              {teachersSections.length > 0 ? (
+              {teachersSections?.length > 0 ? (
                 <>
-                  {teachersSections.map((course) => (
+                  {teachersSections?.map((course) => (
                     <ul
                       key={course._id}
                       className="advised-courses-info-list-inner"
