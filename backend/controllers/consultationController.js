@@ -56,6 +56,10 @@ const approveConsultation = async (req, res) => {
     const consultation = await Consultation.findById(consultationId)
       .populate("teacher")
       .populate("student");
+    
+    if(!consultation) {
+      return res.status(404).json({message:'Consultation not found.'})
+    }
     const meetLink = await generateMeetLink(
       consultation.teacher._id,
       consultation.consultationTime
