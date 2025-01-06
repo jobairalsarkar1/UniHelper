@@ -182,6 +182,12 @@ const addCourseSection = async (req, res) => {
     }
     advisingPanelToAdd.selectedSections.push(newSection._id);
     await advisingPanelToAdd.save();
+    
+    // student added to the section.
+    newSection.students.push(advisingPanelToAdd.student);
+    console.log("Student Added Successfully.");
+    await newSection.save();
+    
     res.status(200).json({ message: "Course added successfully." });
   } catch (error) {
     res.status(500).json({ message: "Something went wrong." });
@@ -192,10 +198,24 @@ const dropCourseSection = async (req, res) => {
   const { advisingPanelId, sectionId } = req.body;
   try {
     const advisingPanel = await AdvisingPanel.findById(advisingPanelId);
+    if (!advisingPanel)
+      return res.status(404).json({ message: "Advising panel not found." });
+    const sectionToDrop = await Section.findById(sectionId);
+    if (!sectionToDrop)
+      return res.status(404).json({ message: "Section not found." });
+
+    // remove section from the student's advising pannel.
     advisingPanel.selectedSections = advisingPanel.selectedSections.filter(
       (section) => section.toString() !== sectionId
     );
     await advisingPanel.save();
+    
+    // remove student from the sections students list.
+    sectionToDrop.students = sectionToDrop.students.filter(
+      (studentId) => studentId.toString() !== advisingPanel.student.toString()
+    );
+    await sectionToDrop.save();
+    
     res.status(200).json({ message: "Course section dropped." });
   } catch (error) {
     res.status(500).json({ message: "Something went wrong." });
