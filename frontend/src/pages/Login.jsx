@@ -12,6 +12,7 @@ const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const { login, isLoggedIn } = useContext(AuthContext);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -30,12 +31,16 @@ const Login = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       await login(email, password);
+      setLoading(false);
       navigate("/profile");
     } catch (err) {
       setError(err.message);
       // setTimeout(() => setError(""), 2000);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -111,7 +116,16 @@ const Login = () => {
               </p>
             )} */}
             <button type="submit" className="form-login-button">
-              Login
+              {loading ? (
+                <div
+                  style={{ display: "flex", alignItems: "center", gap: "8px" }}
+                >
+                  <div className="loader"></div>
+                  <span>Logging in...</span>
+                </div>
+              ) : (
+                "Login"
+              )}
             </button>
             <p className="forget-password-reminder">
               Don't have an account?{" "}
